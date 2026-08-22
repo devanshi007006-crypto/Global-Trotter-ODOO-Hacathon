@@ -1,1 +1,348 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: Arial, sans-serif;
+    background: #0b0f19;
+    color: #ffffff;
+}
+
+
+.navbar {
+    height: 70px;
+    padding: 0 45px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid #303746;
+
+    background: #0b0f19;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #3b82f6
+    );
+}
+
+.profile-circle {
+    width: 38px;
+    height: 38px;
+
+    border: 2px solid #ffffff;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls {
+    display: flex;
+    gap: 10px;
+
+    padding: 25px 45px;
+
+    border-bottom: 1px solid #303746;
+}
+
+.search {
+    flex: 1;
+
+    padding: 12px 18px;
+
+    border-radius: 8px;
+
+    border: 1px solid #596174;
+
+    background: #111827;
+
+    color: white;
+
+    outline: none;
+}
+
+.controls button {
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    border: 1px solid #596174;
+
+    background: #111827;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background: #1d2638;
+}
+
+
+/* =========================
+   CALENDAR SECTION
+========================= */
+
+.calendar-section {
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 40px 25px;
+}
+
+.calendar-section > h2 {
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    font-size: 26px;
+}
+
+
+.calendar {
+    background: #f8fafc;
+
+    color: #111827;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+
+.calendar-header {
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+
+    border-bottom: 1px solid #d1d5db;
+}
+
+.calendar-header h1 {
+    font-size: 22px;
+}
+
+.arrow {
+    border: none;
+
+    background: transparent;
+
+    font-size: 35px;
+
+    cursor: pointer;
+
+    color: #374151;
+}
+
+
+.weekdays {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    background: #f1f5f9;
+
+    border-bottom: 1px solid #d1d5db;
+}
+
+.weekdays div {
+    padding: 15px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    color: #64748b;
+}
+
+
+.dates {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.date {
+    min-height: 95px;
+
+    padding: 10px;
+
+    border-right: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+
+    position: relative;
+
+    background: white;
+}
+
+.date > span {
+    font-weight: 500;
+}
+
+.empty {
+    min-height: 95px;
+
+    background: #f8fafc;
+
+    border-right: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+
+.trip small {
+    display: block;
+
+    margin-top: 18px;
+
+    padding: 5px;
+
+    border-radius: 4px;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+.paris small {
+    background: #ddd6fe;
+    color: #6d28d9;
+}
+
+.nyc small {
+    background: #bfdbfe;
+    color: #1d4ed8;
+}
+
+.japan small {
+    background: #bbf7d0;
+    color: #15803d;
+}
+
+
+
+.trip-summary {
+    margin-top: 45px;
+}
+
+.trip-summary h2 {
+    margin-bottom: 20px;
+}
+
+.trip-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 20px;
+}
+
+.trip-card {
+    background: #161d2f;
+
+    border: 1px solid #303746;
+
+    border-radius: 14px;
+
+    padding: 20px;
+}
+
+.trip-card h3 {
+    margin-bottom: 10px;
+}
+
+.trip-card p {
+    color: #94a3b8;
+
+    margin-bottom: 12px;
+}
+
+.trip-card span {
+    color: #a78bfa;
+
+    font-size: 14px;
+}
+
+
+
+@media (max-width: 700px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .controls {
+        padding: 20px;
+
+        flex-wrap: wrap;
+    }
+
+    .search {
+        flex-basis: 100%;
+    }
+
+    .calendar-section {
+        padding: 30px 10px;
+    }
+
+    .date {
+        min-height: 70px;
+
+        padding: 5px;
+
+        font-size: 11px;
+    }
+
+    .date small {
+        font-size: 7px;
+    }
+
+    .weekdays div {
+        font-size: 9px;
+    }
+}
