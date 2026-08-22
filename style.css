@@ -1359,7 +1359,7 @@ footer p {
     width: 100%;
     padding: 0.85rem 1rem 0.85rem 2.8rem;
     border-radius: 14px;
-    background: rgba(7, 9, 19, 0.7);
+    background: #fcfbf7;
     border: 1px solid var(--border-card);
     color: var(--text-primary);
     font-size: 0.95rem;
