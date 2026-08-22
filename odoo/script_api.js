@@ -44,3 +44,45 @@ async function generateTrip() {
         return;
     }
 }
+
+if (!travelers || travelers < 1) {
+        alert("Number of travelers must be at least 1.");
+        return;
+    }
+
+    try {
+        const result = await apiRequest("/trips", "POST", {
+            destination,
+            days,
+            budget,
+            travelers,
+            interest
+        });
+
+        currentTripId = result.trip_id;
+
+        await loadTrip(currentTripId);
+        await loadItinerary();
+        await loadBudget();
+        await loadMembers();
+
+        document.getElementById("dashboard").scrollIntoView({
+            behavior: "smooth"
+        });
+
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
+
+async function loadTrip(tripId) {
+    try {
+        const result = await apiRequest(`/trips/${tripId}`);
+
+        const trip = result.trip;
+
+        document.getElementById("showDestination").textContent =
+            trip.destination;
+
+        document.getElementById("showDays").textContent =
