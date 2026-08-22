@@ -81,6 +81,60 @@ const activities = [
         cost: 2000,
         rating: 5
     },
+
+  {
+        name: "Seine River Cruise",
+        destination: "paris",
+        category: "Adventure",
+        cost: 3500,
+        rating: 4
+    },
+
+    {
+        name: "Paris Shopping",
+        destination: "paris",
+        category: "Shopping",
+        cost: 3000,
+        rating: 4
+    },
+
+  // TOKYO
+    {
+        name: "Tokyo Tower",
+        destination: "tokyo",
+        category: "History",
+        cost: 2000,
+        rating: 5
+    },
+
+    {
+        name: "Sushi Food Tour",
+        destination: "tokyo",
+        category: "Food",
+        cost: 2500,
+        rating: 5
+    },
+
+   {
+        name: "Tokyo Shopping",
+        destination: "tokyo",
+        category: "Shopping",
+        cost: 3000,
+        rating: 4
+    },
+
+    {
+        name: "Mount Fuji Trip",
+        destination: "tokyo",
+        category: "Nature",
+        cost: 5000,
+        rating: 5
+    }
+];
+
+
+
+  
     
 
   
