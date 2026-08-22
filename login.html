@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="GlobeTrotter Authentication Gateway - Login and Register for your personalized travel planning workspace.">
-    <title>GlobeTrotter | Login & Registration</title>
+    <title>GlobeTrotter | Account Login & Registration</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,18 +46,18 @@
     <!-- Main Auth Wrapper -->
     <main class="auth-container">
         
-        <!-- Auth Navigation Tabs -->
+        <!-- Auth Navigation Tabs (Cleaned, no Screen 1/2 text) -->
         <div class="auth-tabs">
             <button class="auth-tab-btn active" id="tabLogin" onclick="switchAuthTab('login')">
-                <i class="fa-solid fa-right-to-bracket"></i> Login (Screen 1)
+                <i class="fa-solid fa-right-to-bracket"></i> Login
             </button>
             <button class="auth-tab-btn" id="tabRegister" onclick="switchAuthTab('register')">
-                <i class="fa-solid fa-user-plus"></i> Registration (Screen 2)
+                <i class="fa-solid fa-user-plus"></i> Register
             </button>
         </div>
 
         <!-- ==========================================================================
-             SCREEN 1: LOGIN SCREEN
+             LOGIN CARD
              ========================================================================== -->
         <div class="auth-card glass-panel" id="screenLogin">
             <div class="auth-header">
@@ -67,13 +67,13 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                 </div>
-                <h2>Login Screen <span class="screen-tag">(Screen 1)</span></h2>
-                <p>Enter your credentials to access your personal travel workspace</p>
+                <h2>Welcome Back</h2>
+                <p>Enter your account credentials to access your travel workspace</p>
             </div>
 
             <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="input-group">
-                    <label for="loginUsername"><i class="fa-solid fa-user"></i> Username or Email</label>
+                    <label for="loginUsername"><i class="fa-solid fa-user"></i> Username or Email Address</label>
                     <input type="text" id="loginUsername" placeholder="e.g. devanshi@globetrotter.com" required>
                 </div>
 
@@ -90,7 +90,7 @@
                 </div>
 
                 <button type="submit" class="auth-btn glow-button">
-                    <i class="fa-solid fa-right-to-bracket"></i> Login Button
+                    <i class="fa-solid fa-right-to-bracket"></i> Sign In to Account
                 </button>
 
                 <div class="auth-footer-text">
@@ -101,7 +101,7 @@
 
 
         <!-- ==========================================================================
-             SCREEN 2: REGISTRATION SCREEN
+             REGISTRATION CARD
              ========================================================================== -->
         <div class="auth-card glass-panel hidden" id="screenRegister">
             <div class="auth-header">
@@ -112,32 +112,32 @@
                     </div>
                     <span class="photo-label">Photo</span>
                 </div>
-                <h2>Registration Screen <span class="screen-tag">(Screen 2)</span></h2>
-                <p>Create a new account to design multi-city itineraries and manage trip budgets</p>
+                <h2>Create Account</h2>
+                <p>Register once to design multi-city itineraries and manage trip budgets</p>
             </div>
 
             <form id="registerForm" onsubmit="handleRegister(event)">
                 <div class="form-row-2">
                     <div class="input-group">
-                        <label for="regFirstName"><i class="fa-solid fa-signature"></i> First Name</label>
+                        <label for="regFirstName"><i class="fa-solid fa-signature"></i> First Name *</label>
                         <input type="text" id="regFirstName" placeholder="First Name" required>
                     </div>
 
                     <div class="input-group">
-                        <label for="regLastName"><i class="fa-solid fa-signature"></i> Last Name</label>
+                        <label for="regLastName"><i class="fa-solid fa-signature"></i> Last Name *</label>
                         <input type="text" id="regLastName" placeholder="Last Name" required>
                     </div>
                 </div>
 
                 <div class="form-row-2">
                     <div class="input-group">
-                        <label for="regEmail"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                        <label for="regEmail"><i class="fa-solid fa-envelope"></i> Email Address *</label>
                         <input type="email" id="regEmail" placeholder="Email Address" required>
                     </div>
 
                     <div class="input-group">
                         <label for="regPhone"><i class="fa-solid fa-phone"></i> Phone Number</label>
-                        <input type="tel" id="regPhone" placeholder="Phone Number">
+                        <input type="tel" id="regPhone" placeholder="+91 9876543210" pattern="[+0-9\s-]{8,15}">
                     </div>
                 </div>
 
@@ -153,20 +153,27 @@
                     </div>
                 </div>
 
-                <div class="form-row-2">
-                    <div class="input-group full-width">
-                        <label for="regPassword"><i class="fa-solid fa-key"></i> Create Password</label>
-                        <input type="password" id="regPassword" placeholder="Set password (min 6 characters)" minlength="6" required>
+                <!-- Strong Password Input with Live Validator -->
+                <div class="input-group full-width">
+                    <label for="regPassword"><i class="fa-solid fa-key"></i> Create Strong Password *</label>
+                    <input type="password" id="regPassword" placeholder="e.g. Travel@2026" oninput="checkPasswordStrength(this.value)" required>
+                    
+                    <!-- Password Strength Feedback -->
+                    <div class="pass-strength-container" id="passStrengthBox">
+                        <div class="pass-strength-bar">
+                            <div class="pass-strength-fill" id="passStrengthFill"></div>
+                        </div>
+                        <span class="pass-strength-text" id="passStrengthText">Min 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special char (!@#$%^&*)</span>
                     </div>
                 </div>
 
                 <div class="input-group full-width">
-                    <label for="regInfo"><i class="fa-solid fa-info-circle"></i> Additional Information ....</label>
-                    <textarea id="regInfo" rows="3" placeholder="Additional Information .... (Travel preferences, bio, dietary interests)"></textarea>
+                    <label for="regInfo"><i class="fa-solid fa-info-circle"></i> Additional Information</label>
+                    <textarea id="regInfo" rows="3" placeholder="Travel preferences, bio, or dietary interests"></textarea>
                 </div>
 
                 <button type="submit" class="auth-btn glow-button">
-                    <i class="fa-solid fa-user-check"></i> Register Users
+                    <i class="fa-solid fa-user-check"></i> Register Account
                 </button>
 
                 <div class="auth-footer-text">
@@ -195,12 +202,12 @@
 
                 <div class="input-group hidden" id="otpGroup">
                     <label for="forgotOtp"><i class="fa-solid fa-shield-halved"></i> Verification OTP (Sent to Email)</label>
-                    <input type="text" id="forgotOtp" placeholder="Enter 6-digit OTP code (e.g. 748291)">
+                    <input type="text" id="forgotOtp" placeholder="Enter 6-digit OTP code (e.g. 849201)">
                 </div>
 
                 <div class="input-group hidden" id="newPassGroup">
-                    <label for="newPassword"><i class="fa-solid fa-lock"></i> Set New Password</label>
-                    <input type="password" id="newPassword" placeholder="Enter new password">
+                    <label for="newPassword"><i class="fa-solid fa-lock"></i> Set New Strong Password</label>
+                    <input type="password" id="newPassword" placeholder="Enter new strong password">
                 </div>
 
                 <button type="submit" class="auth-btn glow-button" id="btnForgotSubmit">
@@ -220,7 +227,7 @@
     <script>
         const API_BASE = "/api/v1/auth";
 
-        // Tab Switching Logic
+        // Tab Switching Logic (No Screen 1/2 text)
         function switchAuthTab(tab) {
             const screenLogin = document.getElementById("screenLogin");
             const screenRegister = document.getElementById("screenRegister");
@@ -240,20 +247,65 @@
             }
         }
 
-        // 1. Handle Login (Screen 1) with Backend & Fallback Storage Check
+        // Strong Password Regex Validation: 8+ chars, 1 upper, 1 lower, 1 number, 1 special char
+        function validateStrongPassword(pass) {
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_-])[A-Za-z\d@$!%*?&#^()_-]{8,}$/;
+            return regex.test(pass);
+        }
+
+        // Live Password Strength Indicator Fill
+        function checkPasswordStrength(pass) {
+            const fill = document.getElementById("passStrengthFill");
+            const text = document.getElementById("passStrengthText");
+
+            if (!pass) {
+                fill.style.width = "0%";
+                fill.style.backgroundColor = "transparent";
+                text.textContent = "Min 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special char (!@#$%^&*)";
+                text.style.color = "var(--text-secondary)";
+                return;
+            }
+
+            let score = 0;
+            if (pass.length >= 8) score++;
+            if (/[A-Z]/.test(pass)) score++;
+            if (/[a-z]/.test(pass)) score++;
+            if (/\d/.test(pass)) score++;
+            if (/[@$!%*?&#^()_-]/.test(pass)) score++;
+
+            if (score <= 2) {
+                fill.style.width = "30%";
+                fill.style.backgroundColor = "#ef4444";
+                text.textContent = "🔴 Weak password. Include uppercase, lowercase, number & special char.";
+                text.style.color = "#fca5a5";
+            } else if (score < 5) {
+                fill.style.width = "65%";
+                fill.style.backgroundColor = "#f59e0b";
+                text.textContent = "🟡 Medium strength. Add special characters/numbers.";
+                text.style.color = "#fef08a";
+            } else {
+                fill.style.width = "100%";
+                fill.style.backgroundColor = "#10b981";
+                text.textContent = "🟢 Strong Password! Great job.";
+                text.style.color = "#6ee7b7";
+            }
+        }
+
+        // 1. Handle Login: STRICT check if user has registered once
         async function handleLogin(e) {
             e.preventDefault();
             const username = document.getElementById("loginUsername").value.trim();
             const password = document.getElementById("loginPassword").value;
 
-            // First check local accounts storage
+            // Check Local Registry Accounts
             const registeredUsers = JSON.parse(localStorage.getItem("gt_accounts") || "[]");
             const existingLocalUser = registeredUsers.find(u => 
                 u.email.toLowerCase() === username.toLowerCase() || 
                 u.name.toLowerCase() === username.toLowerCase()
             );
 
-            // Attempt Backend API request
+            // Check Odoo Backend Endpoint
+            let backendUser = null;
             try {
                 const response = await fetch(API_BASE + "/login", {
                     method: "POST",
@@ -264,30 +316,34 @@
                 if (response.ok) {
                     const result = await response.json();
                     if (result.status === "success") {
-                        saveUserSession(result.user);
-                        return;
+                        backendUser = result.user;
                     }
                 }
             } catch (err) {
-                console.log("Backend offline, checking local registry:", err);
+                console.log("Backend offline, relying on client registry:", err);
             }
 
-            // Verify local registry if backend offline
-            if (existingLocalUser) {
-                if (existingLocalUser.password && existingLocalUser.password !== password) {
-                    alert("⚠️ Incorrect password! Please try again or use 'Forgot Password'.");
-                    return;
-                }
-                saveUserSession(existingLocalUser);
-            } else {
-                alert("⚠️ Account not found! You haven't registered yet.\n\nRedirecting you to the Registration Screen (Screen 2)...");
+            // STRICT ACCOUNT REGISTRATION CHECK:
+            if (!existingLocalUser && !backendUser) {
+                alert("⛔ ACCESS DENIED!\n\nNo registered account found for '" + username + "'.\n\nYou MUST register first before logging in. Redirecting you to the Registration Form...");
                 switchAuthTab("register");
                 document.getElementById("regEmail").value = username.includes("@") ? username : "";
                 document.getElementById("regFirstName").focus();
+                return;
             }
+
+            const targetUser = backendUser || existingLocalUser;
+
+            if (targetUser.password && targetUser.password !== password) {
+                alert("⚠️ Incorrect password! Please verify your password or use 'Forgot Password'.");
+                return;
+            }
+
+            alert("✨ Welcome back, " + targetUser.name + "!");
+            saveUserSession(targetUser);
         }
 
-        // 2. Handle Registration (Screen 2) with Backend & Local Sync
+        // 2. Handle Registration with Strong Password & Email Format Validation
         async function handleRegister(e) {
             e.preventDefault();
             const firstName = document.getElementById("regFirstName").value.trim();
@@ -298,6 +354,13 @@
             const country = document.getElementById("regCountry").value.trim();
             const password = document.getElementById("regPassword").value;
             const info = document.getElementById("regInfo").value.trim();
+
+            // Validate Strong Password
+            if (!validateStrongPassword(password)) {
+                alert("⚠️ STRONG PASSWORD REQUIRED!\n\nYour password must have:\n• At least 8 characters\n• At least 1 Uppercase letter (A-Z)\n• At least 1 Lowercase letter (a-z)\n• At least 1 Number (0-9)\n• At least 1 Special character (!@#$%^&* etc.)");
+                document.getElementById("regPassword").focus();
+                return;
+            }
 
             const userObj = {
                 name: (firstName + " " + lastName).trim(),
@@ -312,7 +375,7 @@
                 isLoggedIn: true
             };
 
-            // Save in Local Account Registry
+            // Save Account in Local Database
             const registeredUsers = JSON.parse(localStorage.getItem("gt_accounts") || "[]");
             const existingIdx = registeredUsers.findIndex(u => u.email === email);
             if (existingIdx >= 0) {
@@ -322,7 +385,7 @@
             }
             localStorage.setItem("gt_accounts", JSON.stringify(registeredUsers));
 
-            // Sync to Odoo Backend
+            // Sync to Backend
             try {
                 await fetch(API_BASE + "/register", {
                     method: "POST",
@@ -339,10 +402,10 @@
                     })
                 });
             } catch (err) {
-                console.log("Registered locally, backend sync deferred:", err);
+                console.log("Registered in local registry:", err);
             }
 
-            alert("🎉 Registration Successful! Welcome to GlobeTrotter, " + userObj.name);
+            alert("🎉 Registration Successful! Account registered for " + userObj.name);
             saveUserSession(userObj);
         }
 
@@ -375,32 +438,31 @@
 
             if (forgotStep === 1) {
                 targetEmail = email;
-                // Backend API call
-                try {
-                    await fetch(API_BASE + "/forgot_password", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ email: targetEmail })
-                    });
-                } catch (err) {
-                    console.log("Backend offline, proceeding with client verification");
+                const registeredUsers = JSON.parse(localStorage.getItem("gt_accounts") || "[]");
+                const user = registeredUsers.find(u => u.email === targetEmail);
+
+                if (!user) {
+                    alert("⛔ No registered account found with email '" + targetEmail + "'. Please register first!");
+                    closeForgotModal();
+                    switchAuthTab("register");
+                    document.getElementById("regEmail").value = targetEmail;
+                    return;
                 }
 
-                alert("📧 Verification OTP (Code: 849201) and Reset link sent to: " + targetEmail);
+                alert("📧 Verification OTP (Code: 849201) sent to: " + targetEmail);
                 document.getElementById("otpGroup").classList.remove("hidden");
                 document.getElementById("newPassGroup").classList.remove("hidden");
                 document.getElementById("forgotOtp").value = "849201";
-                document.getElementById("btnForgotSubmit").innerHTML = '<i class="fa-solid fa-key"></i> Update & Reset Password';
+                document.getElementById("btnForgotSubmit").innerHTML = '<i class="fa-solid fa-key"></i> Reset to New Password';
                 forgotStep = 2;
 
             } else if (forgotStep === 2) {
                 const newPass = document.getElementById("newPassword").value;
-                if (!newPass || newPass.length < 6) {
-                    alert("Please enter a new password of at least 6 characters.");
+                if (!validateStrongPassword(newPass)) {
+                    alert("⚠️ Password must be strong (8+ chars, uppercase, lowercase, number, special char).");
                     return;
                 }
 
-                // Update in Local Storage Registry
                 const registeredUsers = JSON.parse(localStorage.getItem("gt_accounts") || "[]");
                 const user = registeredUsers.find(u => u.email === targetEmail);
                 if (user) {
@@ -408,7 +470,7 @@
                     localStorage.setItem("gt_accounts", JSON.stringify(registeredUsers));
                 }
 
-                alert("✅ Password successfully reset! You can now log in with your new password.");
+                alert("✅ Password successfully reset! Log in with your new password.");
                 closeForgotModal();
                 switchAuthTab("login");
                 document.getElementById("loginUsername").value = targetEmail;
