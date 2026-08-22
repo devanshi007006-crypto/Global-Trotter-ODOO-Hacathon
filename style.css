@@ -1,14 +1,41 @@
-/* =========================================
-   GLOBALTROTTER
-   Premium Travel Theme
-   Teal + Sand + Gold
-   ========================================= */
+:root {
+    --bg-dark: #090d16;
+    --bg-card: rgba(15, 23, 42, 0.75);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-gold: #f59e0b;
+    --accent-emerald: #10b981;
+    --border-card: rgba(255, 255, 255, 0.12);
+    --border-glow: rgba(245, 158, 11, 0.35);
+    --gradient-hero: linear-gradient(135deg, #f59e0b, #d97706);
+    --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.5);
+    --radius-card: 20px;
+}
+
+/* Custom Polished Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(9, 13, 22, 0.9);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(245, 158, 11, 0.35);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-gold);
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 html {
@@ -16,8 +43,8 @@ html {
 }
 
 body {
-    background: #f8f5ee;
-    color: #263331;
+    background: var(--bg-dark);
+    color: var(--text-primary);
     line-height: 1.6;
 }
 
