@@ -1169,6 +1169,11 @@ footer p {
 .landing-wrapper {
     width: 100%;
 }
+.main-landing-section,
+.landing-wrapper {
+    background: #f8f5ee;
+    color: #263331;
+}
 
 /* Regional cards */
 .regional-grid {
