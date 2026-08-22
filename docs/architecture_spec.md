@@ -88,23 +88,23 @@ graph TD
 
 ## 👥 Team Work Breakdown
 
-### 👩‍💻 Member 1 (You - Team Leader)
+### 👩‍💻 Devanshi (Team Leader & Backend Architect)
 * Core Odoo module development (`global_trotter`).
 * Relational ORM models, business logic engines (`gt.trip`, `action_optimize_trip`, `_compute_debt_settlements`).
 * Odoo Views (Kanban, Form, Tree, Pivot, Graph) and Security ACLs.
 * API Gateway HTTP controllers (`/api/v1/trips`).
 
-### 👨‍💻 Member 2 (Frontend UI/UX)
+### 👩‍💻 Mishva (Frontend UI/UX Lead)
 * Modern web dashboard / client UI (React, Vite, or Tailwind web view).
-* Connects to Member 1's REST endpoints (`/api/v1/trips`).
+* Connects to Devanshi's REST endpoints (`/api/v1/trips`).
 * Displays Day-by-Day itinerary tabs, interactive budget charts, and activity vote buttons.
 
-### 🤖 Member 3 (AI + Recommendations)
+### 🤖 Prachi Kanwar (AI + Recommendations Lead)
 * Python script (`ai/recommendation_engine.py`) integrating Gemini/OpenAI API or recommendation rules.
 * Formats output into JSON day-wise structure.
 * Sends JSON payload to `/api/v1/trips/<id>/ai_sync`.
 
-### 👩‍💻 Member 4 (Integration, Testing & Pitch)
+### 👩‍💻 Prachi Das (Integration, Testing & Pitch Lead)
 * GitHub repository management, pull request reviews.
 * End-to-end API testing.
 * Pre-loading demo data (`data/demo_data.xml`).

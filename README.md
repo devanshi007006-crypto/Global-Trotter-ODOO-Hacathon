@@ -83,10 +83,10 @@ python ai/recommendation_engine.py
 
 | Member | Role | Core Responsibility |
 |---|---|---|
-| **Devanshi (You)** | **Team Leader & Backend Architect** | Custom Odoo module development, ORM models, business logic engines, security ACLs, REST API endpoints |
-| **Member 2** | **Frontend & UI/UX** | Web/Mobile interface, dashboard integration, travel cards, itinerary UI |
-| **Member 3** | **AI & Recommendation Lead** | AI itinerary generation script (`ai/recommendation_engine.py`), preference matching |
-| **Member 4** | **Integration, Testing & Pitch** | End-to-end API testing, documentation, Git management, presentation deck |
+| **Devanshi** | **Team Leader & Backend Architect** | Custom Odoo module development, ORM models, business logic engines, security ACLs, REST API endpoints |
+| **Mishva** | **Frontend UI/UX Lead** | Web/Mobile interface, dashboard integration, travel cards, itinerary UI |
+| **Prachi Kanwar** | **AI & Recommendation Lead** | AI itinerary generation script (`ai/recommendation_engine.py`), preference matching |
+| **Prachi Das** | **Integration, Testing & Pitch Lead** | End-to-end API testing, documentation, Git management, presentation deck |
 
 ---
 
