@@ -319,7 +319,49 @@
             alert("🔍 Filter by Tag: #JaipurForts, #KeralaBackwaters, #GoaSunsets, #BudgetAdvice");
         }
 
+        function loadSavedCommunityPosts() {
+            const savedPosts = JSON.parse(localStorage.getItem("gt_community_posts") || "[]");
+            if (savedPosts.length === 0) return;
+
+            const feed = document.getElementById("communityFeedList");
+            savedPosts.forEach(post => {
+                const initial = post.author ? post.author.charAt(0).toUpperCase() : "T";
+                const postItem = document.createElement("div");
+                postItem.className = "community-post-item";
+                postItem.style.cssText = "display: flex; gap: 20px; align-items: flex-start;";
+
+                postItem.innerHTML = `
+                    <div class="community-circle-avatar" style="width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fff; font-weight: 800; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.2);">
+                        ${initial}
+                    </div>
+                    <div class="itinerary-section-card glass-panel" style="flex: 1; padding: 1.75rem 2rem;">
+                        <div class="section-card-header" style="margin-bottom: 1rem; padding-bottom: 0.75rem;">
+                            <div class="section-badge-title">
+                                <h4 style="font-size: 1.15rem; font-weight: 800;">${post.author} <i class="fa-solid fa-circle-check text-emerald" style="font-size: 0.9rem;"></i></h4>
+                                <span class="tag-pill tag-purple">#GlobalTrotter</span>
+                            </div>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">${post.time || 'Recently'}</span>
+                        </div>
+                        <p style="color: var(--text-primary); font-size: 1rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                            ${post.text}
+                        </p>
+                        <div style="display: flex; gap: 15px; align-items: center; border-top: 1px solid var(--border-card); padding-top: 1rem;">
+                            <button type="button" class="control-btn" onclick="likePost(this, ${post.likes || 1})">
+                                <i class="fa-solid fa-thumbs-up"></i> <span class="like-count">${post.likes || 1}</span> Upvote
+                            </button>
+                            <button type="button" class="control-btn">
+                                <i class="fa-solid fa-comment"></i> ${post.comments || 0} Comments
+                            </button>
+                        </div>
+                    </div>
+                `;
+                feed.prepend(postItem);
+            });
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
+            loadSavedCommunityPosts();
+
             const userAuthLink = document.getElementById("userAuthLink");
             const storedUser = localStorage.getItem("gt_user");
             if (storedUser && userAuthLink) {
