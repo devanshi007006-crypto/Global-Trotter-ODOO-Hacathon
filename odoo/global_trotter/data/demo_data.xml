@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sample Partners for Group Trip Demo -->
+        <record id="partner_devanshi" model="res.partner">
+            <field name="name">Devanshi (Leader)</field>
+            <field name="email">devanshi@globaltrotter.com</field>
+        </record>
+
+        <record id="partner_rahul" model="res.partner">
+            <field name="name">Rahul Sharma</field>
+            <field name="email">rahul@globaltrotter.com</field>
+        </record>
+
+        <record id="partner_aarav" model="res.partner">
+            <field name="name">Aarav Patel</field>
+            <field name="email">aarav@globaltrotter.com</field>
+        </record>
+
+        <record id="partner_ananya" model="res.partner">
+            <field name="name">Ananya Verma</field>
+            <field name="email">ananya@globaltrotter.com</field>
+        </record>
+
+        <!-- Trip 1: Japan 7-Day Experience -->
+        <record id="trip_japan_demo" model="gt.trip">
+            <field name="name">Alex &amp; Friends Japan Adventure 2026</field>
+            <field name="destination">Tokyo &amp; Kyoto, Japan</field>
+            <field name="start_date">2026-09-10</field>
+            <field name="end_date">2026-09-16</field>
+            <field name="num_travelers">4</field>
+            <field name="budget_total">100000.0</field>
+            <field name="travel_style">balanced</field>
+            <field name="interests">Culture, Tech, Food, Anime &amp; Temples</field>
+            <field name="status">planned</field>
+            <field name="traveler_ids" eval="[(6, 0, [ref('partner_devanshi'), ref('partner_rahul'), ref('partner_aarav'), ref('partner_ananya')])]"/>
+            <field name="notes">Remember to book Shinkansen bullet train passes in advance!</field>
+        </record>
+
+        <!-- Day 1: Tokyo Arrival -->
+        <record id="day_japan_1" model="gt.itinerary.day">
+            <field name="trip_id" ref="trip_japan_demo"/>
+            <field name="day_number">1</field>
+            <field name="date">2026-09-10</field>
+            <field name="title">Day 1 - Tokyo Arrival &amp; Shibuya Crossing</field>
+        </record>
+
+        <record id="act_japan_1" model="gt.activity">
+            <field name="itinerary_day_id" ref="day_japan_1"/>
+            <field name="name">Shibuya Sky &amp; Crossing Walk</field>
+            <field name="category">sightseeing</field>
+            <field name="start_time">03:00 PM</field>
+            <field name="duration_hours">2.5</field>
+            <field name="cost">2200.0</field>
+            <field name="rating">4.9</field>
+            <field name="is_indoor">False</field>
+            <field name="location">Shibuya Sky Tower, Tokyo</field>
+        </record>
+
+        <record id="act_japan_2" model="gt.activity">
+            <field name="itinerary_day_id" ref="day_japan_1"/>
+            <field name="name">Ramen Alley Dinner</field>
+            <field name="category">food</field>
+            <field name="start_time">07:00 PM</field>
+            <field name="duration_hours">1.5</field>
+            <field name="cost">1500.0</field>
+            <field name="rating">4.8</field>
+            <field name="is_indoor">True</field>
+            <field name="location">Ichiran Shibuya</field>
+        </record>
+
+        <!-- Day 2: Historic Asakusa -->
+        <record id="day_japan_2" model="gt.itinerary.day">
+            <field name="trip_id" ref="trip_japan_demo"/>
+            <field name="day_number">2</field>
+            <field name="date">2026-09-11</field>
+            <field name="title">Day 2 - Historic Asakusa &amp; teamLab Planets</field>
+        </record>
+
+        <record id="act_japan_3" model="gt.activity">
+            <field name="itinerary_day_id" ref="day_japan_2"/>
+            <field name="name">Senso-ji Temple Exploration</field>
+            <field name="category">sightseeing</field>
+            <field name="start_time">09:00 AM</field>
+            <field name="duration_hours">3.0</field>
+            <field name="cost">0.0</field>
+            <field name="rating">4.9</field>
+            <field name="is_indoor">False</field>
+        </record>
+
+        <record id="act_japan_4" model="gt.activity">
+            <field name="itinerary_day_id" ref="day_japan_2"/>
+            <field name="name">teamLab Planets Digital Art Museum</field>
+            <field name="category">sightseeing</field>
+            <field name="start_time">02:00 PM</field>
+            <field name="duration_hours">2.5</field>
+            <field name="cost">3800.0</field>
+            <field name="rating">5.0</field>
+            <field name="is_indoor">True</field>
+        </record>
+
+        <!-- Expenses for Japan Trip -->
+        <record id="expense_flight_japan" model="gt.expense">
+            <field name="trip_id" ref="trip_japan_demo"/>
+            <field name="name">Group Flights (Tokyo Return)</field>
+            <field name="category">flights</field>
+            <field name="paid_by_id" ref="partner_devanshi"/>
+            <field name="amount">40000.0</field>
+            <field name="date">2026-09-01</field>
+            <field name="split_type">equal</field>
+        </record>
+
+        <record id="expense_hotel_japan" model="gt.expense">
+            <field name="trip_id" ref="trip_japan_demo"/>
+            <field name="name">Shinjuku Hotel Booking (6 Nights)</field>
+            <field name="category">hotels</field>
+            <field name="paid_by_id" ref="partner_aarav"/>
+            <field name="amount">28000.0</field>
+            <field name="date">2026-09-02</field>
+            <field name="split_type">equal</field>
+        </record>
+
+        <record id="expense_dinner_japan" model="gt.expense">
+            <field name="trip_id" ref="trip_japan_demo"/>
+            <field name="name">Wagyu Beef Welcome Dinner</field>
+            <field name="category">food</field>
+            <field name="paid_by_id" ref="partner_rahul"/>
+            <field name="amount">12000.0</field>
+            <field name="date">2026-09-10</field>
+            <field name="split_type">equal</field>
+        </record>
+
+        <!-- Trip 2: Paris 5-Day Getaway -->
+        <record id="trip_paris_demo" model="gt.trip">
+            <field name="name">Paris Romantic &amp; Foodie Getaway</field>
+            <field name="destination">Paris, France</field>
+            <field name="start_date">2026-10-05</field>
+            <field name="end_date">2026-10-09</field>
+            <field name="num_travelers">2</field>
+            <field name="budget_total">80000.0</field>
+            <field name="travel_style">balanced</field>
+            <field name="interests">Food, History, Museums, Shopping</field>
+            <field name="status">draft</field>
+            <field name="traveler_ids" eval="[(6, 0, [ref('partner_devanshi'), ref('partner_ananya')])]"/>
+        </record>
+
+        <!-- Day 1: Paris Highlights -->
+        <record id="day_paris_1" model="gt.itinerary.day">
+            <field name="trip_id" ref="trip_paris_demo"/>
+            <field name="day_number">1</field>
+            <field name="date">2026-10-05</field>
+            <field name="title">Day 1 - Icon of Paris: Eiffel Tower &amp; Seine Cruise</field>
+        </record>
+
+        <record id="act_paris_1" model="gt.activity">
+            <field name="itinerary_day_id" ref="day_paris_1"/>
+            <field name="name">Eiffel Tower Summit Access</field>
+            <field name="category">sightseeing</field>
+            <field name="start_time">09:00 AM</field>
+            <field name="duration_hours">2.5</field>
+            <field name="cost">3200.0</field>
+            <field name="rating">4.8</field>
+            <field name="is_indoor">False</field>
+        </record>
+
+        <record id="act_paris_2" model="gt.activity">
+            <field name="itinerary_day_id" ref="day_paris_1"/>
+            <field name="name">Louvre Museum Masterpieces Tour</field>
+            <field name="category">sightseeing</field>
+            <field name="start_time">02:00 PM</field>
+            <field name="duration_hours">3.5</field>
+            <field name="cost">2500.0</field>
+            <field name="rating">4.9</field>
+            <field name="is_indoor">True</field>
+        </record>
+
+        <record id="act_paris_3" model="gt.activity">
+            <field name="itinerary_day_id" ref="day_paris_1"/>
+            <field name="name">Seine River Sunset Cruise</field>
+            <field name="category">sightseeing</field>
+            <field name="start_time">06:00 PM</field>
+            <field name="duration_hours">1.5</field>
+            <field name="cost">1800.0</field>
+            <field name="rating">4.7</field>
+            <field name="is_indoor">False</field>
+        </record>
+
+    </data>
+</odoo>
