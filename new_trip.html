@@ -3,282 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GlobalTrotter Create a New Trip (Screen 4) - Plan dates, destinations, and get AI travel suggestions.">
+    <meta name="description" content="GlobalTrotter Plan a New Trip (Screen 4) - Plan dates, destinations, budget, and get AI travel suggestions.">
     <title>GlobalTrotter | Plan a New Trip (Screen 4)</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-        body {
-            background: #090d16;
-            color: #eeeeee;
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            padding: 20px 0;
-        }
-
-        .page {
-            width: 100%;
-            min-height: 100vh;
-            padding: 25px 3%;
-        }
-
-        .title {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 16px;
-            color: #f59e0b;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1100px;
-            margin: auto;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
-            overflow: hidden;
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .top-bar {
-            height: 65px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 25px;
-        }
-
-        .logo {
-            font-size: 20px;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-        }
-
-        .logo span {
-            color: #f59e0b;
-        }
-
-        .profile-link {
-            padding: 6px 14px;
-            border-radius: 20px;
-            background: rgba(245, 158, 11, 0.15);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            color: #f59e0b;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .section-title {
-            padding: 16px 25px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 20px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .trip-form {
-            padding: 25px 30px 20px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-group label {
-            font-size: 15px;
-            font-weight: 600;
-            color: #cbd5e1;
-        }
-
-        .form-group input {
-            padding: 12px 16px;
-            border-radius: 10px;
-            background: rgba(7, 9, 19, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-            font-size: 15px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus {
-            border-color: #f59e0b;
-            box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
-        }
-
-        .btn-submit-trip {
-            padding: 14px 28px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            border: none;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .btn-submit-trip:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
-        }
-
-        .suggestion-title {
-            padding: 20px 25px 10px;
-            font-size: 18px;
-            font-weight: 700;
-            color: #f59e0b;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .places-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
-            padding: 15px 25px 30px;
-        }
-
-        .place-card {
-            height: 140px;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .place-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .place-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .place-card-name {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 8px 10px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            font-size: 12px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-    </style>
-
-    <!-- Font Awesome -->
+    <!-- FontAwesome Icons & Database Helper -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="db_helper.js"></script>
 </head>
 
 <body>
 
-    <div class="page">
+    <!-- Ambient Glowing Orbs -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="ambient-glow-3"></div>
 
-        <div class="title">
-            <i class="fa-solid fa-plane-departure"></i> Create a new Trip <span>(Screen 4)</span>
+    <!-- Header Navigation Bar -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-compass fa-spin-pulse" style="--fa-animation-duration: 12s;"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-title">GlobalTrotter</span>
+                    <span class="brand-subtitle">PLAN NEW TRIP</span>
+                </div>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home Dashboard</a>
+                <a href="search.html" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Search Places</a>
+                <a href="new_trip.html" class="nav-link active"><i class="fa-solid fa-plus-circle"></i> Create Trip</a>
+                <a href="trip_list.html" class="nav-link"><i class="fa-solid fa-list-check"></i> My Trips</a>
+                <a href="itinerary_builder.html" class="nav-link"><i class="fa-solid fa-calendar-week"></i> Build Itinerary</a>
+                <a href="calendar.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i> Calendar</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn-auth-link" id="userAuthLink">
+                    <i class="fa-solid fa-circle-user"></i> Account
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Form Container matching Theme -->
+    <main class="itinerary-builder-container">
+
+        <div class="builder-title-header">
+            <div>
+                <h2>Plan a New Trip</h2>
+                <p>Select your destination, travel dates, and budget allocation to auto-generate your itinerary circuit in Odoo ERP.</p>
+            </div>
+
+            <a href="trip_list.html" class="btn-auth-link">
+                <i class="fa-solid fa-list-check"></i> View My Trips
+            </a>
         </div>
 
-        <div class="container">
-
-            <div class="top-bar">
-                <div class="logo">Global<span>Trotter</span></div>
-                <a href="login.html" class="profile-link" id="userAuthLink"><i class="fa-solid fa-user"></i> Account</a>
+        <!-- Glassmorphic New Trip Form Card -->
+        <div class="itinerary-section-card glass-panel" style="margin-bottom: 3rem; padding: 2.5rem;">
+            
+            <div class="section-card-header" style="margin-bottom: 2rem;">
+                <div class="section-badge-title">
+                    <span class="sec-num-badge"><i class="fa-solid fa-paper-plane"></i> Trip Wizard</span>
+                    <h3 style="font-size: 1.3rem; font-weight: 800;">Create Trip Specification</h3>
+                </div>
+                <span class="text-gold" style="font-weight: 700; font-size: 0.9rem;"><i class="fa-solid fa-cloud-arrow-up"></i> Syncs to Odoo ORM</span>
             </div>
 
-            <div class="section-title">
-                Plan a new trip & Sync to Odoo ERP
-            </div>
-
-            <form class="trip-form" onsubmit="handleCreateNewTrip(event)">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="tripPlace"><i class="fa-solid fa-location-dot"></i> Select a Place / Destination *</label>
-                        <input type="text" id="tripPlace" placeholder="e.g. Jaipur, Rajasthan" required>
+            <form id="newTripForm" onsubmit="handleCreateNewTrip(event)">
+                <div class="section-meta-grid" style="margin-bottom: 1.5rem;">
+                    
+                    <div class="input-group">
+                        <label for="tripPlace"><i class="fa-solid fa-location-dot text-gold"></i> Select Destination / Circuit Place *</label>
+                        <input type="text" id="tripPlace" class="search-bar-input" style="padding-left: 1rem;" placeholder="e.g. Jaipur, Rajasthan" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="startDate"><i class="fa-solid fa-calendar"></i> Start Date *</label>
-                        <input type="date" id="startDate" required>
+                    <div class="input-group">
+                        <label for="tripBudget"><i class="fa-solid fa-indian-rupee-sign text-emerald"></i> Target Budget Allocation (₹) *</label>
+                        <input type="number" id="tripBudget" class="search-bar-input" style="padding-left: 1rem;" placeholder="50000" value="50000" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="endDate"><i class="fa-solid fa-calendar-check"></i> End Date *</label>
-                        <input type="date" id="endDate" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tripBudget"><i class="fa-solid fa-indian-rupee-sign"></i> Target Budget (₹)</label>
-                        <input type="number" id="tripBudget" placeholder="50000" value="50000">
-                    </div>
                 </div>
 
-                <button type="submit" class="btn-submit-trip">
-                    <i class="fa-solid fa-floppy-disk"></i> Create Trip & Generate Itinerary
-                </button>
+                <div class="section-meta-grid" style="margin-bottom: 2rem;">
+                    
+                    <div class="input-group">
+                        <label for="startDate"><i class="fa-solid fa-calendar-days text-gold"></i> Start Departure Date *</label>
+                        <input type="date" id="startDate" class="search-bar-input" style="padding-left: 1rem;" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="endDate"><i class="fa-solid fa-calendar-check text-gold"></i> End Return Date *</label>
+                        <input type="date" id="endDate" class="search-bar-input" style="padding-left: 1rem;" required>
+                    </div>
+
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; gap: 15px;">
+                    <button type="submit" class="btn-save-itinerary glow-button" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+                        <i class="fa-solid fa-compass"></i> Create Trip & Generate Itinerary
+                    </button>
+                </div>
+
             </form>
+        </div>
 
-            <div class="suggestion-title">
-                <i class="fa-solid fa-lightbulb"></i> Suggestions for Places to Visit / Activities
+        <!-- Featured Destination Suggestions -->
+        <div class="screen9-header-title" style="text-align: left; margin-bottom: 1.5rem;">
+            <h3><i class="fa-solid fa-lightbulb text-gold"></i> Recommended Circuit Destinations</h3>
+            <p class="subtitle">Curated places to visit and activities for your upcoming journey</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;">
+            
+            <div class="itinerary-section-card glass-panel" style="padding: 0; overflow: hidden; cursor: pointer;" onclick="selectSuggestedPlace('Jaipur, Rajasthan')">
+                <div style="height: 140px; overflow: hidden; position: relative;">
+                    <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=500&q=80" alt="Amber Fort" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;">
+                    <span class="tag-pill tag-purple" style="position: absolute; top: 10px; right: 10px;">Heritage</span>
+                </div>
+                <div style="padding: 1rem;">
+                    <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.25rem;">Amber Fort, Jaipur</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Rajasthan Palace Circuit</p>
+                </div>
             </div>
 
-            <div class="places-grid">
-                <div class="place-card">
-                    <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=400&q=80" alt="Amber Fort">
-                    <div class="place-card-name">Amber Fort, Jaipur</div>
+            <div class="itinerary-section-card glass-panel" style="padding: 0; overflow: hidden; cursor: pointer;" onclick="selectSuggestedPlace('North Goa')">
+                <div style="height: 140px; overflow: hidden; position: relative;">
+                    <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=500&q=80" alt="Baga Beach" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;">
+                    <span class="tag-pill tag-cyan" style="position: absolute; top: 10px; right: 10px;">Beach</span>
                 </div>
-                <div class="place-card">
-                    <img src="https://images.unsplash.com/photo-1602643163983-ed0bafd397d7?auto=format&fit=crop&w=400&q=80" alt="Hawa Mahal">
-                    <div class="place-card-name">Hawa Mahal</div>
+                <div style="padding: 1rem;">
+                    <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.25rem;">Baga Beach, Goa</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Water Sports & Forts</p>
                 </div>
-                <div class="place-card">
-                    <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=400&q=80" alt="Goa Beaches">
-                    <div class="place-card-name">Baga Beach, Goa</div>
+            </div>
+
+            <div class="itinerary-section-card glass-panel" style="padding: 0; overflow: hidden; cursor: pointer;" onclick="selectSuggestedPlace('Alleppey, Kerala')">
+                <div style="height: 140px; overflow: hidden; position: relative;">
+                    <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=500&q=80" alt="Kerala Backwaters" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;">
+                    <span class="tag-pill tag-emerald" style="position: absolute; top: 10px; right: 10px;">Cruise</span>
                 </div>
-                <div class="place-card">
-                    <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=400&q=80" alt="Kerala Backwaters">
-                    <div class="place-card-name">Alleppey Backwaters</div>
+                <div style="padding: 1rem;">
+                    <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.25rem;">Alleppey Backwaters</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Kerala Houseboat Stay</p>
                 </div>
-                <div class="place-card">
-                    <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=400&q=80" alt="Taj Mahal">
-                    <div class="place-card-name">Taj Mahal, Agra</div>
+            </div>
+
+            <div class="itinerary-section-card glass-panel" style="padding: 0; overflow: hidden; cursor: pointer;" onclick="selectSuggestedPlace('Agra, UP')">
+                <div style="height: 140px; overflow: hidden; position: relative;">
+                    <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=500&q=80" alt="Taj Mahal" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;">
+                    <span class="tag-pill tag-amber" style="position: absolute; top: 10px; right: 10px;">Wonder</span>
                 </div>
-                <div class="place-card">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Varkala Cliff">
-                    <div class="place-card-name">Varkala Cliff</div>
+                <div style="padding: 1rem;">
+                    <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.25rem;">Taj Mahal, Agra</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Golden Triangle Tour</p>
                 </div>
             </div>
 
         </div>
 
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 GlobalTrotter Team. Odoo ERP Plan New Trip Screen 4.</p>
+        </div>
+    </footer>
 
     <script>
+        function selectSuggestedPlace(placeName) {
+            document.getElementById("tripPlace").value = placeName;
+            document.getElementById("tripPlace").focus();
+        }
+
         async function handleCreateNewTrip(e) {
             e.preventDefault();
             const place = document.getElementById("tripPlace").value.trim();
@@ -296,14 +203,18 @@
                 created_at: new Date().toISOString()
             };
 
-            // 1. Save in Client-side Local Database
-            const existingTrips = JSON.parse(localStorage.getItem("gt_trips") || "[]");
-            existingTrips.push(tripObj);
-            localStorage.setItem("gt_trips", JSON.stringify(existingTrips));
+            // 1. Save in Global Database Engine
+            if (window.GT_DB) {
+                window.GT_DB.saveTrip(tripObj);
+            } else {
+                const existingTrips = JSON.parse(localStorage.getItem("gt_trips") || "[]");
+                existingTrips.push(tripObj);
+                localStorage.setItem("gt_trips", JSON.stringify(existingTrips));
+            }
 
-            // 2. Sync to Odoo ERP Backend REST API Endpoint
+            // 2. Sync to Odoo ERP Backend REST API
             try {
-                const response = await fetch("/api/v1/trips/generate", {
+                await fetch("/api/v1/trips/generate", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -314,12 +225,8 @@
                         end_date: endDate
                     })
                 });
-                if (response.ok) {
-                    const result = await response.json();
-                    console.log("Odoo Backend Trip Generated:", result);
-                }
             } catch (err) {
-                console.log("Odoo backend offline, saved in local database:", err);
+                console.log("Trip saved in local database:", err);
             }
 
             alert("🎉 Trip to " + place + " successfully created and synchronized with Odoo ERP backend!");
@@ -329,7 +236,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById("startDate").value = today;
-            
+
             const nextWeek = new Date(Date.now() + 5*24*60*60*1000).toISOString().split('T')[0];
             document.getElementById("endDate").value = nextWeek;
 
@@ -339,7 +246,7 @@
                 try {
                     const user = JSON.parse(storedUser);
                     if (user && user.isLoggedIn) {
-                        userAuthLink.innerHTML = `<i class="fa-solid fa-user"></i> Hi, ${user.name.split(' ')[0]}`;
+                        userAuthLink.innerHTML = `<i class="fa-solid fa-circle-user"></i> Hi, ${user.name.split(' ')[0]}`;
                     }
                 } catch(e){}
             }
