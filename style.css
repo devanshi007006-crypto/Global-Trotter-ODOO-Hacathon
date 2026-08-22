@@ -924,4 +924,36 @@ footer p {
     transition: color 0.3s ease;
 }
 
+/* Password Input Eye Toggle Wrapper */
+.password-field-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-field-wrapper input {
+    padding-right: 2.8rem;
+}
+
+.toggle-pass-btn {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.25s ease;
+}
+
+.toggle-pass-btn:hover {
+    color: var(--accent-gold);
+}
+
+
 

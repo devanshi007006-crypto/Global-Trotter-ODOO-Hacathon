@@ -46,7 +46,7 @@
     <!-- Main Auth Wrapper -->
     <main class="auth-container">
         
-        <!-- Auth Navigation Tabs (Cleaned, no Screen 1/2 text) -->
+        <!-- Auth Navigation Tabs -->
         <div class="auth-tabs">
             <button class="auth-tab-btn active" id="tabLogin" onclick="switchAuthTab('login')">
                 <i class="fa-solid fa-right-to-bracket"></i> Login
@@ -79,7 +79,12 @@
 
                 <div class="input-group">
                     <label for="loginPassword"><i class="fa-solid fa-lock"></i> Password</label>
-                    <input type="password" id="loginPassword" placeholder="••••••••••••" required>
+                    <div class="password-field-wrapper">
+                        <input type="password" id="loginPassword" placeholder="••••••••••••" required>
+                        <button type="button" class="toggle-pass-btn" onclick="togglePasswordVisibility('loginPassword', this)" title="Show/Hide Password">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="auth-meta-row">
@@ -153,21 +158,38 @@
                     </div>
                 </div>
 
-                <!-- Strong Password Input with Live Validator -->
-                <div class="input-group full-width">
-                    <label for="regPassword"><i class="fa-solid fa-key"></i> Create Strong Password *</label>
-                    <input type="password" id="regPassword" placeholder="e.g. Travel@2026" oninput="checkPasswordStrength(this.value)" required>
-                    
-                    <!-- Password Strength Feedback -->
-                    <div class="pass-strength-container" id="passStrengthBox">
-                        <div class="pass-strength-bar">
-                            <div class="pass-strength-fill" id="passStrengthFill"></div>
+                <!-- Password and Confirm Password Inputs with Eye Toggles -->
+                <div class="form-row-2">
+                    <div class="input-group">
+                        <label for="regPassword"><i class="fa-solid fa-key"></i> Create Strong Password *</label>
+                        <div class="password-field-wrapper">
+                            <input type="password" id="regPassword" placeholder="e.g. Travel@2026" oninput="checkPasswordStrength(this.value)" required>
+                            <button type="button" class="toggle-pass-btn" onclick="togglePasswordVisibility('regPassword', this)" title="Show/Hide Password">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
                         </div>
-                        <span class="pass-strength-text" id="passStrengthText">Min 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special char (!@#$%^&*)</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regConfirmPassword"><i class="fa-solid fa-lock"></i> Confirm Password *</label>
+                        <div class="password-field-wrapper">
+                            <input type="password" id="regConfirmPassword" placeholder="Repeat password" required>
+                            <button type="button" class="toggle-pass-btn" onclick="togglePasswordVisibility('regConfirmPassword', this)" title="Show/Hide Password">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="input-group full-width">
+                <!-- Live Password Strength Feedback -->
+                <div class="pass-strength-container full-width" id="passStrengthBox">
+                    <div class="pass-strength-bar">
+                        <div class="pass-strength-fill" id="passStrengthFill"></div>
+                    </div>
+                    <span class="pass-strength-text" id="passStrengthText">Min 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special char (!@#$%^&*)</span>
+                </div>
+
+                <div class="input-group full-width" style="margin-top: 1rem;">
                     <label for="regInfo"><i class="fa-solid fa-info-circle"></i> Additional Information</label>
                     <textarea id="regInfo" rows="3" placeholder="Travel preferences, bio, or dietary interests"></textarea>
                 </div>
@@ -207,10 +229,15 @@
 
                 <div class="input-group hidden" id="newPassGroup">
                     <label for="newPassword"><i class="fa-solid fa-lock"></i> Set New Strong Password</label>
-                    <input type="password" id="newPassword" placeholder="Enter new strong password">
+                    <div class="password-field-wrapper">
+                        <input type="password" id="newPassword" placeholder="Enter new strong password">
+                        <button type="button" class="toggle-pass-btn" onclick="togglePasswordVisibility('newPassword', this)" title="Show/Hide Password">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <button type="submit" class="auth-btn glow-button" id="btnForgotSubmit">
+                <button type="submit" class="auth-btn glow-button" id="btnForgotSubmit" style="margin-top: 1rem;">
                     <i class="fa-solid fa-paper-plane"></i> Send Password Reset Link / OTP
                 </button>
             </form>
@@ -227,7 +254,24 @@
     <script>
         const API_BASE = "/api/v1/auth";
 
-        // Tab Switching Logic (No Screen 1/2 text)
+        // Show/Hide Password Toggle Handler
+        function togglePasswordVisibility(inputId, btnElement) {
+            const input = document.getElementById(inputId);
+            const icon = btnElement.querySelector("i");
+            if (!input || !icon) return;
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+
+        // Tab Switching Logic
         function switchAuthTab(tab) {
             const screenLogin = document.getElementById("screenLogin");
             const screenRegister = document.getElementById("screenRegister");
@@ -343,7 +387,7 @@
             saveUserSession(targetUser);
         }
 
-        // 2. Handle Registration with Strong Password & Email Format Validation
+        // 2. Handle Registration with Confirm Password Matching & Strong Password Validation
         async function handleRegister(e) {
             e.preventDefault();
             const firstName = document.getElementById("regFirstName").value.trim();
@@ -353,7 +397,15 @@
             const city = document.getElementById("regCity").value.trim();
             const country = document.getElementById("regCountry").value.trim();
             const password = document.getElementById("regPassword").value;
+            const confirmPassword = document.getElementById("regConfirmPassword").value;
             const info = document.getElementById("regInfo").value.trim();
+
+            // Validate Confirm Password Match
+            if (password !== confirmPassword) {
+                alert("⚠️ PASSWORDS DO NOT MATCH!\n\nPlease ensure your 'Create Password' and 'Confirm Password' fields match exactly.");
+                document.getElementById("regConfirmPassword").focus();
+                return;
+            }
 
             // Validate Strong Password
             if (!validateStrongPassword(password)) {
