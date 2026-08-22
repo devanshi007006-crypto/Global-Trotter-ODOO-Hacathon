@@ -147,6 +147,83 @@
             border-bottom: 1px solid var(--border-card);
             padding-bottom: 1rem;
         }
+
+        /* Mobile Responsive Navigation Styles */
+        .mobile-toggle-btn {
+            display: none;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-card);
+            color: var(--accent-gold);
+            font-size: 1.25rem;
+            padding: 0.5rem 0.85rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-toggle-btn:hover {
+            background: rgba(245, 158, 11, 0.2);
+        }
+
+        @media (max-width: 992px) {
+            .mobile-toggle-btn {
+                display: block;
+            }
+
+            .header-container {
+                position: relative;
+                flex-wrap: wrap;
+            }
+
+            .nav-menu {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem 0;
+                border-top: 1px solid var(--border-card);
+                margin-top: 0.75rem;
+            }
+
+            .nav-menu.active-mobile-menu {
+                display: flex;
+            }
+
+            .nav-link {
+                width: 100%;
+                padding: 0.75rem 1rem;
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 8px;
+            }
+
+            .calendar-container-wrapper {
+                padding: 0 3%;
+                margin-top: 1.5rem;
+            }
+
+            .weekdays-header {
+                font-size: 0.72rem;
+                gap: 5px;
+            }
+
+            .days-grid {
+                gap: 5px;
+            }
+
+            .day-cell {
+                min-height: 65px;
+                padding: 5px;
+            }
+
+            .day-cell-num {
+                font-size: 0.85rem;
+            }
+
+            .day-event-dot {
+                font-size: 0.65rem;
+                padding: 2px 4px;
+            }
+        }
     </style>
 </head>
 
@@ -170,7 +247,11 @@
                 </div>
             </a>
 
-            <nav class="nav-menu">
+            <button type="button" class="mobile-toggle-btn" id="mobileToggleBtn" onclick="toggleNavMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="nav-menu" id="navMenu">
                 <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home Dashboard</a>
                 <a href="search.html" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Search Places</a>
                 <a href="new_trip.html" class="nav-link"><i class="fa-solid fa-plus-circle"></i> Create Trip</a>
@@ -416,6 +497,13 @@
         function nextMonth() {
             currentDate.setMonth(currentDate.getMonth() + 1);
             renderCalendar();
+        }
+
+        function toggleNavMenu() {
+            const menu = document.getElementById("navMenu");
+            if (menu) {
+                menu.classList.toggle("active-mobile-menu");
+            }
         }
 
         function goToday() {
