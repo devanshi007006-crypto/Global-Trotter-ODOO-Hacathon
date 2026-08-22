@@ -114,3 +114,34 @@ async function updateTrip(updatedData) {
         alert(error.message);
     }
 }
+
+async function loadItinerary() {
+    if (!currentTripId) return;
+
+    try {
+        const result = await apiRequest(
+            `/trips/${currentTripId}/itinerary`
+        );
+
+        displayItinerary(result.itinerary || []);
+
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
+
+function displayItinerary(itinerary) {
+    const container = document.querySelector(".day-container");
+
+    container.innerHTML = "";
+
+    if (itinerary.length === 0) {
+        container.innerHTML = `
+            <div class="day-card">
+                <h3>No itinerary available</h3>
+                <p>Your itinerary will appear here.</p>
+            </div>
+        `;
+        return;
+    }
