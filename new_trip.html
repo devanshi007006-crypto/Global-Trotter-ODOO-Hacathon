@@ -3,8 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>GlobalTrotter - Plan a New Trip</title>
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #111111;
+            color: #eeeeee;
+            font-family: "Comic Sans MS", "Segoe Print", cursive;
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            padding: 25px 3%;
+        }
+
+        .title {
+            font-size: 25px;
+            margin-bottom: 12px;
+            color: #eeeeee;
+        }
+
+        .title span {
+            font-size: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            border: 1px solid #999999;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #111111;
+        }
+
+        /* Top Navigation */
+
+        .top-bar {
+            height: 65px;
+            border-bottom: 1px solid #777777;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            color: #eeeeee;
+        }
+
+        .profile {
+            width: 27px;
+            height: 27px;
+            border: 1px solid #dddddd;
+            border-radius: 50%;
+        }
+
+        /* Plan Trip Heading */
+
+        .section-title {
+            height: 52px;
+            border-bottom: 1px solid #777777;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            font-size: 20px;
+        }
+
+        /* Form */
+
+        .trip-form {
+            padding: 12px 30px 18px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin: 9px 0;
+        }
+
+        .form-row label {
+            width: 130px;
+            font-size: 17px;
+        }
+
+        .form-row input {
+            width: 225px;
+            height: 32px;
+            background: transparent;
+            border: 1px solid #aaaaaa;
+            border-radius: 6px;
+            color: white;
+            padding: 4px 8px;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-row input:focus {
+            border-color: white;
+        }
+
+        /* Suggestion Heading */
+
+        .suggestion-title {
+            border-top: 1px solid #777777;
+            border-bottom: 1px solid #777777;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            font-size: 19px;
+        }
+
+        /* Image Cards */
+
+        .places-grid {
+            padding: 35px 50px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px 40px;
+        }
+
+        .place-card {
+            height: 245px;
+            border: 1px solid #aaaaaa;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #181818;
+        }
+
+        .place-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 800px) {
+
+            .places-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 25px;
+                gap: 20px;
+            }
+
+            .place-card {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .page {
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 20px;
+            }
+
+            .title span {
+                font-size: 16px;
+            }
+
+            .trip-form {
+                padding: 12px 15px;
+            }
+
+            .form-row label {
+                width: 110px;
+                font-size: 14px;
+            }
+
+            .form-row input {
+                width: 180px;
+            }
+
+            .places-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .place-card {
+                height: 250px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -12,7 +208,7 @@
     <div class="page">
 
         <div class="title">
-            New Trip
+            Create a new Trip <span>(Screen 4)</span>
         </div>
 
         <div class="container">
@@ -35,12 +231,7 @@
 
                 <div class="form-row">
                     <label>Select a Place:</label>
-                    <input type="text" placeholder="">
-                </div>
-
-                <div class="form-row">
-                    <label>Start Date:</label>
-                    <input type="date">
+                    <input type="text">
                 </div>
 
                 <div class="form-row">
@@ -57,7 +248,7 @@
             <div class="places-grid">
 
                 <div class="place-card">
-                    <img src="Delhi.jpg" alt="Place 1">
+                    <img src="images/place1.jpg" alt="Place 1">
                 </div>
 
                 <div class="place-card">
