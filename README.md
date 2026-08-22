@@ -1,7 +1,14 @@
 # 🌍 GlobalTrotter – Smart Travel & Trip Management Platform (Odoo ERP)
 
+[![Odoo ERP](https://img.shields.io/badge/Odoo-17.0-purple.svg)](https://www.odoo.com/)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0.html)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-success.svg)](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/)
+
 > **Odoo Global Hackathon Project**  
 > **Tagline:** Transforming fragmented travel planning into a unified, AI-powered ERP workspace—from itinerary generation and budget management to group collaboration and intelligent "What-If" decision support.
+
+🌐 **Live Website Demo**: [https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/)
 
 ---
 
@@ -22,6 +29,8 @@
 global-trotter/
 ├── README.md                          # Project documentation & execution guide
 ├── requirements.txt                   # Core Python & API dependencies
+├── index.html                         # Interactive Web Dashboard (GitHub Pages)
+├── script.js                          # Dynamic trip planner & budget manager logic
 │
 ├── odoo/                              # Custom Odoo Module
 │   └── global_trotter/
@@ -35,7 +44,7 @@ global-trotter/
 │       ├── controllers/               # REST / JSON-RPC Gateway
 │       │   └── api_controller.py      # /api/v1 HTTP Endpoints
 │       ├── security/
-39: │       │   └── ir.model.access.csv    # Access Rights & ACLs
+│       │   └── ir.model.access.csv    # Access Rights & ACLs
 │       ├── views/                     # Odoo Web Views (Kanban, Form, Pivot, Graph)
 │       │   ├── menu_views.xml
 │       │   ├── trip_views.xml
@@ -44,7 +53,7 @@ global-trotter/
 │       └── data/
 │           └── demo_data.xml          # Pre-loaded hackathon demo dataset (Japan & Paris trips)
 │
-├── ai/                                # AI Recommendation Subsystem (Member 3)
+├── ai/                                # AI Recommendation Subsystem
 │   └── recommendation_engine.py       # AI Itinerary generator & Odoo sync script
 │
 └── docs/                              # System Specs & Team Blueprint
@@ -72,7 +81,7 @@ Start Odoo server and update the module list, then install **GlobalTrotter** (`g
 * Get trip details: `GET http://localhost:8069/api/v1/trips/1`
 * Trigger "What-If" Optimizer: `POST http://localhost:8069/api/v1/trips/1/optimize` with `{"opt_type": "rain_mode"}`
 
-### 4. Run AI Generator (Member 3 Script)
+### 4. Run AI Generator (Prachi Kanwar's Script)
 ```bash
 python ai/recommendation_engine.py
 ```
