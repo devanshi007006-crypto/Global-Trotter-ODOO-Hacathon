@@ -63,7 +63,7 @@ pip install -r requirements.txt
 ### 2. Run Odoo with GlobalTrotter Module
 Add the `global-trotter/odoo` folder to your Odoo `addons_path` in your `odoo.conf` file:
 ```ini
-addons_path = /path/to/odoo/addons,C:\Users\Devanshi\.gemini\antigravity\scratch\global-trotter\odoo
+addons_path = /path/to/odoo/addons,/path/to/global-trotter/odoo
 ```
 Start Odoo server and update the module list, then install **GlobalTrotter** (`global_trotter`).
 
