@@ -1,4 +1,4 @@
-# 🌍 GlobalTrotter – Smart Travel & Trip Management Platform (Odoo ERP)
+# 🌍 GlobalTrotter India – Smart Travel & Trip Management Workspace (Odoo ERP)
 
 [![Odoo ERP](https://img.shields.io/badge/Odoo-17.0-purple.svg)](https://www.odoo.com/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
@@ -6,7 +6,7 @@
 [![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-success.svg)](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/)
 
 > **Odoo Global Hackathon Project**  
-> **Tagline:** Transforming fragmented travel planning into a unified, AI-powered ERP workspace—from itinerary generation and budget management to group collaboration and intelligent "What-If" decision support.
+> **Tagline:** Transforming fragmented travel planning into a unified, AI-powered ERP workspace—from day-wise Indian circuit itineraries and budget analytics to group collaboration and intelligent "What-If" decision support.
 
 🌐 **Live Website Demo**: [https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/)
 
@@ -14,12 +14,13 @@
 
 ## 🌟 Key Features
 
-1. **🗺️ Smart Trip Workspace**: Manage destinations, dates, duration, travel styles, and traveler lists in custom Odoo models (`gt.trip`).
-2. **🗓️ Day-wise Itinerary Builder**: Detailed activities with timing, categories (Food, Sightseeing, Adventure, Transit), ratings, costs, and indoor/outdoor weather flags (`gt.itinerary.day`, `gt.activity`).
-3. **💰 Smart Budget & Expense Tracker**: Dynamic category analytics (Flights, Hotels, Food, Activities) with real-time remaining budget alerts and visual Graph/Pivot dashboards (`gt.expense`).
-4. **👥 Group Debt Equalizer ("Who Owes Whom")**: Minimum-cash-flow algorithm calculating fair debt settlement between group members (`_compute_debt_settlements`).
-5. **⚡ "What-If?" Trip Optimizer**: Backend engine simulating flight upgrades, budget reduction, duration extension, and rain weather activity swaps (`action_optimize_trip`).
-6. **🤖 AI Recommendation Gateway**: REST/JSON endpoints (`/api/v1/trips`) connecting external AI engines and frontend interfaces directly to Odoo ORM.
+1. **🇮🇳 Indian Travel Circuit Presets**: Interactive destination templates for **Jaipur (Rajasthan)**, **Alleppey (Kerala)**, **Goa Beach Circuit**, and **Leh-Ladakh** with experience category filtering.
+2. **🗺️ Smart Trip Workspace**: Manage destinations, dates, duration, travel styles, and traveler lists in custom Odoo models (`gt.trip`).
+3. **🗓️ Day-wise Itinerary Manager**: Detailed daily activities with timing, category tags (Heritage, Culinary, Adventure, Wellness, Sightseeing), ratings, and weather flags (`gt.itinerary.day`, `gt.activity`).
+4. **💰 Smart Budget & Expense Analytics**: Visual progress bar tracking allocated vs spent budget, real-time balance alerts, and dynamic graph dashboards (`gt.expense`).
+5. **👥 Group Debt Equalizer ("Who Owes Whom")**: Minimum-cash-flow algorithm calculating fair debt settlement between group members (`_compute_debt_settlements`).
+6. **⚡ "What-If?" Trip Optimizer**: Backend engine simulating flight upgrades, budget reduction, duration extension, and rain weather activity swaps (`action_optimize_trip`).
+7. **🤖 AI & REST API Gateway**: REST/JSON endpoints (`/api/v1/trips`) connecting external AI engines and frontend web clients directly to Odoo ORM.
 
 ---
 
@@ -29,10 +30,13 @@
 global-trotter/
 ├── README.md                          # Project documentation & execution guide
 ├── requirements.txt                   # Core Python & API dependencies
-├── index.html                         # Interactive Web Dashboard (GitHub Pages)
-├── script.js                          # Dynamic trip planner & budget manager logic
+├── index.html                         # Interactive Destination Hub & Trip Workspace (GitHub Pages)
+├── style.css                          # Dark mode glassmorphism UI & Indian Royal theme
+├── script.js                          # Dynamic trip planner, destination presets & budget engine
+├── AI.js                              # AI Subsystem integration helper
 │
 ├── odoo/                              # Custom Odoo Module
+│   ├── script_api.js                  # Frontend Odoo REST API bridge
 │   └── global_trotter/
 │       ├── __manifest__.py            # Odoo module manifest
 │       ├── __init__.py
@@ -93,7 +97,7 @@ python ai/recommendation_engine.py
 | Member | Role | Core Responsibility |
 |---|---|---|
 | **Devanshi** | **Team Leader & Backend Architect** | Custom Odoo module development, ORM models, business logic engines, security ACLs, REST API endpoints |
-| **Mishva** | **Frontend UI/UX Lead** | Web/Mobile interface, dashboard integration, travel cards, itinerary UI |
+| **Mishva** | **Frontend UI/UX Lead** | Web/Mobile interface, destination portal UI, dashboard integration, itinerary UI |
 | **Prachi Kanwar** | **AI & Recommendation Lead** | AI itinerary generation script (`ai/recommendation_engine.py`), preference matching |
 | **Prachi Das** | **Integration, Testing & Pitch Lead** | End-to-end API testing, documentation, Git management, presentation deck |
 
