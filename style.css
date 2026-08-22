@@ -22,3 +22,7 @@ header{
     z-index :10;
     box-shadow:0 2px 10px #ddd;
 }
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
