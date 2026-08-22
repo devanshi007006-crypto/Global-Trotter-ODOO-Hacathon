@@ -110,12 +110,4 @@ graph TD
 * Pre-loading demo data (`data/demo_data.xml`).
 * Preparing final Hackathon pitch deck and live demo script.
 
----
 
-## 🎬 Hackathon Winning Demo Flow (The Story)
-
-1. **Step 1 (Persona)**: Introduce Alex planning a 7-day trip to Japan with 3 friends on a ₹1,00,000 budget.
-2. **Step 2 (Creation)**: Show Odoo Kanban & Form view generating the trip structure.
-3. **Step 3 (AI Sync)**: Trigger Member 3's AI generator to populate day-by-day activities in seconds.
-4. **Step 4 (Budget & Group Expense)**: Show expenses recorded by Devanshi & Rahul. Click **Debt Balancer** to reveal "Who Owes Whom".
-5. **Step 5 (The WOW Moment)**: Alex wants to optimize costs. Click **"What-If? Optimizer"** → Watch budget recalculate and outdoor activities auto-swap to indoor spots for rainy days!
