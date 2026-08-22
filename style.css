@@ -212,3 +212,35 @@ footer {
     padding: 30px;
     margin-top: 50px;
 }
+footer p {
+    margin-top: 8px;
+    color: #bbb;
+}
+
+@media (max-width: 700px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 8px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .form-grid,
+    .summary,
+    .day-container,
+    .budget-grid,
+    .members {
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+        grid-column: auto;
+    }
+}
