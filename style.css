@@ -1128,4 +1128,169 @@ footer p {
 
 
 
+/* =========================================
+   SCREEN 3 - CORRECT LAYOUT
+========================================= */
+
+.main-landing-section {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 30px;
+}
+
+/* Main wrapper */
+.landing-wrapper {
+    width: 100%;
+}
+
+/* Regional cards */
+.regional-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.regional-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #eee9dc;
+    box-shadow: 0 7px 25px rgba(30, 60, 55, 0.07);
+}
+
+.regional-card img {
+    width: 100%;
+    height: 150px !important;
+    object-fit: cover;
+    display: block;
+}
+
+.regional-card h4 {
+    margin: 12px 15px 5px;
+    color: #173b38;
+}
+
+.regional-card p {
+    margin: 0 15px 15px;
+    color: #68736f;
+    font-size: 13px;
+}
+
+/* Section heading */
+.landing-section-header {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #d8d2c5;
+}
+
+.landing-section-header h3 {
+    padding-bottom: 10px;
+    color: #173b38;
+    font-size: 22px;
+}
+
+
+/* =========================================
+   PREVIOUS TRIPS - 3 CARDS
+========================================= */
+
+.previous-trips-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 25px;
+    width: 100%;
+}
+
+/* Har trip ek vertical card hoga */
+.previous-trip-card {
+    display: block !important;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #eee9dc;
+    box-shadow: 0 7px 25px rgba(30, 60, 55, 0.07);
+    min-height: 0 !important;
+}
+
+/* Photo card ke TOP me */
+.trip-photo {
+    width: 100% !important;
+    height: 230px !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+/* Details photo ke neeche */
+.previous-trip-content {
+    padding: 18px;
+}
+
+.previous-trip-content h4 {
+    margin-bottom: 10px;
+    color: #173b38;
+    font-size: 18px;
+}
+
+.previous-trip-content p {
+    margin-bottom: 12px;
+    color: #68736f;
+}
+
+/* Completed badge */
+.completed-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: #e1f1ef;
+    color: #0f766e;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* Plan trip button */
+.plan-trip-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.plan-trip-btn {
+    background: #0f766e;
+    color: white;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .regional-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .previous-trips-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .regional-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .previous-trips-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+}
 
