@@ -1,23 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GlobalTrotter - Calendar</title>
+<title>GlobalTrotter - Calendar</title>
 
-    <link rel="stylesheet" href="calendar.css">
+<style>
+
+/* ================= BASIC ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f8fa;
+    color: #252a32;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 35px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    gap: 25px;
+}
+
+.logo {
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #69717d;
+    font-size: 11px;
+}
+
+nav a:hover,
+nav a.active {
+    color: #f97316;
+    font-weight: bold;
+}
+
+.admin-btn {
+    padding: 9px 16px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+    padding: 35px 7%;
+    background: linear-gradient(110deg, #fff7ed, white);
+    border-bottom: 1px solid #eee;
+}
+
+.small {
+    color: #ea580c;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.header h1 {
+    margin-top: 8px;
+    font-size: 32px;
+}
+
+.header p {
+    margin-top: 8px;
+    color: #737b87;
+    font-size: 13px;
+}
+
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: 86%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+
+/* ================= CALENDAR TOP ================= */
+
+.calendar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.month-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.calendar-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.calendar-buttons button {
+    padding: 9px 14px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.calendar-buttons button:hover {
+    border-color: #f97316;
+    color: #f97316;
+}
+
+.today {
+    background: #f97316 !important;
+    color: white;
+    border-color: #f97316 !important;
+}
+
+
+/* ================= CALENDAR ================= */
+
+.calendar {
+    background: white;
+    border: 1px solid #e1e5e9;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.weekdays,
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.weekdays div {
+    padding: 14px;
+    text-align: center;
+    background: #fff7ed;
+    color: #ea580c;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.day {
+    min-height: 105px;
+    padding: 10px;
+    border-right: 1px solid #eee;
+    border-top: 1px solid #eee;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.day:hover {
+    background: #fffaf5;
+}
+
+.day-number {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.other-month {
+    color: #bbb;
+    background: #fafafa;
+}
+
+.today-date {
+    background: #fff3e8;
+}
+
+.event {
+    margin-top: 8px;
+    padding: 6px;
+    border-radius: 5px;
+    background: #f97316;
+    color: white;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.event:hover {
+    background: #ea580c;
+}
+
+
+/* ================= EVENT PANEL ================= */
+
+.event-panel {
+    margin-top: 20px;
+    background: white;
+    padding: 22px;
+    border: 1px solid #e1e5e9;
+    border-radius: 10px;
+}
+
+.event-panel h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.event-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.event-info strong {
+    display: block;
+    font-size: 12px;
+}
+
+.event-info span {
+    color: #888;
+    font-size: 9px;
+}
+
+.delete {
+    border: none;
+    background: #fff1f1;
+    color: #dc2626;
+    padding: 7px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* ================= MODAL ================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-box {
+    width: 400px;
+    max-width: 90%;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.modal-box h2 {
+    margin-bottom: 18px;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #f97316;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.cancel {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.save {
+    padding: 10px 17px;
+    border: none;
+    background: #f97316;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 800px) {
+
+    nav {
+        display: none;
+    }
+
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .day {
+        min-height: 75px;
+        padding: 6px;
+    }
+
+    .event {
+        font-size: 7px;
+    }
+}
+
+</style>
 </head>
+
 
 <body>
 
 
+<!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
 
     <div class="logo">
-        🇮🇳
-        <span>GlobalTrotter INDIA MANAGEMENT HUB</span>
+        🇮🇳 GlobalTrotter
     </div>
 
     <nav>
@@ -25,402 +376,576 @@
         <a href="#">Circuits</a>
         <a href="#">Create Trip</a>
         <a href="#">Build Itinerary</a>
-        <a href="#">Itinerary View</a>
         <a href="calendar.html" class="active">Calendar</a>
         <a href="admin.html">Admin Panel</a>
-        <a href="#">Group & Budget</a>
     </nav>
 
-    <button class="login-btn">
-        Login / Register
+    <button class="admin-btn">
+        Traveler
     </button>
 
 </header>
 
 
-<section class="hero">
+<!-- ================= HEADER ================= -->
 
-    <div>
-        <span class="tag">
-            🇮🇳 INCREDIBLE INDIA • TRIP CALENDAR
-        </span>
+<section class="header">
 
-        <h1>
-            Travel Calendar
-        </h1>
+    <span class="small">
+        🇮🇳 TRIP PLANNING • CALENDAR
+    </span>
 
-        <p>
-            Manage your upcoming journeys, activities
-            and important trip dates in one workspace.
-        </p>
-    </div>
+    <h1>
+        Travel Calendar
+    </h1>
 
-    <button class="create-btn">
-        + Create Trip
-    </button>
+    <p>
+        Plan your activities, trips and travel events in one place.
+    </p>
 
 </section>
 
 
-
-<section class="controls">
-
-    <input
-        type="text"
-        placeholder="🔍 Search Trip..."
-    >
-
-    <select>
-        <option>Group By</option>
-        <option>Destination</option>
-        <option>Month</option>
-        <option>Status</option>
-    </select>
-
-    <select>
-        <option>Filter</option>
-        <option>Upcoming</option>
-        <option>Completed</option>
-        <option>Active</option>
-    </select>
-
-    <select>
-        <option>Sort By</option>
-        <option>Date</option>
-        <option>Budget</option>
-        <option>Destination</option>
-    </select>
-
-</section>
-
+<!-- ================= MAIN ================= -->
 
 <main class="container">
 
-    <div class="calendar-card">
+    <div class="calendar-top">
 
-        <div class="calendar-header">
+        <div class="month-title" id="monthTitle"></div>
 
-            <button class="arrow">
-                ‹
+        <div class="calendar-buttons">
+
+            <button onclick="previousMonth()">
+                ← Previous
             </button>
 
-            <div>
-                <h2>August 2026</h2>
-                <span>Trip Schedule</span>
-            </div>
-
-            <button class="arrow">
-                ›
+            <button class="today" onclick="goToday()">
+                Today
             </button>
 
-        </div>
-
-
-        <div class="weekdays">
-
-            <span>MON</span>
-            <span>TUE</span>
-            <span>WED</span>
-            <span>THU</span>
-            <span>FRI</span>
-            <span>SAT</span>
-            <span>SUN</span>
-
-        </div>
-
-
-        <div class="dates">
-
-            <div class="empty"></div>
-            <div class="empty"></div>
-            <div class="empty"></div>
-            <div class="empty"></div>
-
-            <div class="date">
-                <b>1</b>
-            </div>
-
-            <div class="date">
-                <b>2</b>
-            </div>
-
-            <div class="date">
-                <b>3</b>
-            </div>
-
-
-            <div class="date">
-                <b>4</b>
-            </div>
-
-            <div class="date">
-                <b>5</b>
-
-                <div class="event orange">
-                    Jaipur Trip
-                </div>
-            </div>
-
-            <div class="date">
-                <b>6</b>
-
-                <div class="event orange">
-                    Amber Fort
-                </div>
-            </div>
-
-            <div class="date">
-                <b>7</b>
-            </div>
-
-            <div class="date">
-                <b>8</b>
-            </div>
-
-            <div class="date">
-                <b>9</b>
-            </div>
-
-            <div class="date">
-                <b>10</b>
-            </div>
-
-
-            <div class="date">
-                <b>11</b>
-
-                <div class="event blue">
-                    Goa Circuit
-                </div>
-            </div>
-
-            <div class="date">
-                <b>12</b>
-
-                <div class="event blue">
-                    Beach Day
-                </div>
-            </div>
-
-            <div class="date">
-                <b>13</b>
-
-                <div class="event blue">
-                    Water Sports
-                </div>
-            </div>
-
-            <div class="date">
-                <b>14</b>
-            </div>
-
-            <div class="date">
-                <b>15</b>
-            </div>
-
-            <div class="date">
-                <b>16</b>
-            </div>
-
-            <div class="date">
-                <b>17</b>
-            </div>
-
-
-            <div class="date">
-                <b>18</b>
-
-                <div class="event green">
-                    Kerala Trip
-                </div>
-            </div>
-
-            <div class="date">
-                <b>19</b>
-
-                <div class="event green">
-                    Munnar
-                </div>
-            </div>
-
-            <div class="date">
-                <b>20</b>
-            </div>
-
-            <div class="date">
-                <b>21</b>
-            </div>
-
-            <div class="date today">
-                <b>22</b>
-
-                <span class="today-label">
-                    TODAY
-                </span>
-            </div>
-
-            <div class="date">
-                <b>23</b>
-            </div>
-
-            <div class="date">
-                <b>24</b>
-            </div>
-
-
-            <div class="date">
-                <b>25</b>
-
-                <div class="event purple">
-                    Leh Trip
-                </div>
-            </div>
-
-            <div class="date">
-                <b>26</b>
-
-                <div class="event purple">
-                    Pangong Lake
-                </div>
-            </div>
-
-            <div class="date">
-                <b>27</b>
-
-                <div class="event purple">
-                    Nubra Valley
-                </div>
-            </div>
-
-            <div class="date">
-                <b>28</b>
-            </div>
-
-            <div class="date">
-                <b>29</b>
-            </div>
-
-            <div class="date">
-                <b>30</b>
-            </div>
-
-            <div class="date">
-                <b>31</b>
-            </div>
+            <button onclick="nextMonth()">
+                Next →
+            </button>
 
         </div>
 
     </div>
 
 
+    <!-- CALENDAR -->
 
-    <section class="upcoming">
+    <div class="calendar">
 
-        <div class="section-title">
+        <div class="weekdays">
 
-            <div>
-                <span class="tag">UPCOMING JOURNEYS</span>
-
-                <h2>Upcoming Trips</h2>
-            </div>
-
-            <button>
-                View All →
-            </button>
-
-        </div>
-
-
-        <div class="trip-grid">
-
-            <div class="trip-card">
-
-                <div class="trip-icon orange-bg">
-                    🏰
-                </div>
-
-                <div class="trip-info">
-
-                    <span>05 Aug - 10 Aug</span>
-
-                    <h3>
-                        Jaipur & Amber Fort
-                    </h3>
-
-                    <p>
-                        📍 Rajasthan
-                    </p>
-
-                    <div class="trip-bottom">
-                        <b>₹50,000</b>
-                        <small>5 Days</small>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="trip-card">
-
-                <div class="trip-icon blue-bg">
-                    🏖️
-                </div>
-
-                <div class="trip-info">
-
-                    <span>11 Aug - 14 Aug</span>
-
-                    <h3>
-                        Goa Beach Circuit
-                    </h3>
-
-                    <p>
-                        📍 Goa
-                    </p>
-
-                    <div class="trip-bottom">
-                        <b>₹35,000</b>
-                        <small>4 Days</small>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="trip-card">
-
-                <div class="trip-icon green-bg">
-                    🌿
-                </div>
-
-                <div class="trip-info">
-
-                    <span>18 Aug - 23 Aug</span>
-
-                    <h3>
-                        Alleppey & Munnar
-                    </h3>
-
-                    <p>
-                        📍 Kerala
-                    </p>
-
-                    <div class="trip-bottom">
-                        <b>₹60,000</b>
-                        <small>6 Days</small>
-                    </div>
-
-                </div>
-
-            </div>
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
 
         </div>
 
-    </section>
+        <div class="days" id="calendarDays"></div>
+
+    </div>
+
+
+    <!-- EVENTS -->
+
+    <div class="event-panel">
+
+        <h2>
+            Selected Date Events
+        </h2>
+
+        <div id="eventList" class="event-list">
+            Select a date to see events.
+        </div>
+
+    </div>
 
 </main>
+
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal" id="eventModal">
+
+    <div class="modal-box">
+
+        <h2>
+            Add Travel Event
+        </h2>
+
+        <form id="eventForm">
+
+            <div class="form-group">
+
+                <label>
+                    Event Name
+                </label>
+
+                <input
+                    type="text"
+                    id="eventName"
+                    placeholder="Example: Visit Eiffel Tower"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="eventDate"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Time
+                </label>
+
+                <input
+                    type="time"
+                    id="eventTime"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Type
+                </label>
+
+                <select id="eventType">
+
+                    <option>Trip</option>
+                    <option>Activity</option>
+                    <option>Hotel</option>
+                    <option>Flight</option>
+                    <option>Food</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-buttons">
+
+                <button
+                    type="button"
+                    class="cancel"
+                    onclick="closeModal()">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="save">
+
+                    Save Event
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ================= VARIABLES ================= */
+
+let currentDate = new Date();
+
+let selectedDate = null;
+
+let events =
+    JSON.parse(localStorage.getItem("globalTrotterEvents")) || [
+
+    {
+        name: "Jaipur Trip",
+        date: "2026-08-25",
+        time: "09:00",
+        type: "Trip"
+    },
+
+    {
+        name: "Hotel Check-in",
+        date: "2026-08-27",
+        time: "14:00",
+        type: "Hotel"
+    }
+
+];
+
+
+/* ================= CALENDAR ================= */
+
+function renderCalendar() {
+
+    const year = currentDate.getFullYear();
+
+    const month = currentDate.getMonth();
+
+    const firstDay =
+        new Date(year, month, 1).getDay();
+
+    const totalDays =
+        new Date(year, month + 1, 0).getDate();
+
+
+    const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+
+
+    document.getElementById("monthTitle").innerText =
+        monthNames[month] + " " + year;
+
+
+    const calendarDays =
+        document.getElementById("calendarDays");
+
+    calendarDays.innerHTML = "";
+
+
+    /* EMPTY DAYS */
+
+    for(let i = 0; i < firstDay; i++) {
+
+        const empty =
+            document.createElement("div");
+
+        empty.className = "day other-month";
+
+        calendarDays.appendChild(empty);
+    }
+
+
+    /* DAYS */
+
+    for(let day = 1; day <= totalDays; day++) {
+
+        const cell =
+            document.createElement("div");
+
+        cell.className = "day";
+
+
+        const dateString =
+            `${year}-${String(month + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+
+
+        const number =
+            document.createElement("div");
+
+        number.className = "day-number";
+
+        number.innerText = day;
+
+        cell.appendChild(number);
+
+
+        /* TODAY */
+
+        const today = new Date();
+
+        if(
+            day === today.getDate() &&
+            month === today.getMonth() &&
+            year === today.getFullYear()
+        ) {
+
+            cell.classList.add("today-date");
+
+        }
+
+
+        /* EVENTS */
+
+        events
+        .filter(event => event.date === dateString)
+        .forEach(event => {
+
+            const eventElement =
+                document.createElement("div");
+
+            eventElement.className = "event";
+
+            eventElement.innerText =
+                event.time + " " + event.name;
+
+            cell.appendChild(eventElement);
+
+        });
+
+
+        cell.onclick = function() {
+
+            selectedDate = dateString;
+
+            showEvents(dateString);
+
+        };
+
+
+        calendarDays.appendChild(cell);
+
+    }
+
+}
+
+
+/* ================= MONTH NAVIGATION ================= */
+
+function previousMonth() {
+
+    currentDate.setMonth(
+        currentDate.getMonth() - 1
+    );
+
+    renderCalendar();
+
+}
+
+
+function nextMonth() {
+
+    currentDate.setMonth(
+        currentDate.getMonth() + 1
+    );
+
+    renderCalendar();
+
+}
+
+
+function goToday() {
+
+    currentDate = new Date();
+
+    renderCalendar();
+
+}
+
+
+/* ================= SHOW EVENTS ================= */
+
+function showEvents(date) {
+
+    const list =
+        document.getElementById("eventList");
+
+    const selected =
+        events.filter(event => event.date === date);
+
+
+    list.innerHTML = "";
+
+
+    if(selected.length === 0) {
+
+        list.innerHTML =
+            `<button class="save"
+            onclick="openModal('${date}')">
+            + Add Event
+            </button>`;
+
+        return;
+
+    }
+
+
+    selected.forEach((event, index) => {
+
+        const item =
+            document.createElement("div");
+
+        item.className = "event-item";
+
+        item.innerHTML = `
+
+            <div class="event-info">
+
+                <strong>
+                    ${event.name}
+                </strong>
+
+                <span>
+                    ${event.time} • ${event.type}
+                </span>
+
+            </div>
+
+            <button
+                class="delete"
+                onclick="deleteEvent(${index}, '${date}')">
+
+                Delete
+
+            </button>
+
+        `;
+
+        list.appendChild(item);
+
+    });
+
+
+    const addButton =
+        document.createElement("button");
+
+    addButton.className = "save";
+
+    addButton.style.marginTop = "10px";
+
+    addButton.innerText = "+ Add Event";
+
+    addButton.onclick = function() {
+
+        openModal(date);
+
+    };
+
+    list.appendChild(addButton);
+
+}
+
+
+/* ================= MODAL ================= */
+
+function openModal(date = "") {
+
+    document.getElementById("eventModal")
+        .style.display = "flex";
+
+    document.getElementById("eventDate").value =
+        date || selectedDate || "";
+
+}
+
+
+function closeModal() {
+
+    document.getElementById("eventModal")
+        .style.display = "none";
+
+}
+
+
+/* ================= ADD EVENT ================= */
+
+document.getElementById("eventForm")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+
+    const newEvent = {
+
+        name:
+            document.getElementById("eventName").value,
+
+        date:
+            document.getElementById("eventDate").value,
+
+        time:
+            document.getElementById("eventTime").value,
+
+        type:
+            document.getElementById("eventType").value
+
+    };
+
+
+    events.push(newEvent);
+
+
+    localStorage.setItem(
+        "globalTrotterEvents",
+        JSON.stringify(events)
+    );
+
+
+    closeModal();
+
+    this.reset();
+
+    renderCalendar();
+
+    showEvents(newEvent.date);
+
+});
+
+
+/* ================= DELETE EVENT ================= */
+
+function deleteEvent(index, date) {
+
+    const selected =
+        events.filter(event => event.date === date);
+
+    const eventToDelete = selected[index];
+
+    events = events.filter(
+        event => event !== eventToDelete
+    );
+
+
+    localStorage.setItem(
+        "globalTrotterEvents",
+        JSON.stringify(events)
+    );
+
+
+    renderCalendar();
+
+    showEvents(date);
+
+}
+
+
+/* ================= START ================= */
+
+renderCalendar();
+
+</script>
 
 </body>
 </html>
