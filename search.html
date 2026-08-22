@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalTrotter | Activity & City Search</title>
+    <title>GlobalTrotter | City & Activity Search</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -17,6 +17,8 @@
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --accent-glow: rgba(99, 102, 241, 0.15);
+            --badge-bg: rgba(99, 102, 241, 0.15);
+            --badge-color: #818cf8;
             --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -89,7 +91,7 @@
         .search-controls {
             display: flex;
             gap: 0.75rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
         }
 
@@ -146,45 +148,265 @@
             transform: translateY(-1px);
         }
 
-        .results-section {
+        .results-header {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
         .results-title {
             font-size: 1.35rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
             color: var(--text-primary);
+        }
+
+        .results-count {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .results-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
         }
 
         .option-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 2.25rem 2rem;
-            text-align: center;
+            border-radius: 16px;
+            overflow: hidden;
             backdrop-filter: blur(8px);
             transition: var(--transition);
-            cursor: pointer;
+            display: flex;
+            flex-direction: row;
         }
 
         .option-card:hover {
             background: var(--bg-card-hover);
             border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.4);
             transform: translateY(-2px);
         }
 
-        .option-content h4 {
+        .card-image {
+            width: 220px;
+            min-width: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .option-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 1.25rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-title {
             font-size: 1.15rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-primary);
         }
 
-        @media (max-width: 640px) {
+        .location-tag {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .card-description {
+            font-size: 0.875rem;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .meta-details {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .tag-badge {
+            background: var(--badge-bg);
+            color: var(--badge-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            white-space: nowrap;
+        }
+
+        .view-btn {
+            background: transparent;
+            border: none;
+            color: #818cf8;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: var(--transition);
+        }
+
+        .option-card:hover .view-btn {
+            color: #a5b4fc;
+            transform: translateX(3px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #131722;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 1.5rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-location {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .modal-body {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-highlights {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-highlights h5 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-highlights ul {
+            list-style-type: disc;
+            padding-left: 1.25rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 680px) {
+            .option-card {
+                flex-direction: column;
+            }
+
+            .card-image {
+                width: 100%;
+                height: 180px;
+            }
+
             .search-controls {
                 flex-direction: column;
             }
@@ -213,7 +435,7 @@
             <div class="search-controls">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" value="Paragliding" placeholder="Search activities or cities...">
+                    <input type="text" id="searchInput" value="Rajasthan Tourist Places" placeholder="Search activities or cities...">
                 </div>
 
                 <button class="control-btn" type="button">
@@ -232,54 +454,262 @@
                 </button>
             </div>
 
-            <h3 class="results-title">Results</h3>
+            <div class="results-header">
+                <h3 class="results-title">Results</h3>
+                <span class="results-count" id="resultsCount">Showing 7 places</span>
+            </div>
 
-            <div class="results-section">
-                <div class="option-card">
-                    <div class="option-content">
-                        <h4>Option and its details</h4>
+            <div class="results-section" id="resultsContainer">
+                
+                <div class="option-card" data-title="Jaipur — Amer Fort & Hawa Mahal" data-location="Rajasthan, India" data-tag="The Pink City" data-img="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80" data-desc="Jaipur, the capital of Rajasthan, is world-famous for its iconic pink sandstone architecture, grand palaces, and royal heritage." data-highlights="Amer Fort light & sound show, Shopping at Johari Bazaar, Hawa Mahal photography, Traditional Rajasthani Thali">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80" alt="Jaipur">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="card-header-info">
+                                <h4 class="option-title">Jaipur — Amer Fort & Hawa Mahal</h4>
+                                <span class="tag-badge">The Pink City</span>
+                            </div>
+                            <div class="location-tag">
+                                <i class="fa-solid fa-location-dot"></i> Rajasthan, India
+                            </div>
+                            <p class="card-description">Known for grand palaces, royal heritage, vibrant bazaars, and impressive hill forts commanding panoramic city views.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="meta-details">
+                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 2-3 Days</span>
+                                <span class="meta-item"><i class="fa-solid fa-star"></i> 4.8</span>
+                            </div>
+                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="option-card">
-                    <div class="option-content">
-                        <h4>Option and its details</h4>
+                <div class="option-card" data-title="Udaipur — Lake Pichola & City Palace" data-location="Rajasthan, India" data-tag="City of Lakes" data-img="https://images.unsplash.com/photo-1615836245337-f5b9b2303f1c?auto=format&fit=crop&w=800&q=80" data-desc="Set around a series of artificial lakes, Udaipur is known for its lavish royal residences and serene boat rides at sunset." data-highlights="Sunset boat cruise on Lake Pichola, Exploring the massive City Palace complex, Jagdish Temple, Cultural show at Bagore Ki Haveli">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1615836245337-f5b9b2303f1c?auto=format&fit=crop&w=800&q=80" alt="Udaipur">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="card-header-info">
+                                <h4 class="option-title">Udaipur — Lake Pichola & City Palace</h4>
+                                <span class="tag-badge">City of Lakes</span>
+                            </div>
+                            <div class="location-tag">
+                                <i class="fa-solid fa-location-dot"></i> Rajasthan, India
+                            </div>
+                            <p class="card-description">Set around beautiful lakes, famous for romantic sunset boat rides, lakeside palaces, and heritage architecture.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="meta-details">
+                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 2 Days</span>
+                                <span class="meta-item"><i class="fa-solid fa-star"></i> 4.9</span>
+                            </div>
+                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="option-card">
-                    <div class="option-content">
-                        <h4>Option and its details</h4>
+                <div class="option-card" data-title="Jaisalmer — Thar Desert Safari & Fort" data-location="Rajasthan, India" data-tag="The Golden City" data-img="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80" data-desc="Jaisalmer stands in the heart of the Thar Desert, distinguished by yellow sandstone architecture and the world's only living hill fort." data-highlights="Overnight desert camp in Sam Sand Dunes, Camel & Jeep safari, Exploring Jaisalmer Fort (Sonar Qila), Patwon Ki Haveli">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80" alt="Jaisalmer">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="card-header-info">
+                                <h4 class="option-title">Jaisalmer — Thar Desert Safari & Fort</h4>
+                                <span class="tag-badge">The Golden City</span>
+                            </div>
+                            <div class="location-tag">
+                                <i class="fa-solid fa-location-dot"></i> Rajasthan, India
+                            </div>
+                            <p class="card-description">A golden sandstone city in the Thar Desert offering desert camping, camel safaris, and a medieval living fort.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="meta-details">
+                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 2-3 Days</span>
+                                <span class="meta-item"><i class="fa-solid fa-star"></i> 4.7</span>
+                            </div>
+                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="option-card">
-                    <div class="option-content">
-                        <h4>Option and its details</h4>
+                <div class="option-card" data-title="Jodhpur — Mehrangarh Fort & Umaid Bhawan" data-location="Rajasthan, India" data-tag="The Blue City" data-img="https://images.unsplash.com/photo-1562979314-bee7453e911c?auto=format&fit=crop&w=800&q=80" data-desc="Dominated by the massive Mehrangarh Fort, Jodhpur is famed for its blue-painted old town houses and rich culinary culture." data-highlights="Ziplining past Mehrangarh Fort, Exploring blue city alleys, Jaswant Thada marble cenotaph, Sampling local Mirchi Vada">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1562979314-bee7453e911c?auto=format&fit=crop&w=800&q=80" alt="Jodhpur">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="card-header-info">
+                                <h4 class="option-title">Jodhpur — Mehrangarh Fort & Umaid Bhawan</h4>
+                                <span class="tag-badge">The Blue City</span>
+                            </div>
+                            <div class="location-tag">
+                                <i class="fa-solid fa-location-dot"></i> Rajasthan, India
+                            </div>
+                            <p class="card-description">Home to one of India's largest forts overlooking a sea of indigo-blue painted houses in the old town below.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="meta-details">
+                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 2 Days</span>
+                                <span class="meta-item"><i class="fa-solid fa-star"></i> 4.8</span>
+                            </div>
+                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="option-card">
-                    <div class="option-content">
-                        <h4>Option and its details</h4>
+                <div class="option-card" data-title="Pushkar — Sacred Lake & Brahma Temple" data-location="Rajasthan, India" data-tag="Heritage Town" data-img="https://images.unsplash.com/photo-1609828913642-c55f7335d614?auto=format&fit=crop&w=800&q=80" data-desc="A holy pilgrimage town encircling Pushkar Lake, known for its rare Brahma temple and vibrant annual camel fair." data-highlights="Pushkar Lake ghats, Rare Lord Brahma Temple, Cable car to Savitri Temple, Rooftop cafes with lake views">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1609828913642-c55f7335d614?auto=format&fit=crop&w=800&q=80" alt="Pushkar">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="card-header-info">
+                                <h4 class="option-title">Pushkar — Sacred Lake & Brahma Temple</h4>
+                                <span class="tag-badge">Heritage Town</span>
+                            </div>
+                            <div class="location-tag">
+                                <i class="fa-solid fa-location-dot"></i> Rajasthan, India
+                            </div>
+                            <p class="card-description">A tranquil spiritual hub set around a sacred lake with 52 bathing ghats and unique temple culture.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="meta-details">
+                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 1 Day</span>
+                                <span class="meta-item"><i class="fa-solid fa-star"></i> 4.6</span>
+                            </div>
+                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="option-card">
-                    <div class="option-content">
-                        <h4>Option and its details</h4>
+                <div class="option-card" data-title="Varanasi — Dashashwamedh Ghat & Kashi Vishwanath" data-location="Uttar Pradesh, India" data-tag="Spiritual Capital" data-img="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80" data-desc="One of the world's oldest continually inhabited cities, Varanasi is the spiritual core of India along the sacred river Ganges." data-highlights="Evening Ganga Aarti at Dashashwamedh Ghat, Sunrise boat ride, Kashi Vishwanath Corridor, Street food tour in narrow lanes">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80" alt="Varanasi">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="card-header-info">
+                                <h4 class="option-title">Varanasi — Dashashwamedh Ghat & Kashi Vishwanath</h4>
+                                <span class="tag-badge">Spiritual Capital</span>
+                            </div>
+                            <div class="location-tag">
+                                <i class="fa-solid fa-location-dot"></i> Uttar Pradesh, India
+                            </div>
+                            <p class="card-description">Experience ancient rituals, spectacular evening Ganga Aarti ceremonies, and timeless riverside ghats.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="meta-details">
+                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 2 Days</span>
+                                <span class="meta-item"><i class="fa-solid fa-star"></i> 4.9</span>
+                            </div>
+                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="option-card">
-                    <div class="option-content">
-                        <h4>Option and its details</h4>
+                <div class="option-card" data-title="Agra — Taj Mahal & Agra Fort" data-location="Uttar Pradesh, India" data-tag="Wonder of the World" data-img="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80" data-desc="Home to the iconic white marble Taj Mahal, Agra showcases Mughal architectural mastery and rich imperial history." data-highlights="Sunrise tour of Taj Mahal, Agra Fort, Mehtab Bagh gardens across the river, Tasting traditional Agra Petha">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80" alt="Agra">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="card-header-info">
+                                <h4 class="option-title">Agra — Taj Mahal & Agra Fort</h4>
+                                <span class="tag-badge">Wonder of the World</span>
+                            </div>
+                            <div class="location-tag">
+                                <i class="fa-solid fa-location-dot"></i> Uttar Pradesh, India
+                            </div>
+                            <p class="card-description">Iconic city housing the world-famous Taj Mahal monument of love alongside magnificent red sandstone forts.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="meta-details">
+                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 1 Day</span>
+                                <span class="meta-item"><i class="fa-solid fa-star"></i> 4.9</span>
+                            </div>
+                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
     </section>
+
+    <div class="modal" id="detailsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+            <img src="" alt="" class="modal-img" id="modalImg">
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <div class="modal-location" id="modalLocation"><i class="fa-solid fa-location-dot"></i> <span></span></div>
+            <p class="modal-body" id="modalDesc"></p>
+            <div class="modal-highlights">
+                <h5>Key Highlights & Activities</h5>
+                <ul id="modalHighlightsList"></ul>
+            </div>
+            <button class="control-btn" style="width: 100%; justify-content: center; background: #6366f1; border-color: #6366f1;" onclick="alert('Trip added to planner!')">
+                <i class="fa-solid fa-plus"></i> Add to My Trip Planner
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const cards = document.querySelectorAll('.option-card');
+        const searchInput = document.getElementById('searchInput');
+        const resultsCount = document.getElementById('resultsCount');
+
+        const modal = document.getElementById('detailsModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalImg = document.getElementById('modalImg');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalLocation = document.getElementById('modalLocation').querySelector('span');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalHighlightsList = document.getElementById('modalHighlightsList');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                const location = card.getAttribute('data-location').toLowerCase();
+                const tag = card.getAttribute('data-tag').toLowerCase();
+
+                if (title.includes(query) || location.includes(query) || tag.includes(query)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            resultsCount.textContent = `Showing ${visibleCount} places`;
+        });
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                modalImg.src = card.getAttribute('data-img');
+                modalTitle.textContent = card.getAttribute('data-title');
+                modalLocation.textContent = card.getAttribute('data-location');
+                modalDesc.textContent = card.getAttribute('data-desc');
+
+                const highlights = card.getAttribute('data-highlights').split(',');
+                modalHighlightsList.innerHTML = highlights.map(item => `<li>${item.trim()}</li>`).join('');
+
+                modal.classList.add('active');
+            });
+        });
+
+        modalClose.addEventListener('click', () => modal.classList.remove('active'));
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('active');
+        });
+    </script>
 
 </body>
 </html>
