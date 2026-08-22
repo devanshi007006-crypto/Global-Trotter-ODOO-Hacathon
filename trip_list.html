@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlobalTrotter - My Trips</title>
+  <style>
+    :root {
+      --bg-color: #f7f5ed;
+      --nav-bg: #ffffff;
+      --text-main: #1d4d43;
+      --text-muted: #666666;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background-color: var(--nav-bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 220px;
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      outline: none;
+      font-size: 0.9rem;
+      background: #ffffff;
+    }
+
+    .btn-tool {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s;
+    }
+
+    .btn-tool:hover {
+      background: #f0f0f0;
+    }
+
+    .trip-section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+    }
+
+    .trip-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .trip-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+      color: var(--text-main);
+    }
+
+    .trip-info p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .trip-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      background: #e6f4f1;
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">GLOBALTROTTER</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">My Trips</a></li>
+      <li><a href="#">Planner</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+
+    <div class="toolbar">
+      <input type="text" class="search-input" placeholder="Search destinations or trips..." />
+      <button class="btn-tool">░ Group By</button>
+      <button class="btn-tool">▼ Filter</button>
+      <button class="btn-tool">⇅ Sort By</button>
+    </div>
+
+    <section class="trip-section">
+      <h2 class="section-title">Ongoing</h2>
+      <div class="trip-card">
+        <div class="trip-info">
+          <h3>Rajasthan Expedition</h3>
+          <p>Jaipur, Udaipur & Jodhpur • 7 Days Left</p>
+        </div>
+        <span class="trip-badge">Active</span>
+      </div>
+    </section>
+
+    <section class="trip-section">
+      <h2 class="section-title">Up-coming</h2>
+      <div class="trip-card">
+        <div class="trip-info">
+          <h3>Kerala Backwaters Getaway</h3>
+          <p>Houseboat & Tea Gardens • Starts in 12 Days</p>
+        </div>
+        <span class="trip-badge">Upcoming</span>
+      </div>
+    </section>
+
+    <section class="trip-section">
+      <h2 class="section-title">Completed</h2>
+      <div class="trip-card" style="margin-bottom: 1rem;">
+        <div class="trip-info">
+          <h3>Goa Beach Escape</h3>
+          <p>Beaches & Coastal Adventures • Completed Jan 2026</p>
+        </div>
+        <span class="trip-badge" style="background: #f0f0f0; color: #666;">Done</span>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-info">
+          <h3>Leh Ladakh Exploration</h3>
+          <p>Mountains & Adventure • Completed Aug 2025</p>
+        </div>
+        <span class="trip-badge" style="background: #f0f0f0; color: #666;">Done</span>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
