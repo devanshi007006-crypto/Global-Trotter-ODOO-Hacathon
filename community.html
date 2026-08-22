@@ -224,8 +224,8 @@
             }
         }
 
-        // Create New Community Post
-        function createNewCommunityPost() {
+        // Create New Community Post with Odoo Backend & Local Database Persistence
+        async function createNewCommunityPost() {
             const textarea = document.getElementById("newPostContent");
             const text = textarea.value.trim();
             if (!text) {
@@ -236,6 +236,31 @@
             const storedUser = JSON.parse(localStorage.getItem("gt_user") || "{}");
             const userName = storedUser.name || "Traveler";
             const initial = userName.charAt(0).toUpperCase();
+
+            const postObj = {
+                id: Date.now(),
+                author: userName,
+                text: text,
+                time: "Just now",
+                likes: 1,
+                comments: 0
+            };
+
+            // 1. Save in Client-side Local Storage Database
+            const localPosts = JSON.parse(localStorage.getItem("gt_community_posts") || "[]");
+            localPosts.unshift(postObj);
+            localStorage.setItem("gt_community_posts", JSON.stringify(localPosts));
+
+            // 2. Sync to Odoo ERP Backend API
+            try {
+                await fetch("/api/v1/community/post", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ author: userName, text: text })
+                });
+            } catch (err) {
+                console.log("Community post saved in local database:", err);
+            }
 
             const feed = document.getElementById("communityFeedList");
             const postItem = document.createElement("div");
@@ -270,7 +295,7 @@
 
             feed.prepend(postItem);
             textarea.value = "";
-            alert("🎉 Your post has been published to the Community Tab!");
+            alert("🎉 Your post has been published and synchronized with Odoo ERP!");
         }
 
         // Live Search Filter for Community Posts

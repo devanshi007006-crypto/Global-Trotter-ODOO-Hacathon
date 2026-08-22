@@ -1,107 +1,115 @@
-# 🌍 GlobalTrotter India – Smart Travel & Trip Management Workspace (Odoo ERP)
+# ✈️ GlobalTrotter — Odoo ERP Travel Planning & Multi-City Itinerary Engine
 
-[![Odoo ERP](https://img.shields.io/badge/Odoo-17.0-purple.svg)](https://www.odoo.com/)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0.html)
-[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-success.svg)](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/)
+[![Odoo ERP 17.0](https://img.shields.io/badge/Odoo%20ERP-17.0-purple.svg)](https://www.odoo.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-gold.svg)](LICENSE)
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-emerald.svg)](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/)
 
-> **Odoo Global Hackathon Project**  
-> **Tagline:** Transforming fragmented travel planning into a unified, AI-powered ERP workspace—from day-wise Indian circuit itineraries and budget analytics to group collaboration and intelligent "What-If" decision support.
-
-🌐 **Live Website Demo**: [https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/)
+> **GlobalTrotter** is a state-of-the-art travel planning and budget optimization platform powered by **Odoo ERP 17.0 ORM** backend controllers and a glassmorphic Web App interface. Designed for multi-city circuits across India and global destinations, GlobalTrotter enables travelers to build day-wise itineraries, track section budgets, split group expenses equally, and interact within a vibrant traveler community.
 
 ---
 
-## 🌟 Key Features
+## 🚀 Live Demo & Links
 
-1. **🇮🇳 Indian Travel Circuit Presets**: Interactive destination templates for **Jaipur (Rajasthan)**, **Alleppey (Kerala)**, **Goa Beach Circuit**, and **Leh-Ladakh** with experience category filtering.
-2. **🗺️ Smart Trip Workspace**: Manage destinations, dates, duration, travel styles, and traveler lists in custom Odoo models (`gt.trip`).
-3. **🗓️ Day-wise Itinerary Manager**: Detailed daily activities with timing, category tags (Heritage, Culinary, Adventure, Wellness, Sightseeing), ratings, and weather flags (`gt.itinerary.day`, `gt.activity`).
-4. **💰 Smart Budget & Expense Analytics**: Visual progress bar tracking allocated vs spent budget, real-time balance alerts, and dynamic graph dashboards (`gt.expense`).
-5. **👥 Group Debt Equalizer ("Who Owes Whom")**: Minimum-cash-flow algorithm calculating fair debt settlement between group members (`_compute_debt_settlements`).
-6. **⚡ "What-If?" Trip Optimizer**: Backend engine simulating flight upgrades, budget reduction, duration extension, and rain weather activity swaps (`action_optimize_trip`).
-7. **🤖 AI & REST API Gateway**: REST/JSON endpoints (`/api/v1/trips`) connecting external AI engines and frontend web clients directly to Odoo ORM.
+- 🚪 **Authentication Gateway (Screen 1 & 2)**: [login.html](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/login.html)
+- 🌐 **Home Dashboard**: [index.html](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/index.html)
+- 🔍 **Search Places & Explore (Screen 7)**: [search.html](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/search.html)
+- 📝 **Create Trip Wizard (Screen 3 & 4)**: [new_trip.html](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/new_trip.html) | [screen3.html](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/screen3.html)
+- 🧳 **My Trips Directory (Screen 4)**: [trip_list.html](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/trip_list.html)
+- 🗺️ **Build Itinerary Screen (Screen 5)**: [itinerary_builder.html](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/itinerary_builder.html)
+- 📊 **Itinerary & Expense View (Screen 9)**: [itinerary_view.html](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/itinerary_view.html)
+- 👥 **Community Tab Screen (Screen 10)**: [community.html](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/community.html)
+- 📅 **Calendar Timeline (Screen 10)**: [calendar.html](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/calendar.html)
+- 📈 **Admin Analytics Dashboard (Screen 13)**: [AdminPanel.html](https://devanshi007006-crypto.github.io/Global-Trotter-ODOO-Hacathon/AdminPanel.html)
 
 ---
 
-## 📂 Repository Layout
+## 👥 Team Roster
 
-```text
-global-trotter/
-├── README.md                          # Project documentation & execution guide
-├── requirements.txt                   # Core Python & API dependencies
-├── index.html                         # Interactive Destination Hub & Trip Workspace (GitHub Pages)
-├── style.css                          # Dark mode glassmorphism UI & Indian Royal theme
-├── script.js                          # Dynamic trip planner, destination presets & budget engine
-├── AI.js                              # AI Subsystem integration helper
-│
-├── odoo/                              # Custom Odoo Module
-│   ├── script_api.js                  # Frontend Odoo REST API bridge
-│   └── global_trotter/
-│       ├── __manifest__.py            # Odoo module manifest
-│       ├── __init__.py
-│       ├── models/                    # Odoo ORM Data Models & Business Logic
-│       │   ├── gt_trip.py             # Main Trip model & "What-If" Optimizer
-│       │   ├── gt_itinerary.py        # Day-wise Itinerary & Activity models
-│       │   ├── gt_expense.py          # Expense tracking & Debt Balancer engine
-│       │   └── gt_activity_vote.py    # Traveler voting model
-│       ├── controllers/               # REST / JSON-RPC Gateway
-│       │   └── api_controller.py      # /api/v1 HTTP Endpoints
-│       ├── security/
-│       │   └── ir.model.access.csv    # Access Rights & ACLs
-│       ├── views/                     # Odoo Web Views (Kanban, Form, Pivot, Graph)
-│       │   ├── menu_views.xml
-│       │   ├── trip_views.xml
-│       │   ├── itinerary_views.xml
-│       │   └── expense_views.xml
-│       └── data/
-│           └── demo_data.xml          # Pre-loaded hackathon demo dataset (Japan & Paris trips)
-│
-├── ai/                                # AI Recommendation Subsystem
-│   └── recommendation_engine.py       # AI Itinerary generator & Odoo sync script
-│
-└── docs/                              # System Specs & Team Blueprint
-    └── architecture_spec.md           # Architecture diagram, ERD & API specifications
+| Role | Name | Primary Domain | GitHub |
+| :--- | :--- | :--- | :--- |
+| **Team Leader & Backend Architect** | **Devanshi** | Odoo ORM Models, Auth REST Endpoints, DB Sync | [@devanshi007006-crypto](https://github.com/devanshi007006-crypto) |
+| **Frontend UI/UX Lead** | **Mishva** | Glassmorphism Aesthetics, Responsive Layouts | Contributor |
+| **AI & Recommendation Lead** | **Prachi Kanwar** | Circuit Optimization & Destination Logic | Contributor |
+| **Integration & Pitch Lead** | **Prachi Das** | Testing, Presentation & Workflows | Contributor |
+
+---
+
+## ✨ Key Features & Specification Support
+
+### 1. 🚪 Authentication Gateway (`login.html`)
+- **Screen 1 (Login)** & **Screen 2 (Registration)** matching design specifications without explicit screen labels.
+- **Strong Password Validation**: Enforces 8+ characters, uppercase, lowercase, numbers, and special characters with a live visual strength bar (Red ➔ Yellow ➔ Green).
+- **Strict Account Check**: Blocks unauthenticated logins and auto-redirects unregistered visitors to the Registration tab.
+- **Show/Hide Password Eye Toggle**: Instant eye icon toggle for all password input fields.
+- **Workable Password Recovery Modal**: 6-digit OTP dispatch and new password reset flow.
+
+### 2. 🗺️ Build Itinerary Engine (`itinerary_builder.html`)
+- **Screen 5 (Build Itinerary Screen)**: Organizes trips into structured section cards (Travel, Hotel, Sightseeing, Dining).
+- **Date Range & Budget Input**: Start date to end date picker + section budget field in ₹.
+- **Dynamic Section Adder (`+ Add another Section`)**: Appends new section cards dynamically with live combined budget tallying.
+- **REST API Persistence**: Syncs section cards directly to Odoo ORM models (`gt.itinerary.day`, `gt.activity`) and local storage.
+
+### 3. 📊 Activity & Expense View (`itinerary_view.html`)
+- **Screen 9 (Itinerary View with Budget Section)**: Dual-column view listing physical activities on the left and expenses on the right.
+- **Flow Arrows**: Sequential downward arrows connecting daily activities.
+- **Live Search & Filters**: Search bar to filter activities by name or category in real-time.
+
+### 4. 👥 Community Tab (`community.html`)
+- **Screen 10 (Community Tab Screen)**: Circle user avatars next to traveler post cards.
+- **Interactive Upvotes & Discussions**: Upvote likes button, comment threads, and tag pills (*#JaipurForts*, *#KeralaBackwaters*).
+- **Publish Post**: Real-time post publishing synced to Odoo backend API (`POST /api/v1/community/post`).
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+- **Frontend**: HTML5, Vanilla JavaScript (ES6+), Modern Vanilla CSS3 with CSS Grid & Flexbox, FontAwesome 6 Icons, Google Fonts (*Outfit*, *Plus Jakarta Sans*).
+- **Backend ERP**: Python 3.10+, Odoo 17.0 ERP Framework, `http.Controller` REST API Endpoints.
+- **Database Models**:
+  - `res.partner`: Traveler Profile & Credentials.
+  - `gt.trip`: Trip Metadata, Budget Allocated, Budget Spent, Travelers.
+  - `gt.itinerary.day`: Day/Section Number, Title, Day Cost.
+  - `gt.activity`: Activity Name, Category, Start Time, Cost, Indoor Flag.
+  - `gt.expense`: Expense Category, Payer ID, Shared Participants, Amount.
+- **Client Persistence**: Dual-layer strategy using REST API calls with `localStorage` fallbacks (`gt_accounts`, `gt_trips`, `gt_saved_itinerary_sections`, `gt_community_posts`).
+
+---
+
+## ⚡ Odoo REST API Endpoints
+
+```http
+POST /api/v1/auth/register          - Create/register traveler account in res.partner
+POST /api/v1/auth/login             - Authenticate user credentials against Odoo ORM
+POST /api/v1/auth/forgot_password   - Send 6-digit OTP and reset password link
+POST /api/v1/trips/generate         - Create new trip and auto-generate itinerary days
+GET  /api/v1/trips                  - List all active and completed trips
+POST /api/v1/trips/<id>/itinerary   - Save section cards and activities to gt.itinerary.day
+POST /api/v1/community/post         - Publish community post to feed
 ```
 
 ---
 
-## 🚀 Quick Start Guide
+## 💻 Local Installation & Setup
 
-### 1. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/devanshi007006-crypto/Global-Trotter-ODOO-Hacathon.git
+   cd Global-Trotter-ODOO-Hacathon
+   ```
 
-### 2. Run Odoo with GlobalTrotter Module
-Add the `global-trotter/odoo` folder to your Odoo `addons_path` in your `odoo.conf` file:
-```ini
-addons_path = /path/to/odoo/addons,/path/to/global-trotter/odoo
-```
-Start Odoo server and update the module list, then install **GlobalTrotter** (`global_trotter`).
+2. **Run Frontend Workspace**:
+   - Open `login.html` or `index.html` directly in any web browser, or serve using VS Code Live Server / Python HTTP server:
+     ```bash
+     python -m http.server 8000
+     ```
+   - Open `http://localhost:8000/login.html` in your browser.
 
-### 3. Test API Gateway Endpoints
-* Fetch all trips: `GET http://localhost:8069/api/v1/trips`
-* Get trip details: `GET http://localhost:8069/api/v1/trips/1`
-* Trigger "What-If" Optimizer: `POST http://localhost:8069/api/v1/trips/1/optimize` with `{"opt_type": "rain_mode"}`
-
-### 4. Run AI Generator (Prachi Kanwar's Script)
-```bash
-python ai/recommendation_engine.py
-```
+3. **Install & Run Odoo ERP Backend (Optional for Server Sync)**:
+   - Ensure Odoo 17.0 is installed on Python 3.10+.
+   - Add `odoo/global_trotter` module to your Odoo `addons_path`.
+   - Update app list and install `global_trotter` module in Odoo Admin settings.
 
 ---
 
-## 👨‍👩‍👧‍👦 Team Roles & Ownership
-
-| Member | Role | Core Responsibility |
-|---|---|---|
-| **Devanshi** | **Team Leader & Backend Architect** | Custom Odoo module development, ORM models, business logic engines, security ACLs, REST API endpoints |
-| **Mishva** | **Frontend UI/UX Lead** | Web/Mobile interface, destination portal UI, dashboard integration, itinerary UI |
-| **Prachi Kanwar** | **AI & Recommendation Lead** | AI itinerary generation script (`ai/recommendation_engine.py`), preference matching |
-| **Prachi Das** | **Integration, Testing & Pitch Lead** | End-to-end API testing, documentation, Git management, presentation deck |
-
----
-
-## 🏆 License
-Released under the LGPL-3 License for Odoo Hackathon.
+## 📄 License
+This project is released under the **MIT License**. Created by the **GlobalTrotter Team** for the Odoo Hackathon 2026.

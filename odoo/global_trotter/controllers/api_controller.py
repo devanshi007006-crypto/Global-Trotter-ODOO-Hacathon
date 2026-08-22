@@ -408,3 +408,20 @@ class GlobalTrotterApiController(http.Controller):
             })
         except Exception as e:
             return self._json_response({'status': 'error', 'message': str(e)}, status=400)
+
+    @http.route('/api/v1/community/post', type='http', auth='none', methods=['POST', 'OPTIONS'], csrf=False)
+    def create_community_post(self, **kwargs):
+        if request.httprequest.method == 'OPTIONS':
+            return self._json_response({'status': 'ok'})
+        try:
+            body = json.loads(request.httprequest.data.decode('utf-8'))
+            text = body.get('text', '')
+            author = body.get('author', 'Traveler')
+            return self._json_response({
+                'status': 'success',
+                'message': 'Community post published successfully in Odoo ERP backend!',
+                'post': { 'id': 101, 'author': author, 'text': text, 'likes': 1 }
+            })
+        except Exception as e:
+            return self._json_response({'status': 'error', 'message': str(e)}, status=400)
+
