@@ -35,7 +35,7 @@ global-trotter/
 │       ├── controllers/               # REST / JSON-RPC Gateway
 │       │   └── api_controller.py      # /api/v1 HTTP Endpoints
 │       ├── security/
-│       │   └── ir.model.access.csv    # Access Rights & ACLs
+39: │       │   └── ir.model.access.csv    # Access Rights & ACLs
 │       ├── views/                     # Odoo Web Views (Kanban, Form, Pivot, Graph)
 │       │   ├── menu_views.xml
 │       │   ├── trip_views.xml
