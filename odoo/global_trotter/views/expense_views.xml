@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Expense Tree View -->
+    <record id="view_gt_expense_tree" model="ir.ui.view">
+        <field name="name">gt.expense.tree</field>
+        <field name="model">gt.expense</field>
+        <field name="arch" type="xml">
+            <tree string="Trip Expenses">
+                <field name="date"/>
+                <field name="trip_id"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="paid_by_id"/>
+                <field name="amount" widget="monetary"/>
+                <field name="split_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Expense Graph View (Budget Analytics) -->
+    <record id="view_gt_expense_graph" model="ir.ui.view">
+        <field name="name">gt.expense.graph</field>
+        <field name="model">gt.expense</field>
+        <field name="arch" type="xml">
+            <graph string="Expense Category Analysis" type="pie">
+                <field name="category"/>
+                <field name="amount" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Expense Pivot View -->
+    <record id="view_gt_expense_pivot" model="ir.ui.view">
+        <field name="name">gt.expense.pivot</field>
+        <field name="model">gt.expense</field>
+        <field name="arch" type="xml">
+            <pivot string="Budget Breakdown Pivot">
+                <field name="trip_id" type="row"/>
+                <field name="category" type="col"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Expense Action -->
+    <record id="action_gt_expense" model="ir.actions.act_window">
+        <field name="name">Group Expenses &amp; Budget Analytics</field>
+        <field name="res_model">gt.expense</field>
+        <field name="view_mode">tree,graph,pivot,form</field>
+    </record>
+</odoo>
