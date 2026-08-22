@@ -178,3 +178,12 @@ itinerary.forEach(day => {
 
 
         if (Array.isArray(day.activities)) {
+
+            day.activities.forEach(activity => {
+
+                const listItem = document.createElement("li");
+                const activityText = document.createElement("div");
+                activityText.className = "act-text";
+
+
+                if (typeof activity === "string") {
