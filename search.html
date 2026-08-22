@@ -17,7 +17,6 @@
             --header-btn-text: #0d5c56;
             --bg-main: #f8f6f0;
             --bg-card: #ffffff;
-            --bg-card-hover: #ffffff;
             --border-color: #e2ded4;
             --border-focus: #0d5c56;
             --text-primary: #0f2c28;
@@ -78,8 +77,9 @@
             transition: var(--transition);
         }
 
-        .category-btn:hover {
-            background: #f0f7f6;
+        .category-btn:hover, .category-btn.active {
+            background: #e0f2f1;
+            border-color: #ffffff;
             transform: translateY(-1px);
         }
 
@@ -88,6 +88,7 @@
             font-size: 1.25rem;
             letter-spacing: -0.02em;
             color: #ffffff;
+            text-decoration: none;
         }
 
         .user-profile-icon {
@@ -101,6 +102,7 @@
             justify-content: center;
             color: #ffffff;
             cursor: pointer;
+            text-decoration: none;
             transition: var(--transition);
         }
 
@@ -138,7 +140,7 @@
         .search-controls {
             display: flex;
             gap: 0.75rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
         }
 
@@ -174,11 +176,11 @@
             box-shadow: 0 0 0 3px var(--accent-glow);
         }
 
-        .control-btn {
+        .control-select {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.75rem 1.25rem;
+            padding: 0.75rem 1rem;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 8px;
@@ -186,13 +188,34 @@
             font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
+            outline: none;
             transition: var(--transition);
         }
 
-        .control-btn:hover {
+        .control-select:hover {
             border-color: var(--header-bg);
             color: var(--header-bg);
-            transform: translateY(-1px);
+        }
+
+        .filter-panel {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
         }
 
         .results-header {
@@ -490,13 +513,9 @@
                 height: 180px;
             }
 
-            .search-controls {
+            .search-controls, .filter-panel {
                 flex-direction: column;
-            }
-
-            .control-btn {
-                width: 100%;
-                justify-content: center;
+                align-items: stretch;
             }
         }
     </style>
@@ -504,21 +523,21 @@
 <body>
 
     <header>
-        <div class="logo">
+        <a href="index.html" class="logo">
             GlobalTrotter
-        </div>
+        </a>
         
         <div class="header-categories">
-            <button class="category-btn"><i class="fa-solid fa-border-all"></i> All Circuits</button>
-            <button class="category-btn"><i class="fa-solid fa-chess-rook"></i> Royal Forts</button>
-            <button class="category-btn"><i class="fa-solid fa-water"></i> Backwaters & Beaches</button>
-            <button class="category-btn"><i class="fa-solid fa-mountain"></i> Himalayan Treks</button>
-            <button class="category-btn"><i class="fa-solid fa-om"></i> Culture & Spiritual</button>
+            <button class="category-btn active" data-category="All"><i class="fa-solid fa-border-all"></i> All Circuits</button>
+            <button class="category-btn" data-category="Royal Forts"><i class="fa-solid fa-chess-rook"></i> Royal Forts</button>
+            <button class="category-btn" data-category="Backwaters & Beaches"><i class="fa-solid fa-water"></i> Backwaters & Beaches</button>
+            <button class="category-btn" data-category="Himalayan Treks"><i class="fa-solid fa-mountain"></i> Himalayan Treks</button>
+            <button class="category-btn" data-category="Culture & Spiritual"><i class="fa-solid fa-om"></i> Culture & Spiritual</button>
         </div>
 
-        <div class="user-profile-icon" title="Account Settings">
-            <i class="fa-regular fa-user"></i>
-        </div>
+        <a href="index.html" class="user-profile-icon" title="Go to Main Index Page">
+            <i class="fa-solid fa-house"></i>
+        </a>
     </header>
 
     <section class="main-search-section">
@@ -530,208 +549,47 @@
             <div class="search-controls">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="searchInput" value="Rajasthan" placeholder="Search activities or cities...">
+                    <input type="text" id="searchInput" placeholder="Search places, states, activities...">
                 </div>
 
-                <button class="control-btn" type="button">
-                    <i class="fa-solid fa-layer-group"></i>
-                    Group by
-                </button>
+                <select id="sortSelect" class="control-select">
+                    <option value="default">Sort by: Default</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="days-low">Duration: Shortest First</option>
+                    <option value="days-high">Duration: Longest First</option>
+                </select>
+            </div>
 
-                <button class="control-btn" type="button">
+            <div class="filter-panel">
+                <div class="filter-group">
                     <i class="fa-solid fa-filter"></i>
-                    Filter
-                </button>
+                    <span>Max Budget:</span>
+                    <select id="budgetFilter" class="control-select">
+                        <option value="all">Any Budget</option>
+                        <option value="30000">Under ₹30,000</option>
+                        <option value="45000">Under ₹45,000</option>
+                        <option value="60000">Under ₹60,000</option>
+                    </select>
+                </div>
 
-                <button class="control-btn" type="button">
-                    <i class="fa-solid fa-arrow-down-a-z"></i>
-                    Sort by...
-                </button>
+                <div class="filter-group">
+                    <span>Duration:</span>
+                    <select id="durationFilter" class="control-select">
+                        <option value="all">Any Duration</option>
+                        <option value="1-2">1 - 2 Days</option>
+                        <option value="3-4">3 - 4 Days</option>
+                        <option value="5+">5+ Days</option>
+                    </select>
+                </div>
             </div>
 
             <div class="results-header">
                 <h3 class="results-title">Available Circuits</h3>
-                <span class="results-count" id="resultsCount">Showing 7 places</span>
+                <span class="results-count" id="resultsCount">Showing places</span>
             </div>
 
-            <div class="results-section" id="resultsContainer">
-                
-                <div class="option-card" data-title="Jaipur — Amber Fort & Hawa Mahal" data-location="Rajasthan, India" data-tag="Royal Heritage" data-img="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80" data-desc="Jaipur, the capital of Rajasthan, is world-famous for its iconic pink sandstone architecture, grand palaces, and royal heritage." data-highlights="Amer Fort light & sound show, Shopping at Johari Bazaar, Hawa Mahal photography, Traditional Rajasthani Thali">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80" alt="Jaipur">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            <div class="card-header-info">
-                                <h4 class="option-title">Jaipur & Amber Fort</h4>
-                                <span class="tag-badge">Royal Heritage</span>
-                            </div>
-                            <div class="location-tag">
-                                <i class="fa-solid fa-location-dot"></i> Rajasthan, India
-                            </div>
-                            <p class="card-description">Hawa Mahal, Amber Fort & City Palace</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="meta-details">
-                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 3 Days</span>
-                                <span class="meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 50,000</span>
-                            </div>
-                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="option-card" data-title="Udaipur — Lake Pichola & City Palace" data-location="Rajasthan, India" data-tag="Tranquil Nature" data-img="https://images.unsplash.com/photo-1615836245337-f5b9b2303f1c?auto=format&fit=crop&w=800&q=80" data-desc="Set around a series of artificial lakes, Udaipur is known for its lavish royal residences and serene boat rides at sunset." data-highlights="Sunset boat cruise on Lake Pichola, Exploring the massive City Palace complex, Jagdish Temple, Cultural show at Bagore Ki Haveli">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1615836245337-f5b9b2303f1c?auto=format&fit=crop&w=800&q=80" alt="Udaipur">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            <div class="card-header-info">
-                                <h4 class="option-title">Udaipur & Lake Pichola</h4>
-                                <span class="tag-badge">Tranquil Nature</span>
-                            </div>
-                            <div class="location-tag">
-                                <i class="fa-solid fa-location-dot"></i> Rajasthan, India
-                            </div>
-                            <p class="card-description">Lakeside Palaces, Sunset Boat Cruise & Heritage Walks</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="meta-details">
-                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 2 Days</span>
-                                <span class="meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 45,000</span>
-                            </div>
-                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="option-card" data-title="Jaisalmer — Thar Desert Safari & Fort" data-location="Rajasthan, India" data-tag="Desert Safari" data-img="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80" data-desc="Jaisalmer stands in the heart of the Thar Desert, distinguished by yellow sandstone architecture and the world's only living hill fort." data-highlights="Overnight desert camp in Sam Sand Dunes, Camel & Jeep safari, Exploring Jaisalmer Fort (Sonar Qila), Patwon Ki Haveli">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80" alt="Jaisalmer">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            <div class="card-header-info">
-                                <h4 class="option-title">Jaisalmer & Thar Desert</h4>
-                                <span class="tag-badge">Desert Safari</span>
-                            </div>
-                            <div class="location-tag">
-                                <i class="fa-solid fa-location-dot"></i> Rajasthan, India
-                            </div>
-                            <p class="card-description">Living Fort, Sand Dunes Camping & Camel Safaris</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="meta-details">
-                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 3 Days</span>
-                                <span class="meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 40,000</span>
-                            </div>
-                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="option-card" data-title="Jodhpur — Mehrangarh Fort & Blue City" data-location="Rajasthan, India" data-tag="Royal Heritage" data-img="https://images.unsplash.com/photo-1562979314-bee7453e911c?auto=format&fit=crop&w=800&q=80" data-desc="Dominated by the massive Mehrangarh Fort, Jodhpur is famed for its blue-painted old town houses and rich culinary culture." data-highlights="Ziplining past Mehrangarh Fort, Exploring blue city alleys, Jaswant Thada marble cenotaph, Sampling local Mirchi Vada">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1562979314-bee7453e911c?auto=format&fit=crop&w=800&q=80" alt="Jodhpur">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            <div class="card-header-info">
-                                <h4 class="option-title">Jodhpur & Mehrangarh</h4>
-                                <span class="tag-badge">Royal Heritage</span>
-                            </div>
-                            <div class="location-tag">
-                                <i class="fa-solid fa-location-dot"></i> Rajasthan, India
-                            </div>
-                            <p class="card-description">Mehrangarh Fort, Blue City Alleys & Jaswant Thada</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="meta-details">
-                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 2 Days</span>
-                                <span class="meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 35,000</span>
-                            </div>
-                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="option-card" data-title="Pushkar — Sacred Lake & Brahma Temple" data-location="Rajasthan, India" data-tag="Culture & Spiritual" data-img="https://images.unsplash.com/photo-1609828913642-c55f7335d614?auto=format&fit=crop&w=800&q=80" data-desc="A holy pilgrimage town encircling Pushkar Lake, known for its rare Brahma temple and vibrant annual camel fair." data-highlights="Pushkar Lake ghats, Rare Lord Brahma Temple, Cable car to Savitri Temple, Rooftop cafes with lake views">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1609828913642-c55f7335d614?auto=format&fit=crop&w=800&q=80" alt="Pushkar">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            <div class="card-header-info">
-                                <h4 class="option-title">Pushkar & Holy Lake</h4>
-                                <span class="tag-badge">Culture & Spiritual</span>
-                            </div>
-                            <div class="location-tag">
-                                <i class="fa-solid fa-location-dot"></i> Rajasthan, India
-                            </div>
-                            <p class="card-description">Sacred Ghats, Lord Brahma Temple & Cultural Bazaars</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="meta-details">
-                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 1 Day</span>
-                                <span class="meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 20,000</span>
-                            </div>
-                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="option-card" data-title="Varanasi — Dashashwamedh Ghat & Ganges" data-location="Uttar Pradesh, India" data-tag="Culture & Spiritual" data-img="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80" data-desc="One of the world's oldest continually inhabited cities, Varanasi is the spiritual core of India along the sacred river Ganges." data-highlights="Evening Ganga Aarti at Dashashwamedh Ghat, Sunrise boat ride, Kashi Vishwanath Corridor, Street food tour in narrow lanes">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80" alt="Varanasi">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            <div class="card-header-info">
-                                <h4 class="option-title">Varanasi & Ghats</h4>
-                                <span class="tag-badge">Culture & Spiritual</span>
-                            </div>
-                            <div class="location-tag">
-                                <i class="fa-solid fa-location-dot"></i> Uttar Pradesh, India
-                            </div>
-                            <p class="card-description">Evening Ganga Aarti, Kashi Vishwanath & River Cruises</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="meta-details">
-                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 2 Days</span>
-                                <span class="meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 30,000</span>
-                            </div>
-                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="option-card" data-title="Agra — Taj Mahal & Agra Fort" data-location="Uttar Pradesh, India" data-tag="Royal Heritage" data-img="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80" data-desc="Home to the iconic white marble Taj Mahal, Agra showcases Mughal architectural mastery and rich imperial history." data-highlights="Sunrise tour of Taj Mahal, Agra Fort, Mehtab Bagh gardens across the river, Tasting traditional Agra Petha">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80" alt="Agra">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            <div class="card-header-info">
-                                <h4 class="option-title">Agra & Taj Mahal</h4>
-                                <span class="tag-badge">Royal Heritage</span>
-                            </div>
-                            <div class="location-tag">
-                                <i class="fa-solid fa-location-dot"></i> Uttar Pradesh, India
-                            </div>
-                            <p class="card-description">Taj Mahal Sunrise Tour, Agra Fort & Mehtab Bagh</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="meta-details">
-                                <span class="meta-item"><i class="fa-regular fa-clock"></i> 1 Day</span>
-                                <span class="meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 25,000</span>
-                            </div>
-                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            <div class="results-section" id="resultsContainer"></div>
 
         </div>
     </section>
@@ -754,9 +612,121 @@
     </div>
 
     <script>
-        const cards = document.querySelectorAll('.option-card');
-        const searchInput = document.getElementById('searchInput');
+        const placesData = [
+            {
+                id: 1,
+                title: "Jaipur & Amber Fort",
+                location: "Rajasthan, India",
+                category: "Royal Forts",
+                tag: "Royal Heritage",
+                price: 50000,
+                days: 3,
+                img: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80",
+                desc: "Jaipur, the capital of Rajasthan, is world-famous for its iconic pink sandstone architecture, grand palaces, and royal heritage.",
+                shortDesc: "Hawa Mahal, Amber Fort & City Palace",
+                highlights: "Amer Fort light & sound show, Shopping at Johari Bazaar, Hawa Mahal photography, Traditional Rajasthani Thali"
+            },
+            {
+                id: 2,
+                title: "Udaipur & Lake Pichola",
+                location: "Rajasthan, India",
+                category: "Royal Forts",
+                tag: "Tranquil Nature",
+                price: 45000,
+                days: 2,
+                img: "https://images.unsplash.com/photo-1615836245337-f5b9b2303f1c?auto=format&fit=crop&w=800&q=80",
+                desc: "Set around a series of artificial lakes, Udaipur is known for its lavish royal residences and serene boat rides at sunset.",
+                shortDesc: "Lakeside Palaces, Sunset Boat Cruise & Heritage Walks",
+                highlights: "Sunset boat cruise on Lake Pichola, Exploring the massive City Palace complex, Jagdish Temple, Cultural show at Bagore Ki Haveli"
+            },
+            {
+                id: 3,
+                title: "Alleppey & Munnar",
+                location: "Kerala, India",
+                category: "Backwaters & Beaches",
+                tag: "Backwaters & Lakes",
+                price: 38000,
+                days: 4,
+                img: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80",
+                desc: "Experience the tranquil backwaters of Alleppey on a private luxury houseboat combined with misty tea plantations in Munnar.",
+                shortDesc: "Houseboat Cruise, Tea Gardens & Spice Plantation Tours",
+                highlights: "Overnight houseboat stay, Tea tasting in Munnar, Eravikulam National Park, Kathakali dance performance"
+            },
+            {
+                id: 4,
+                title: "Manali & Solang Valley",
+                location: "Himachal Pradesh, India",
+                category: "Himalayan Treks",
+                tag: "Mountain Adventure",
+                price: 32000,
+                days: 5,
+                img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80",
+                desc: "A picturesque high-altitude Himalayan resort town nestled on the Beas River, perfect for adventure sports and serene mountain views.",
+                shortDesc: "Solang Valley Snow Sports, Atal Tunnel & Jogini Falls",
+                highlights: "Paragliding in Solang Valley, Drive through Atal Tunnel to Sissu, Trek to Jogini Waterfall, Old Manali Cafe Hopping"
+            },
+            {
+                id: 5,
+                title: "Varanasi & River Ghats",
+                location: "Uttar Pradesh, India",
+                category: "Culture & Spiritual",
+                tag: "Spiritual Heritage",
+                price: 25000,
+                days: 2,
+                img: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80",
+                desc: "One of the world's oldest continually inhabited cities, Varanasi is the spiritual core of India along the sacred river Ganges.",
+                shortDesc: "Evening Ganga Aarti, Kashi Vishwanath & Sunrise Boat Cruise",
+                highlights: "Evening Ganga Aarti at Dashashwamedh Ghat, Sunrise boat ride, Kashi Vishwanath Corridor, Street food tour in narrow lanes"
+            },
+            {
+                id: 6,
+                title: "Rishikesh & Haridwar",
+                location: "Uttarakhand, India",
+                category: "Culture & Spiritual",
+                tag: "Yoga & River Rafting",
+                price: 22000,
+                days: 3,
+                img: "https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=800&q=80",
+                desc: "Located on the banks of the sacred Ganges at the Himalayan foothills, world-renowned for white-water rafting, yoga, and evening ghat rituals.",
+                shortDesc: "Ganges White Water Rafting, Beatles Ashram & Har Ki Pauri",
+                highlights: "White water river rafting, Beatles Ashram visit, Har Ki Pauri evening Aarti, Laxman Jhula cliff jump"
+            },
+            {
+                id: 7,
+                title: "Goa Coast & Old Goa",
+                location: "Goa, India",
+                category: "Backwaters & Beaches",
+                tag: "Tropical Coastal",
+                price: 42000,
+                days: 4,
+                img: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80",
+                desc: "Famous for its sun-kissed golden palm beaches, Portuguese heritage churches, vibrant beach shacks, and thrilling ocean watersports.",
+                shortDesc: "Baga & Palolem Beaches, Latin Quarter & Spice Farms",
+                highlights: "Water sports at Calangute, Fontainhas heritage walk, Dudhsagar Waterfall Jeep safari, Sunset beach shacks"
+            },
+            {
+                id: 8,
+                title: "Ladakh & Pangong Tso",
+                location: "Ladakh, India",
+                category: "Himalayan Treks",
+                tag: "High Altitude Desert",
+                price: 65000,
+                days: 6,
+                img: "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=800&q=80",
+                desc: "A mesmerizing high-altitude desert region featuring rugged mountain passes, ancient Buddhist monasteries, and crystal-blue alpine lakes.",
+                shortDesc: "Pangong Lake Camping, Khardung La Pass & Nubra Valley",
+                highlights: "Overnight camp at Pangong Lake, Double-humped Camel ride in Nubra Valley, Drive across Khardung La, Thiksey Monastery"
+            }
+        ];
+
+        let currentCategory = "All";
+        const container = document.getElementById('resultsContainer');
         const resultsCount = document.getElementById('resultsCount');
+        const searchInput = document.getElementById('searchInput');
+        const sortSelect = document.getElementById('sortSelect');
+        const budgetFilter = document.getElementById('budgetFilter');
+        const durationFilter = document.getElementById('durationFilter');
+        const categoryBtns = document.querySelectorAll('.category-btn');
 
         const modal = document.getElementById('detailsModal');
         const modalClose = document.getElementById('modalClose');
@@ -766,44 +736,108 @@
         const modalDesc = document.getElementById('modalDesc');
         const modalHighlightsList = document.getElementById('modalHighlightsList');
 
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            let visibleCount = 0;
+        function renderCards() {
+            const query = searchInput.value.toLowerCase().trim();
+            const selectedBudget = budgetFilter.value;
+            const selectedDuration = durationFilter.value;
+            const selectedSort = sortSelect.value;
 
-            cards.forEach(card => {
-                const title = card.getAttribute('data-title').toLowerCase();
-                const location = card.getAttribute('data-location').toLowerCase();
-                const tag = card.getAttribute('data-tag').toLowerCase();
-
-                if (title.includes(query) || location.includes(query) || tag.includes(query)) {
-                    card.style.display = 'flex';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
+            let filtered = placesData.filter(place => {
+                const matchesCategory = (currentCategory === "All") || (place.category === currentCategory);
+                const matchesSearch = place.title.toLowerCase().includes(query) ||
+                                      place.location.toLowerCase().includes(query) ||
+                                      place.tag.toLowerCase().includes(query);
+                
+                let matchesBudget = true;
+                if (selectedBudget !== "all") {
+                    matchesBudget = place.price <= parseInt(selectedBudget);
                 }
+
+                let matchesDuration = true;
+                if (selectedDuration === "1-2") matchesDuration = place.days <= 2;
+                else if (selectedDuration === "3-4") matchesDuration = place.days >= 3 && place.days <= 4;
+                else if (selectedDuration === "5+") matchesDuration = place.days >= 5;
+
+                return matchesCategory && matchesSearch && matchesBudget && matchesDuration;
             });
 
-            resultsCount.textContent = `Showing ${visibleCount} places`;
-        });
+            if (selectedSort === "price-low") filtered.sort((a, b) => a.price - b.price);
+            else if (selectedSort === "price-high") filtered.sort((a, b) => b.price - a.price);
+            else if (selectedSort === "days-low") filtered.sort((a, b) => a.days - b.days);
+            else if (selectedSort === "days-high") filtered.sort((a, b) => b.days - a.days);
 
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                modalImg.src = card.getAttribute('data-img');
-                modalTitle.textContent = card.getAttribute('data-title');
-                modalLocation.textContent = card.getAttribute('data-location');
-                modalDesc.textContent = card.getAttribute('data-desc');
+            container.innerHTML = "";
+            resultsCount.textContent = `Showing ${filtered.length} places`;
 
-                const highlights = card.getAttribute('data-highlights').split(',');
-                modalHighlightsList.innerHTML = highlights.map(item => `<li>${item.trim()}</li>`).join('');
+            if (filtered.length === 0) {
+                container.innerHTML = `<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No travel circuits match your current filters.</p>`;
+                return;
+            }
 
-                modal.classList.add('active');
+            filtered.forEach(place => {
+                const card = document.createElement('div');
+                card.className = 'option-card';
+                card.innerHTML = `
+                    <div class="card-image">
+                        <img src="${place.img}" alt="${place.title}">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="card-header-info">
+                                <h4 class="option-title">${place.title}</h4>
+                                <span class="tag-badge">${place.tag}</span>
+                            </div>
+                            <div class="location-tag">
+                                <i class="fa-solid fa-location-dot"></i> ${place.location}
+                            </div>
+                            <p class="card-description">${place.shortDesc}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="meta-details">
+                                <span class="meta-item"><i class="fa-regular fa-clock"></i> ${place.days} Days</span>
+                                <span class="meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> ${place.price.toLocaleString('en-IN')}</span>
+                            </div>
+                            <button class="view-btn">Details <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => {
+                    modalImg.src = place.img;
+                    modalTitle.textContent = place.title;
+                    modalLocation.textContent = place.location;
+                    modalDesc.textContent = place.desc;
+
+                    const highlights = place.highlights.split(',');
+                    modalHighlightsList.innerHTML = highlights.map(item => `<li>${item.trim()}</li>`).join('');
+
+                    modal.classList.add('active');
+                });
+
+                container.appendChild(card);
+            });
+        }
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.getAttribute('data-category');
+                renderCards();
             });
         });
+
+        searchInput.addEventListener('input', renderCards);
+        sortSelect.addEventListener('change', renderCards);
+        budgetFilter.addEventListener('change', renderCards);
+        durationFilter.addEventListener('change', renderCards);
 
         modalClose.addEventListener('click', () => modal.classList.remove('active'));
         modal.addEventListener('click', (e) => {
             if (e.target === modal) modal.classList.remove('active');
         });
+
+        renderCards();
     </script>
 
 </body>
