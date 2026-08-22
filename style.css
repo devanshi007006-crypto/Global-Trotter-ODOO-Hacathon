@@ -1294,3 +1294,254 @@ footer p {
 
 }
 
+/* ==========================================================================
+   Itinerary View Screen with Budget Section (Screen 9)
+   ========================================================================== */
+
+.itinerary-view-container {
+    max-width: 1100px;
+    margin: 3rem auto 6rem;
+    padding: 0 5%;
+}
+
+.screen9-controls-bar {
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.search-input-wrapper {
+    position: relative;
+    flex: 1;
+    min-width: 260px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.search-bar-input {
+    width: 100%;
+    padding: 0.85rem 1rem 0.85rem 2.8rem;
+    border-radius: 14px;
+    background: rgba(7, 9, 19, 0.7);
+    border: 1px solid var(--border-card);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.search-bar-input:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+}
+
+.controls-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.control-btn, .control-btn-select {
+    padding: 0.75rem 1.2rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-card);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover, .control-btn-select:hover {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.screen9-header-title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.screen9-header-title h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.35rem;
+}
+
+.columns-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    border: 1px solid var(--border-card);
+    margin-bottom: 2rem;
+}
+
+.col-header-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.day-timeline-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.day-block {
+    position: relative;
+}
+
+.day-label-pill {
+    display: inline-block;
+    padding: 0.5rem 1.35rem;
+    border-radius: 25px;
+    background: rgba(245, 158, 11, 0.2);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: var(--accent-gold);
+    font-weight: 800;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+}
+
+.activity-flow-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.activity-row-card {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.activity-row-card:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+    transform: translateY(-3px);
+}
+
+.physical-activity-box {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex: 1;
+}
+
+.act-icon-bubble {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.purple-bg { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+.blue-bg { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+.amber-bg { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.cyan-bg { background: linear-gradient(135deg, #06b6d4, #0e7490); }
+.pink-bg { background: linear-gradient(135deg, #ec4899, #be185d); }
+.emerald-bg { background: linear-gradient(135deg, #10b981, #047857); }
+
+.physical-activity-box h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.physical-activity-box p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.expense-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+}
+
+.expense-amount {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--accent-gold);
+}
+
+.expense-tag {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.flow-arrow-down {
+    color: var(--accent-gold);
+    font-size: 1.4rem;
+    opacity: 0.7;
+    animation: bounceArrow 2s infinite;
+}
+
+@keyframes bounceArrow {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(6px); }
+    60% { transform: translateY(3px); }
+}
+
+.screen9-summary-card {
+    margin-top: 3.5rem;
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.summary-meta-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-meta-item span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.summary-meta-item strong {
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+@media (max-width: 768px) {
+    .screen9-controls-bar { flex-direction: column; align-items: stretch; }
+    .activity-row-card { flex-direction: column; align-items: flex-start; }
+    .expense-box { align-items: flex-start; margin-top: 0.5rem; }
+    .screen9-summary-card { flex-direction: column; align-items: stretch; }
+}
+
+

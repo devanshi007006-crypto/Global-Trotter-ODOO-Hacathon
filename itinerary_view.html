@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GlobalTrotter Itinerary View Screen with Budget Section (Screen 9) - Timeline of physical activities and expense breakdowns for selected places.">
+    <title>GlobalTrotter | Itinerary View with Budget Section (Screen 9)</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Ambient Glowing Orbs -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="ambient-glow-3"></div>
+
+    <!-- Header Navigation Bar -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-compass fa-spin-pulse" style="--fa-animation-duration: 12s;"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-title">GlobalTrotter</span>
+                    <span class="brand-subtitle">ITINERARY & BUDGET VIEW</span>
+                </div>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home Dashboard</a>
+                <a href="itinerary_builder.html" class="nav-link"><i class="fa-solid fa-calendar-week"></i> Build Itinerary</a>
+                <a href="itinerary_view.html" class="nav-link active"><i class="fa-solid fa-timeline"></i> Itinerary View (Screen 9)</a>
+                <a href="calendar.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i> Calendar</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn-auth-link" id="userAuthLink">
+                    <i class="fa-solid fa-circle-user"></i> Account
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container matching Screen 9 Excalidraw Mockup -->
+    <main class="itinerary-view-container">
+        
+        <!-- Controls Toolbar Bar matching Screen 9 mockup -->
+        <section class="screen9-controls-bar glass-panel">
+            <div class="search-input-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="activitySearchInput" class="search-bar-input" placeholder="Search bar...... (e.g. Amber Fort, Thali Lunch, Taxi, Hotel)" oninput="filterActivities(this.value)">
+            </div>
+
+            <div class="controls-actions-group">
+                <select class="control-btn-select" id="groupBySelect" onchange="applyFilters()">
+                    <option value="day">Group by: Day ▾</option>
+                    <option value="category">Group by: Category ▾</option>
+                    <option value="cost">Group by: Cost ▾</option>
+                </select>
+
+                <button class="control-btn" onclick="toggleFilterOptions()">
+                    <i class="fa-solid fa-filter"></i> Filter
+                </button>
+
+                <select class="control-btn-select" id="sortBySelect" onchange="applyFilters()">
+                    <option value="time">Sort by: Time ▾</option>
+                    <option value="cost_high">Sort by: Cost (High ➡️ Low) ▾</option>
+                    <option value="cost_low">Sort by: Cost (Low ➡️ High) ▾</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Main Title Header -->
+        <div class="screen9-header-title">
+            <h2>Itenary for a selected place</h2>
+            <p class="subtitle">Selected Circuit: <strong id="selectedPlaceTitle" class="text-gold">Jaipur Royal Heritage Circuit</strong> (5 Days • Total Budget: ₹50,000)</p>
+        </div>
+
+        <!-- Table Column Headers: Physical Activity (Left) | Expense (Right) -->
+        <div class="columns-header-row">
+            <div class="col-header-title"><i class="fa-solid fa-person-walking-luggage text-gold"></i> Physical Activity</div>
+            <div class="col-header-title text-right"><i class="fa-solid fa-indian-rupee-sign text-emerald"></i> Expense</div>
+        </div>
+
+        <!-- Day-wise Activity Timeline List -->
+        <div class="day-timeline-wrapper" id="dayTimelineList">
+            
+            <!-- DAY 1 SECTION -->
+            <div class="day-block" id="dayBlock-1">
+                <div class="day-label-pill">Day 1</div>
+
+                <div class="activity-flow-wrapper">
+                    
+                    <!-- Activity Item 1 -->
+                    <div class="activity-row-card glass-panel">
+                        <div class="physical-activity-box">
+                            <div class="act-icon-bubble purple-bg"><i class="fa-solid fa-hotel"></i></div>
+                            <div>
+                                <h4>09:00 AM — Hotel Check-in & Breakfast</h4>
+                                <p><i class="fa-solid fa-location-dot"></i> Heritage Hotel, Johari Bazaar • Hospitality</p>
+                            </div>
+                        </div>
+                        <div class="expense-box">
+                            <span class="expense-amount">₹4,500</span>
+                            <span class="expense-tag">Pre-paid</span>
+                        </div>
+                    </div>
+
+                    <!-- Flow Arrow Down -->
+                    <div class="flow-arrow-down"><i class="fa-solid fa-arrow-down-long"></i></div>
+
+                    <!-- Activity Item 2 -->
+                    <div class="activity-row-card glass-panel">
+                        <div class="physical-activity-box">
+                            <div class="act-icon-bubble blue-bg"><i class="fa-solid fa-fort-awesome"></i></div>
+                            <div>
+                                <h4>11:30 AM — Amber Fort Guided Tour & Elephant Ride</h4>
+                                <p><i class="fa-solid fa-location-dot"></i> Amer Fort, Jaipur • Heritage Tour</p>
+                            </div>
+                        </div>
+                        <div class="expense-box">
+                            <span class="expense-amount">₹2,800</span>
+                            <span class="expense-tag">Tickets & Guide</span>
+                        </div>
+                    </div>
+
+                    <!-- Flow Arrow Down -->
+                    <div class="flow-arrow-down"><i class="fa-solid fa-arrow-down-long"></i></div>
+
+                    <!-- Activity Item 3 -->
+                    <div class="activity-row-card glass-panel">
+                        <div class="physical-activity-box">
+                            <div class="act-icon-bubble amber-bg"><i class="fa-solid fa-utensils"></i></div>
+                            <div>
+                                <h4>01:30 PM — Traditional Rajasthani Thali Lunch</h4>
+                                <p><i class="fa-solid fa-location-dot"></i> Laxmi Mishthan Bhandar (LMB) • Dining</p>
+                            </div>
+                        </div>
+                        <div class="expense-box">
+                            <span class="expense-amount">₹1,200</span>
+                            <span class="expense-tag">Food & Drinks</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- DAY 2 SECTION -->
+            <div class="day-block" id="dayBlock-2">
+                <div class="day-label-pill">Day 2</div>
+
+                <div class="activity-flow-wrapper">
+                    
+                    <!-- Activity Item 1 -->
+                    <div class="activity-row-card glass-panel">
+                        <div class="physical-activity-box">
+                            <div class="act-icon-bubble cyan-bg"><i class="fa-solid fa-landmark"></i></div>
+                            <div>
+                                <h4>09:30 AM — City Palace & Jantar Mantar Observatory</h4>
+                                <p><i class="fa-solid fa-location-dot"></i> Pink City Center • Sightseeing</p>
+                            </div>
+                        </div>
+                        <div class="expense-box">
+                            <span class="expense-amount">₹3,500</span>
+                            <span class="expense-tag">Entry Passes</span>
+                        </div>
+                    </div>
+
+                    <!-- Flow Arrow Down -->
+                    <div class="flow-arrow-down"><i class="fa-solid fa-arrow-down-long"></i></div>
+
+                    <!-- Activity Item 2 -->
+                    <div class="activity-row-card glass-panel">
+                        <div class="physical-activity-box">
+                            <div class="act-icon-bubble pink-bg"><i class="fa-solid fa-bag-shopping"></i></div>
+                            <div>
+                                <h4>04:00 PM — Johari & Bapu Bazaar Shopping Tour</h4>
+                                <p><i class="fa-solid fa-location-dot"></i> Local Markets • Handicrafts & Jewelry</p>
+                            </div>
+                        </div>
+                        <div class="expense-box">
+                            <span class="expense-amount">₹6,000</span>
+                            <span class="expense-tag">Shopping</span>
+                        </div>
+                    </div>
+
+                    <!-- Flow Arrow Down -->
+                    <div class="flow-arrow-down"><i class="fa-solid fa-arrow-down-long"></i></div>
+
+                    <!-- Activity Item 3 -->
+                    <div class="activity-row-card glass-panel">
+                        <div class="physical-activity-box">
+                            <div class="act-icon-bubble emerald-bg"><i class="fa-solid fa-masks-theater"></i></div>
+                            <div>
+                                <h4>08:00 PM — Chokhi Dhani Cultural Folk Village Dinner</h4>
+                                <p><i class="fa-solid fa-location-dot"></i> Tonk Road • Folk Dance & Banquet</p>
+                            </div>
+                        </div>
+                        <div class="expense-box">
+                            <span class="expense-amount">₹2,400</span>
+                            <span class="expense-tag">Show & Buffet</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Budget Expense Summary Footer -->
+        <section class="screen9-summary-card glass-panel">
+            <div class="summary-meta-item">
+                <span>Total Activities Count:</span>
+                <strong>6 Physical Activities</strong>
+            </div>
+            <div class="summary-meta-item">
+                <span>Total Calculated Expenses:</span>
+                <strong class="text-emerald">₹20,400</strong>
+            </div>
+            <a href="index.html#budget" class="btn-primary glow-button">
+                <i class="fa-solid fa-wallet"></i> View Full Group Equalizer
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 GlobeTrotter Team. Odoo ERP Itinerary & Budget View Screen 9.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Search Filter for Physical Activities & Expenses
+        function filterActivities(query) {
+            const searchTerm = query.toLowerCase().trim();
+            const cards = document.querySelectorAll(".activity-row-card");
+            const arrows = document.querySelectorAll(".flow-arrow-down");
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        function applyFilters() {
+            const sortBy = document.getElementById("sortBySelect").value;
+            console.log("Applying sort filter:", sortBy);
+        }
+
+        function toggleFilterOptions() {
+            alert("🔍 Filter options: Heritage, Culinary, Sightseeing, Shopping, Wellness.");
+        }
+
+        // Load logged in user on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            const userAuthLink = document.getElementById("userAuthLink");
+            const storedUser = localStorage.getItem("gt_user");
+            if (storedUser && userAuthLink) {
+                try {
+                    const user = JSON.parse(storedUser);
+                    if (user && user.isLoggedIn) {
+                        userAuthLink.innerHTML = `<i class="fa-solid fa-circle-user"></i> Hi, ${user.name.split(' ')[0]}`;
+                    }
+                } catch(e){}
+            }
+        });
+    </script>
+</body>
+</html>
