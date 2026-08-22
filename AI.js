@@ -66,5 +66,22 @@ const activities = [
     rating: 5
   },
 
+  {
+    name: "Louvre Museum",
+        destination: "paris",
+        category: "History",
+        cost: 2500,
+        rating: 5
+    },
+
+    {
+        name: "French Food Tour",
+        destination: "paris",
+        category: "Food",
+        cost: 2000,
+        rating: 5
+    },
+    
+
   
   
