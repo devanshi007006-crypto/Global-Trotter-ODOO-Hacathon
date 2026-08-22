@@ -2,15 +2,825 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>GlobalTrotter - Admin Panel</title>
 
-    <link rel="stylesheet" href="admin.css">
+
+    <!-- ================= CSS ================= -->
+
+    <style>
+
+        /* ---------- BASIC ---------- */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f8fa;
+            color: #252a32;
+        }
+
+
+        /* ---------- NAVBAR ---------- */
+
+        .navbar {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 0 35px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .navbar nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .navbar nav a {
+            text-decoration: none;
+            color: #69717d;
+            font-size: 11px;
+        }
+
+        .navbar nav a:hover,
+        .navbar nav a.active {
+            color: #f97316;
+            font-weight: bold;
+        }
+
+        .login-btn {
+            border: 1px solid #dfe3e8;
+            background: white;
+            padding: 9px 17px;
+            border-radius: 7px;
+            color: #4b5563;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+
+        /* ---------- PAGE HEADER ---------- */
+
+        .page-header {
+            padding: 42px 7% 35px;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #fff7ed,
+                    #ffffff
+                );
+
+            border-bottom: 1px solid #eceff2;
+        }
+
+        .small-title {
+            color: #ea580c;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .page-header h1 {
+            margin-top: 9px;
+            font-size: 32px;
+        }
+
+        .page-header p {
+            margin-top: 8px;
+            color: #737b87;
+            font-size: 13px;
+        }
+
+        .add-btn {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 7px;
+            background: #f97316;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .add-btn:hover {
+            background: #ea580c;
+        }
+
+
+        /* ---------- MAIN CONTAINER ---------- */
+
+        .container {
+            width: 86%;
+            max-width: 1250px;
+            margin: 30px auto 60px;
+        }
+
+
+        /* ---------- STAT CARDS ---------- */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 17px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            padding: 20px;
+
+            background: white;
+
+            border: 1px solid #e2e5e9;
+            border-radius: 10px;
+
+            transition: 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(0, 0, 0, 0.05);
+
+            border-color: #fdba74;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            font-size: 20px;
+        }
+
+        .orange {
+            background: #fff1e7;
+        }
+
+        .blue {
+            background: #edf5ff;
+        }
+
+        .green {
+            background: #edfaf1;
+        }
+
+        .purple {
+            background: #f4efff;
+        }
+
+        .stat-content span {
+            display: block;
+            color: #7c8490;
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+
+        .stat-content h2 {
+            font-size: 24px;
+        }
+
+        .positive {
+            display: block;
+            margin-top: 4px;
+            color: #16a34a;
+            font-size: 9px;
+        }
+
+
+        /* ---------- DASHBOARD ---------- */
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.45fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            padding: 22px;
+
+            background: white;
+
+            border: 1px solid #e1e5e9;
+            border-radius: 10px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.025);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
+
+        .section-label {
+            display: block;
+            margin-bottom: 6px;
+
+            color: #f97316;
+
+            font-size: 8px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .card-header h2 {
+            font-size: 18px;
+        }
+
+        .view-btn {
+            border: none;
+            background: transparent;
+            color: #ea580c;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+
+        /* ---------- CHART ---------- */
+
+        .trip-overview {
+            min-height: 350px;
+        }
+
+        .chart {
+            height: 250px;
+            display: flex;
+        }
+
+        .chart-y {
+            width: 45px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            padding-bottom: 25px;
+
+            color: #a0a7b0;
+            font-size: 9px;
+        }
+
+        .bars {
+            flex: 1;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+
+            border-left: 1px solid #edf0f2;
+            border-bottom: 1px solid #edf0f2;
+
+            padding: 0 20px;
+        }
+
+        .bar-column {
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+
+            gap: 8px;
+        }
+
+        .bar {
+            width: 38px;
+
+            border-radius: 6px 6px 0 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #fb923c,
+                    #f97316
+                );
+        }
+
+        .bar1 {
+            height: 42%;
+        }
+
+        .bar2 {
+            height: 52%;
+        }
+
+        .bar3 {
+            height: 60%;
+        }
+
+        .bar4 {
+            height: 68%;
+        }
+
+        .bar5 {
+            height: 82%;
+        }
+
+        .bar6 {
+            height: 95%;
+        }
+
+        .bar-column span {
+            color: #8c949e;
+            font-size: 9px;
+        }
+
+
+        /* ---------- DESTINATIONS ---------- */
+
+        .destination {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 11px 0;
+
+            border-bottom: 1px solid #eef0f2;
+        }
+
+        .destination-icon {
+            width: 43px;
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            font-size: 20px;
+        }
+
+        .destination-info {
+            flex: 1;
+        }
+
+        .destination-info strong {
+            display: block;
+            font-size: 12px;
+        }
+
+        .destination-info span {
+            display: block;
+            margin-top: 3px;
+            color: #9097a1;
+            font-size: 9px;
+        }
+
+        .percentage {
+            color: #ea580c;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+
+        /* ---------- AI CARD ---------- */
+
+        .ai-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    #fffaf5,
+                    #ffffff
+                );
+
+            border-color: #fed7aa;
+        }
+
+        .ai-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .ai-icon {
+            width: 46px;
+            height: 46px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: #fff1e7;
+
+            font-size: 22px;
+        }
+
+        .ai-main {
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            background: white;
+
+            border: 1px solid #f3e2d3;
+        }
+
+        .ai-score {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ea580c;
+        }
+
+        .ai-main strong {
+            font-size: 12px;
+        }
+
+        .ai-main p {
+            margin-top: 5px;
+            color: #7b838e;
+            line-height: 1.5;
+            font-size: 9px;
+        }
+
+        .ai-data {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 8px;
+
+            margin-top: 12px;
+        }
+
+        .ai-data div {
+            padding: 11px;
+
+            border-radius: 7px;
+
+            background: #fafafa;
+
+            border: 1px solid #edf0f2;
+        }
+
+        .ai-data span {
+            display: block;
+            color: #9299a3;
+            font-size: 8px;
+        }
+
+        .ai-data strong {
+            display: block;
+            margin-top: 5px;
+            font-size: 10px;
+        }
+
+        .ai-btn {
+            width: 100%;
+
+            margin-top: 13px;
+
+            padding: 10px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #f97316;
+
+            color: white;
+
+            font-size: 10px;
+
+            cursor: pointer;
+        }
+
+
+        /* ---------- ACTIVITIES ---------- */
+
+        .activity {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 18px;
+        }
+
+        .activity-emoji {
+            width: 35px;
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 7px;
+
+            background: #f7f8fa;
+        }
+
+        .activity-name {
+            flex: 1;
+        }
+
+        .activity-name strong {
+            display: block;
+
+            margin-bottom: 6px;
+
+            font-size: 10px;
+        }
+
+        .activity-line {
+            height: 5px;
+
+            overflow: hidden;
+
+            border-radius: 5px;
+
+            background: #edf0f2;
+        }
+
+        .activity-line span {
+            display: block;
+
+            height: 100%;
+
+            border-radius: 5px;
+
+            background: #f97316;
+        }
+
+        .activity > b {
+            color: #ea580c;
+            font-size: 10px;
+        }
+
+
+        /* ---------- TABLE ---------- */
+
+        .recent-trips {
+            grid-column: 1 / -1;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 11px;
+
+            text-align: left;
+
+            color: #8a929c;
+
+            font-size: 9px;
+
+            border-bottom: 1px solid #e6e9ed;
+        }
+
+        td {
+            padding: 12px 11px;
+
+            color: #555e69;
+
+            font-size: 10px;
+
+            border-bottom: 1px solid #f0f1f3;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .avatar {
+            width: 29px;
+            height: 29px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #fff1e7;
+
+            color: #ea580c;
+
+            font-weight: bold;
+
+            font-size: 10px;
+        }
+
+        .status {
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            font-size: 8px;
+
+            font-weight: bold;
+        }
+
+        .active-status {
+            color: #15803d;
+            background: #edfaf1;
+        }
+
+        .planning {
+            color: #b45309;
+            background: #fff7ed;
+        }
+
+        .completed {
+            color: #2563eb;
+            background: #edf5ff;
+        }
+
+
+        /* ---------- QUICK ACTIONS ---------- */
+
+        .quick-btn {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            width: 100%;
+
+            padding: 10px 12px;
+
+            margin-bottom: 8px;
+
+            border: 1px solid #e7e9ec;
+
+            border-radius: 7px;
+
+            background: white;
+
+            color: #525a65;
+
+            text-align: left;
+
+            font-size: 10px;
+
+            cursor: pointer;
+        }
+
+        .quick-btn span {
+            width: 27px;
+            height: 27px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 6px;
+
+            background: #fff4eb;
+        }
+
+        .quick-btn:hover {
+            border-color: #fdba74;
+            color: #ea580c;
+            background: #fffaf5;
+        }
+
+
+        /* ---------- FOOTER ---------- */
+
+        footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 22px;
+
+            background: white;
+
+            border-top: 1px solid #e5e7eb;
+
+            color: #9299a3;
+
+            font-size: 9px;
+        }
+
+        footer strong {
+            color: #ea580c;
+        }
+
+
+        /* ---------- RESPONSIVE ---------- */
+
+        @media (max-width: 1100px) {
+
+            .navbar nav {
+                gap: 10px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .recent-trips {
+                grid-column: auto;
+            }
+        }
+
+
+        @media (max-width: 750px) {
+
+            .navbar {
+                padding: 0 15px;
+            }
+
+            .navbar nav {
+                display: none;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-data {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
 </head>
 
+
 <body>
+
 
     <!-- ================= NAVBAR ================= -->
 
@@ -18,17 +828,41 @@
 
         <div class="logo">
             🇮🇳
-            <span>GlobalTrotter INDIA MANAGEMENT HUB</span>
+            <span>
+                GlobalTrotter INDIA MANAGEMENT HUB
+            </span>
         </div>
 
         <nav>
-            <a href="index.html">Explore</a>
-            <a href="#">Circuits</a>
-            <a href="#">Create Trip</a>
-            <a href="#">Build Itinerary</a>
-            <a href="calendar.html">Calendar</a>
-            <a href="admin.html" class="active">Admin Panel</a>
-            <a href="#">Group & Budget</a>
+
+            <a href="index.html">
+                Explore
+            </a>
+
+            <a href="#">
+                Circuits
+            </a>
+
+            <a href="#">
+                Create Trip
+            </a>
+
+            <a href="#">
+                Build Itinerary
+            </a>
+
+            <a href="calendar.html">
+                Calendar
+            </a>
+
+            <a href="admin.html" class="active">
+                Admin Panel
+            </a>
+
+            <a href="#">
+                Group & Budget
+            </a>
+
         </nav>
 
         <button class="login-btn">
@@ -38,7 +872,8 @@
     </header>
 
 
-    <!-- ================= PAGE HEADER ================= -->
+
+    <!-- ================= HEADER ================= -->
 
     <section class="page-header">
 
@@ -66,14 +901,16 @@
     </section>
 
 
+
     <!-- ================= MAIN ================= -->
 
     <main class="container">
 
 
-        <!-- ================= STAT CARDS ================= -->
+        <!-- ================= STATISTICS ================= -->
 
         <section class="stats">
+
 
             <div class="stat-card">
 
@@ -83,9 +920,13 @@
 
                 <div class="stat-content">
 
-                    <span>Total Users</span>
+                    <span>
+                        Total Users
+                    </span>
 
-                    <h2>1,248</h2>
+                    <h2>
+                        1,248
+                    </h2>
 
                     <small class="positive">
                         ↑ 12.5% this month
@@ -104,9 +945,13 @@
 
                 <div class="stat-content">
 
-                    <span>Active Trips</span>
+                    <span>
+                        Active Trips
+                    </span>
 
-                    <h2>856</h2>
+                    <h2>
+                        856
+                    </h2>
 
                     <small class="positive">
                         ↑ 8.4% this month
@@ -125,9 +970,13 @@
 
                 <div class="stat-content">
 
-                    <span>Destinations</span>
+                    <span>
+                        Destinations
+                    </span>
 
-                    <h2>48</h2>
+                    <h2>
+                        48
+                    </h2>
 
                     <small class="positive">
                         ↑ 4 new destinations
@@ -146,9 +995,13 @@
 
                 <div class="stat-content">
 
-                    <span>AI Recommendations</span>
+                    <span>
+                        AI Recommendations
+                    </span>
 
-                    <h2>2,460</h2>
+                    <h2>
+                        2,460
+                    </h2>
 
                     <small class="positive">
                         ↑ 21.7% this month
@@ -162,34 +1015,35 @@
 
 
 
-        <!-- ================= MAIN GRID ================= -->
+        <!-- ================= DASHBOARD ================= -->
 
         <section class="dashboard-grid">
 
 
-            <!-- ================= TRIP OVERVIEW ================= -->
+            <!-- TRIP OVERVIEW -->
 
             <div class="card trip-overview">
 
                 <div class="card-header">
 
                     <div>
+
                         <span class="section-label">
                             TRAVEL ANALYTICS
                         </span>
 
-                        <h2>Trip Overview</h2>
+                        <h2>
+                            Trip Overview
+                        </h2>
+
                     </div>
 
-                    <select>
-                        <option>Last 6 Months</option>
-                        <option>Last Year</option>
-                    </select>
+                    <button class="view-btn">
+                        Last 6 Months ▾
+                    </button>
 
                 </div>
 
-
-                <!-- SIMPLE BAR CHART -->
 
                 <div class="chart">
 
@@ -244,7 +1098,7 @@
 
 
 
-            <!-- ================= TOP DESTINATIONS ================= -->
+            <!-- POPULAR DESTINATIONS -->
 
             <div class="card">
 
@@ -256,7 +1110,9 @@
                             TRAVEL TRENDS
                         </span>
 
-                        <h2>Popular Destinations</h2>
+                        <h2>
+                            Popular Destinations
+                        </h2>
 
                     </div>
 
@@ -267,90 +1123,102 @@
                 </div>
 
 
-                <div class="destination-list">
+                <div class="destination">
 
 
-                    <div class="destination">
+                    <div class="destination-icon orange">
+                        🏰
+                    </div>
 
-                        <div class="destination-icon orange-bg">
-                            🏰
-                        </div>
+                    <div class="destination-info">
 
-                        <div class="destination-info">
+                        <strong>
+                            Jaipur
+                        </strong>
 
-                            <strong>Jaipur</strong>
-
-                            <span>Rajasthan</span>
-
-                        </div>
-
-                        <div class="percentage">
-                            32%
-                        </div>
+                        <span>
+                            Rajasthan
+                        </span>
 
                     </div>
 
+                    <div class="percentage">
+                        32%
+                    </div>
 
-                    <div class="destination">
+                </div>
 
-                        <div class="destination-icon blue-bg">
-                            🏖️
-                        </div>
 
-                        <div class="destination-info">
+                <div class="destination">
 
-                            <strong>Goa</strong>
+                    <div class="destination-icon blue">
+                        🏖️
+                    </div>
 
-                            <span>Goa</span>
+                    <div class="destination-info">
 
-                        </div>
+                        <strong>
+                            Goa
+                        </strong>
 
-                        <div class="percentage">
-                            27%
-                        </div>
+                        <span>
+                            Goa
+                        </span>
 
                     </div>
 
+                    <div class="percentage">
+                        27%
+                    </div>
 
-                    <div class="destination">
+                </div>
 
-                        <div class="destination-icon green-bg">
-                            🌴
-                        </div>
 
-                        <div class="destination-info">
+                <div class="destination">
 
-                            <strong>Munnar</strong>
+                    <div class="destination-icon green">
+                        🌴
+                    </div>
 
-                            <span>Kerala</span>
+                    <div class="destination-info">
 
-                        </div>
+                        <strong>
+                            Munnar
+                        </strong>
 
-                        <div class="percentage">
-                            21%
-                        </div>
+                        <span>
+                            Kerala
+                        </span>
 
                     </div>
 
+                    <div class="percentage">
+                        21%
+                    </div>
 
-                    <div class="destination">
+                </div>
 
-                        <div class="destination-icon purple-bg">
-                            🏔️
-                        </div>
 
-                        <div class="destination-info">
+                <div class="destination">
 
-                            <strong>Leh</strong>
+                    <div class="destination-icon purple">
+                        🏔️
+                    </div>
 
-                            <span>Ladakh</span>
+                    <div class="destination-info">
 
-                        </div>
+                        <strong>
+                            Leh
+                        </strong>
 
-                        <div class="percentage">
-                            20%
-                        </div>
+                        <span>
+                            Ladakh
+                        </span>
 
+                    </div>
+
+                    <div class="percentage">
+                        20%
                     </div>
 
                 </div>
@@ -359,7 +1227,7 @@
 
 
 
-            <!-- ================= AI RECOMMENDATION ================= -->
+            <!-- AI RECOMMENDATIONS -->
 
             <div class="card ai-card">
 
@@ -375,7 +1243,9 @@
                             SMART TRAVEL
                         </span>
 
-                        <h2>AI Recommendations</h2>
+                        <h2>
+                            AI Recommendations
+                        </h2>
 
                     </div>
 
@@ -395,8 +1265,8 @@
                         </strong>
 
                         <p>
-                            Your AI system is successfully
-                            matching travelers with suitable
+                            AI successfully matches
+                            travelers with suitable
                             destinations and activities.
                         </p>
 
@@ -408,18 +1278,41 @@
                 <div class="ai-data">
 
                     <div>
-                        <span>Top Interest</span>
-                        <strong>Adventure</strong>
+
+                        <span>
+                            Top Interest
+                        </span>
+
+                        <strong>
+                            Adventure
+                        </strong>
+
                     </div>
 
-                    <div>
-                        <span>Top Suggestion</span>
-                        <strong>Goa</strong>
-                    </div>
 
                     <div>
-                        <span>Recommendations</span>
-                        <strong>2,460</strong>
+
+                        <span>
+                            Top Suggestion
+                        </span>
+
+                        <strong>
+                            Goa
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Recommendations
+                        </span>
+
+                        <strong>
+                            2,460
+                        </strong>
+
                     </div>
 
                 </div>
@@ -433,7 +1326,7 @@
 
 
 
-            <!-- ================= POPULAR ACTIVITIES ================= -->
+            <!-- POPULAR ACTIVITIES -->
 
             <div class="card">
 
@@ -445,7 +1338,9 @@
                             USER PREFERENCES
                         </span>
 
-                        <h2>Popular Activities</h2>
+                        <h2>
+                            Popular Activities
+                        </h2>
 
                     </div>
 
@@ -460,15 +1355,22 @@
 
                     <div class="activity-name">
 
-                        <strong>Beach Activities</strong>
+                        <strong>
+                            Beach Activities
+                        </strong>
 
                         <div class="activity-line">
-                            <span style="width: 85%;"></span>
+
+                            <span style="width: 85%;">
+                            </span>
+
                         </div>
 
                     </div>
 
-                    <b>85%</b>
+                    <b>
+                        85%
+                    </b>
 
                 </div>
 
@@ -481,15 +1383,22 @@
 
                     <div class="activity-name">
 
-                        <strong>Adventure</strong>
+                        <strong>
+                            Adventure
+                        </strong>
 
                         <div class="activity-line">
-                            <span style="width: 78%;"></span>
+
+                            <span style="width: 78%;">
+                            </span>
+
                         </div>
 
                     </div>
 
-                    <b>78%</b>
+                    <b>
+                        78%
+                    </b>
 
                 </div>
 
@@ -502,15 +1411,22 @@
 
                     <div class="activity-name">
 
-                        <strong>Food & Culture</strong>
+                        <strong>
+                            Food & Culture
+                        </strong>
 
                         <div class="activity-line">
-                            <span style="width: 68%;"></span>
+
+                            <span style="width: 68%;">
+                            </span>
+
                         </div>
 
                     </div>
 
-                    <b>68%</b>
+                    <b>
+                        68%
+                    </b>
 
                 </div>
 
@@ -523,15 +1439,22 @@
 
                     <div class="activity-name">
 
-                        <strong>Shopping</strong>
+                        <strong>
+                            Shopping
+                        </strong>
 
                         <div class="activity-line">
-                            <span style="width: 54%;"></span>
+
+                            <span style="width: 54%;">
+                            </span>
+
                         </div>
 
                     </div>
 
-                    <b>54%</b>
+                    <b>
+                        54%
+                    </b>
 
                 </div>
 
@@ -539,7 +1462,7 @@
 
 
 
-            <!-- ================= RECENT TRIPS ================= -->
+            <!-- RECENT TRIPS -->
 
             <div class="card recent-trips">
 
@@ -551,7 +1474,9 @@
                             TRIP MANAGEMENT
                         </span>
 
-                        <h2>Recent Trips</h2>
+                        <h2>
+                            Recent Trips
+                        </h2>
 
                     </div>
 
@@ -569,10 +1494,23 @@
                         <thead>
 
                             <tr>
-                                <th>Traveler</th>
-                                <th>Destination</th>
-                                <th>Budget</th>
-                                <th>Status</th>
+
+                                <th>
+                                    Traveler
+                                </th>
+
+                                <th>
+                                    Destination
+                                </th>
+
+                                <th>
+                                    Budget
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
                             </tr>
 
                         </thead>
@@ -583,25 +1521,35 @@
                             <tr>
 
                                 <td>
+
                                     <div class="user">
 
                                         <div class="avatar">
                                             P
                                         </div>
 
-                                        <span>Prachi</span>
+                                        <span>
+                                            Prachi
+                                        </span>
 
                                     </div>
+
                                 </td>
 
-                                <td>Jaipur</td>
-
-                                <td>₹50,000</td>
+                                <td>
+                                    Jaipur
+                                </td>
 
                                 <td>
-                                    <span class="status active">
+                                    ₹50,000
+                                </td>
+
+                                <td>
+
+                                    <span class="status active-status">
                                         Active
                                     </span>
+
                                 </td>
 
                             </tr>
@@ -610,25 +1558,35 @@
                             <tr>
 
                                 <td>
+
                                     <div class="user">
 
                                         <div class="avatar">
                                             R
                                         </div>
 
-                                        <span>Rahul</span>
+                                        <span>
+                                            Rahul
+                                        </span>
 
                                     </div>
+
                                 </td>
 
-                                <td>Goa</td>
-
-                                <td>₹35,000</td>
+                                <td>
+                                    Goa
+                                </td>
 
                                 <td>
+                                    ₹35,000
+                                </td>
+
+                                <td>
+
                                     <span class="status planning">
                                         Planning
                                     </span>
+
                                 </td>
 
                             </tr>
@@ -637,25 +1595,35 @@
                             <tr>
 
                                 <td>
+
                                     <div class="user">
 
                                         <div class="avatar">
                                             D
                                         </div>
 
-                                        <span>Devanshi</span>
+                                        <span>
+                                            Devanshi
+                                        </span>
 
                                     </div>
+
                                 </td>
 
-                                <td>Kerala</td>
-
-                                <td>₹60,000</td>
+                                <td>
+                                    Kerala
+                                </td>
 
                                 <td>
-                                    <span class="status active">
+                                    ₹60,000
+                                </td>
+
+                                <td>
+
+                                    <span class="status active-status">
                                         Active
                                     </span>
+
                                 </td>
 
                             </tr>
@@ -664,25 +1632,35 @@
                             <tr>
 
                                 <td>
+
                                     <div class="user">
 
                                         <div class="avatar">
                                             A
                                         </div>
 
-                                        <span>Aarav</span>
+                                        <span>
+                                            Aarav
+                                        </span>
 
                                     </div>
+
                                 </td>
 
-                                <td>Leh</td>
-
-                                <td>₹80,000</td>
+                                <td>
+                                    Leh
+                                </td>
 
                                 <td>
+                                    ₹80,000
+                                </td>
+
+                                <td>
+
                                     <span class="status completed">
                                         Completed
                                     </span>
+
                                 </td>
 
                             </tr>
@@ -697,9 +1675,9 @@
 
 
 
-            <!-- ================= QUICK ACTIONS ================= -->
+            <!-- QUICK ACTIONS -->
 
-            <div class="card quick-card">
+            <div class="card">
 
                 <div class="card-header">
 
@@ -709,7 +1687,9 @@
                             MANAGEMENT
                         </span>
 
-                        <h2>Quick Actions</h2>
+                        <h2>
+                            Quick Actions
+                        </h2>
 
                     </div>
 
@@ -721,24 +1701,20 @@
                     Add New Trip
                 </button>
 
-
                 <button class="quick-btn">
                     <span>📍</span>
                     Add Destination
                 </button>
-
 
                 <button class="quick-btn">
                     <span>👥</span>
                     Manage Users
                 </button>
 
-
                 <button class="quick-btn">
                     <span>🤖</span>
                     AI Recommendations
                 </button>
-
 
                 <button class="quick-btn">
                     <span>💰</span>
@@ -747,16 +1723,20 @@
 
             </div>
 
+
         </section>
 
     </main>
+
 
 
     <!-- ================= FOOTER ================= -->
 
     <footer>
 
-        <strong>GlobalTrotter</strong>
+        <strong>
+            GlobalTrotter
+        </strong>
 
         <span>
             Smart Travel Management • Incredible India
@@ -764,5 +1744,7 @@
 
     </footer>
 
+
 </body>
+
 </html>
