@@ -1,14 +1,14 @@
 :root {
-    --bg-dark: #090d16;
-    --bg-card: rgba(15, 23, 42, 0.75);
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --accent-gold: #f59e0b;
-    --accent-emerald: #10b981;
-    --border-card: rgba(255, 255, 255, 0.12);
-    --border-glow: rgba(245, 158, 11, 0.35);
-    --gradient-hero: linear-gradient(135deg, #f59e0b, #d97706);
-    --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.5);
+    --bg-dark: #f8f5ee;
+    --bg-card: #ffffff;
+    --text-primary: #263331;
+    --text-secondary: #68736f;
+    --accent-gold: #d4a72c;
+    --accent-emerald: #0f766e;
+    --border-card: #ddd8ca;
+    --border-glow: rgba(212, 167, 44, 0.35);
+    --gradient-hero: linear-gradient(135deg, #0f766e, #d4a72c);
+    --shadow-glass: 0 10px 30px rgba(30, 60, 55, 0.08);
     --radius-card: 20px;
 }
 
@@ -1822,46 +1822,4 @@ footer p {
         font-size: 26px;
     }
 
-}
-
-/* =========================================
-   FORCE LIGHT THEME - SCREEN 9 FIX
-========================================= */
-
-body {
-    background: #f8f5ee !important;
-    color: #263331 !important;
-}
-
-.itinerary-view-container {
-    background: #f8f5ee !important;
-}
-
-.screen9-controls-bar,
-.columns-header-row,
-.activity-row-card,
-.screen9-summary-card {
-    background: #ffffff !important;
-    color: #263331 !important;
-}
-
-.search-bar-input,
-.control-btn,
-.control-btn-select,
-.section-category-select {
-    background: #ffffff !important;
-    color: #263331 !important;
-    border: 1px solid #ddd8ca !important;
-}
-
-.search-icon,
-.physical-activity-box p,
-.expense-tag {
-    color: #68736f !important;
-}
-
-.screen9-header-title h2,
-.physical-activity-box h4,
-.col-header-title {
-    color: #173b38 !important;
 }
