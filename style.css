@@ -1823,3 +1823,26 @@ footer p {
     }
 
 }
+/* LIGHT THEME FIX */
+
+html,
+body {
+    background: #f8f5ee !important;
+    color: #263331 !important;
+}
+
+:root {
+    --bg-dark: #f8f5ee !important;
+    --bg-card: #ffffff !important;
+    --text-primary: #263331 !important;
+    --text-secondary: #68736f !important;
+    --border-card: #eee9dc !important;
+}
+
+header {
+    background: white !important;
+}
+
+.profile-page {
+    background: #f8f5ee !important;
+}
