@@ -1359,12 +1359,16 @@ footer p {
     width: 100%;
     padding: 0.85rem 1rem 0.85rem 2.8rem;
     border-radius: 14px;
-    background: #fcfbf7;
+    background: rgba(7, 9, 19, 0.7);
     border: 1px solid var(--border-card);
-    color: var(--text-primary);
+    color: white;
     font-size: 0.95rem;
     font-family: inherit;
     transition: all 0.3s ease;
+}
+
+.search-bar-input::placeholder {
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .search-bar-input:focus {
