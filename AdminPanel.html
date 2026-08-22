@@ -3,818 +3,627 @@
 
 <head>
 
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>GlobalTrotter - Admin Panel</title>
-
-
-    <!-- ================= CSS ================= -->
-
-    <style>
-
-        /* ---------- BASIC ---------- */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f7f8fa;
-            color: #252a32;
-        }
-
-
-        /* ---------- NAVBAR ---------- */
-
-        .navbar {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            padding: 0 35px;
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            white-space: nowrap;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .navbar nav {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .navbar nav a {
-            text-decoration: none;
-            color: #69717d;
-            font-size: 11px;
-        }
-
-        .navbar nav a:hover,
-        .navbar nav a.active {
-            color: #f97316;
-            font-weight: bold;
-        }
-
-        .login-btn {
-            border: 1px solid #dfe3e8;
-            background: white;
-            padding: 9px 17px;
-            border-radius: 7px;
-            color: #4b5563;
-            font-size: 11px;
-            cursor: pointer;
-        }
-
-
-        /* ---------- PAGE HEADER ---------- */
-
-        .page-header {
-            padding: 42px 7% 35px;
-
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-
-            background:
-                linear-gradient(
-                    110deg,
-                    #fff7ed,
-                    #ffffff
-                );
-
-            border-bottom: 1px solid #eceff2;
-        }
-
-        .small-title {
-            color: #ea580c;
-            font-size: 10px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+<meta charset="UTF-8">
 
-        .page-header h1 {
-            margin-top: 9px;
-            font-size: 32px;
-        }
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-        .page-header p {
-            margin-top: 8px;
-            color: #737b87;
-            font-size: 13px;
-        }
+<title>GlobalTrotter - Admin Panel</title>
 
-        .add-btn {
-            padding: 12px 18px;
-            border: none;
-            border-radius: 7px;
-            background: #f97316;
-            color: white;
-            font-size: 11px;
-            font-weight: bold;
-            cursor: pointer;
-        }
 
-        .add-btn:hover {
-            background: #ea580c;
-        }
-
+<style>
 
-        /* ---------- MAIN CONTAINER ---------- */
+/* ================= BASIC ================= */
 
-        .container {
-            width: 86%;
-            max-width: 1250px;
-            margin: 30px auto 60px;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f8fa;
+    color: #252a32;
+}
 
-        /* ---------- STAT CARDS ---------- */
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 17px;
-            margin-bottom: 20px;
-        }
+/* ================= NAVBAR ================= */
 
-        .stat-card {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-
-            padding: 20px;
+.navbar {
+    height: 70px;
 
-            background: white;
+    display: flex;
+    align-items: center;
 
-            border: 1px solid #e2e5e9;
-            border-radius: 10px;
+    padding: 0 35px;
 
-            transition: 0.2s;
-        }
+    background: white;
 
-        .stat-card:hover {
-            transform: translateY(-3px);
+    border-bottom: 1px solid #e5e7eb;
 
-            box-shadow:
-                0 8px 20px
-                rgba(0, 0, 0, 0.05);
+    gap: 25px;
+}
 
-            border-color: #fdba74;
-        }
-
-        .stat-icon {
-            width: 48px;
-            height: 48px;
+.logo {
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+nav {
+    flex: 1;
 
-            border-radius: 9px;
+    display: flex;
+    justify-content: center;
 
-            font-size: 20px;
-        }
+    gap: 20px;
+}
 
-        .orange {
-            background: #fff1e7;
-        }
+nav a {
+    text-decoration: none;
+    color: #69717d;
+    font-size: 11px;
+}
 
-        .blue {
-            background: #edf5ff;
-        }
+nav a:hover,
+nav a.active {
+    color: #f97316;
+    font-weight: bold;
+}
 
-        .green {
-            background: #edfaf1;
-        }
+.user-btn {
+    padding: 9px 16px;
 
-        .purple {
-            background: #f4efff;
-        }
+    background: white;
 
-        .stat-content span {
-            display: block;
-            color: #7c8490;
-            font-size: 10px;
-            margin-bottom: 4px;
-        }
+    border: 1px solid #ddd;
 
-        .stat-content h2 {
-            font-size: 24px;
-        }
+    border-radius: 7px;
 
-        .positive {
-            display: block;
-            margin-top: 4px;
-            color: #16a34a;
-            font-size: 9px;
-        }
+    cursor: pointer;
+}
 
 
-        /* ---------- DASHBOARD ---------- */
+/* ================= HEADER ================= */
 
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1.45fr 1fr;
-            gap: 20px;
-        }
+.header {
+    padding: 38px 7%;
 
-        .card {
-            padding: 22px;
+    background:
+        linear-gradient(
+            110deg,
+            #fff7ed,
+            white
+        );
 
-            background: white;
+    border-bottom: 1px solid #eee;
 
-            border: 1px solid #e1e5e9;
-            border-radius: 10px;
+    display: flex;
 
-            box-shadow:
-                0 4px 15px
-                rgba(0, 0, 0, 0.025);
-        }
+    justify-content: space-between;
 
-        .card-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 22px;
-        }
+    align-items: center;
+}
 
-        .section-label {
-            display: block;
-            margin-bottom: 6px;
+.small {
+    color: #ea580c;
 
-            color: #f97316;
+    font-size: 10px;
 
-            font-size: 8px;
-            font-weight: bold;
+    font-weight: bold;
 
-            letter-spacing: 1px;
-        }
+    letter-spacing: 1px;
+}
 
-        .card-header h2 {
-            font-size: 18px;
-        }
+.header h1 {
+    margin-top: 8px;
 
-        .view-btn {
-            border: none;
-            background: transparent;
-            color: #ea580c;
-            font-size: 10px;
-            cursor: pointer;
-        }
+    font-size: 32px;
+}
 
+.header p {
+    margin-top: 8px;
 
-        /* ---------- CHART ---------- */
+    color: #737b87;
 
-        .trip-overview {
-            min-height: 350px;
-        }
+    font-size: 13px;
+}
 
-        .chart {
-            height: 250px;
-            display: flex;
-        }
+.primary-btn {
+    background: #f97316;
 
-        .chart-y {
-            width: 45px;
+    color: white;
 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+    border: none;
 
-            padding-bottom: 25px;
+    padding: 12px 18px;
 
-            color: #a0a7b0;
-            font-size: 9px;
-        }
+    border-radius: 7px;
 
-        .bars {
-            flex: 1;
+    cursor: pointer;
 
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-around;
+    font-weight: bold;
+}
 
-            border-left: 1px solid #edf0f2;
-            border-bottom: 1px solid #edf0f2;
+.primary-btn:hover {
+    background: #ea580c;
+}
 
-            padding: 0 20px;
-        }
 
-        .bar-column {
-            height: 100%;
+/* ================= CONTAINER ================= */
 
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
+.container {
+    width: 86%;
 
-            gap: 8px;
-        }
+    max-width: 1250px;
 
-        .bar {
-            width: 38px;
+    margin: 30px auto;
+}
 
-            border-radius: 6px 6px 0 0;
 
-            background:
-                linear-gradient(
-                    180deg,
-                    #fb923c,
-                    #f97316
-                );
-        }
+/* ================= STATS ================= */
 
-        .bar1 {
-            height: 42%;
-        }
+.stats {
+    display: grid;
 
-        .bar2 {
-            height: 52%;
-        }
+    grid-template-columns:
+        repeat(4, 1fr);
 
-        .bar3 {
-            height: 60%;
-        }
+    gap: 17px;
 
-        .bar4 {
-            height: 68%;
-        }
+    margin-bottom: 20px;
+}
 
-        .bar5 {
-            height: 82%;
-        }
+.stat {
+    background: white;
 
-        .bar6 {
-            height: 95%;
-        }
+    border: 1px solid #e1e5e9;
 
-        .bar-column span {
-            color: #8c949e;
-            font-size: 9px;
-        }
+    border-radius: 10px;
 
+    padding: 20px;
 
-        /* ---------- DESTINATIONS ---------- */
+    transition: .2s;
+}
 
-        .destination {
-            display: flex;
-            align-items: center;
+.stat:hover {
+    transform: translateY(-3px);
 
-            gap: 12px;
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.05);
+}
 
-            padding: 11px 0;
+.stat-icon {
+    font-size: 22px;
 
-            border-bottom: 1px solid #eef0f2;
-        }
+    margin-bottom: 10px;
+}
 
-        .destination-icon {
-            width: 43px;
-            height: 43px;
+.stat span {
+    display: block;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    color: #7c8490;
 
-            border-radius: 8px;
+    font-size: 10px;
+}
 
-            font-size: 20px;
-        }
+.stat h2 {
+    margin-top: 4px;
 
-        .destination-info {
-            flex: 1;
-        }
+    font-size: 25px;
+}
 
-        .destination-info strong {
-            display: block;
-            font-size: 12px;
-        }
+.green-text {
+    color: #16a34a;
 
-        .destination-info span {
-            display: block;
-            margin-top: 3px;
-            color: #9097a1;
-            font-size: 9px;
-        }
+    font-size: 9px !important;
 
-        .percentage {
-            color: #ea580c;
-            font-weight: bold;
-            font-size: 11px;
-        }
+    margin-top: 5px;
+}
 
 
-        /* ---------- AI CARD ---------- */
+/* ================= DASHBOARD ================= */
 
-        .ai-card {
-            background:
-                linear-gradient(
-                    135deg,
-                    #fffaf5,
-                    #ffffff
-                );
+.grid {
+    display: grid;
 
-            border-color: #fed7aa;
-        }
+    grid-template-columns:
+        1.4fr 1fr;
 
-        .ai-top {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
+    gap: 20px;
+}
 
-        .ai-icon {
-            width: 46px;
-            height: 46px;
+.card {
+    background: white;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    border: 1px solid #e1e5e9;
 
-            border-radius: 9px;
+    border-radius: 10px;
 
-            background: #fff1e7;
+    padding: 22px;
+}
 
-            font-size: 22px;
-        }
+.card h2 {
+    font-size: 18px;
 
-        .ai-main {
-            display: flex;
-            align-items: center;
+    margin-bottom: 18px;
+}
 
-            gap: 15px;
+.label {
+    color: #f97316;
 
-            padding: 15px;
+    font-size: 8px;
 
-            border-radius: 8px;
+    font-weight: bold;
 
-            background: white;
+    letter-spacing: 1px;
 
-            border: 1px solid #f3e2d3;
-        }
+    display: block;
 
-        .ai-score {
-            font-size: 28px;
-            font-weight: bold;
-            color: #ea580c;
-        }
+    margin-bottom: 5px;
+}
 
-        .ai-main strong {
-            font-size: 12px;
-        }
 
-        .ai-main p {
-            margin-top: 5px;
-            color: #7b838e;
-            line-height: 1.5;
-            font-size: 9px;
-        }
+/* ================= DESTINATIONS ================= */
 
-        .ai-data {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+.destination {
+    display: flex;
 
-            gap: 8px;
+    align-items: center;
 
-            margin-top: 12px;
-        }
+    gap: 12px;
 
-        .ai-data div {
-            padding: 11px;
+    padding: 12px 0;
 
-            border-radius: 7px;
+    border-bottom: 1px solid #eee;
+}
 
-            background: #fafafa;
+.destination-icon {
+    width: 42px;
 
-            border: 1px solid #edf0f2;
-        }
+    height: 42px;
 
-        .ai-data span {
-            display: block;
-            color: #9299a3;
-            font-size: 8px;
-        }
+    display: flex;
 
-        .ai-data strong {
-            display: block;
-            margin-top: 5px;
-            font-size: 10px;
-        }
+    align-items: center;
 
-        .ai-btn {
-            width: 100%;
+    justify-content: center;
 
-            margin-top: 13px;
+    background: #fff1e7;
 
-            padding: 10px;
+    border-radius: 8px;
 
-            border: none;
+    font-size: 20px;
+}
 
-            border-radius: 6px;
+.destination-info {
+    flex: 1;
+}
 
-            background: #f97316;
+.destination-info strong {
+    display: block;
 
-            color: white;
+    font-size: 12px;
+}
 
-            font-size: 10px;
+.destination-info small {
+    color: #888;
 
-            cursor: pointer;
-        }
+    font-size: 9px;
+}
 
+.destination button {
+    background: #fff1f1;
 
-        /* ---------- ACTIVITIES ---------- */
+    border: none;
 
-        .activity {
-            display: flex;
-            align-items: center;
+    color: #dc2626;
 
-            gap: 12px;
+    padding: 6px 9px;
 
-            margin-bottom: 18px;
-        }
+    border-radius: 5px;
 
-        .activity-emoji {
-            width: 35px;
-            height: 35px;
+    cursor: pointer;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
 
-            border-radius: 7px;
+/* ================= AI ================= */
 
-            background: #f7f8fa;
-        }
+.ai-card {
+    background:
+        linear-gradient(
+            135deg,
+            #fff7ed,
+            white
+        );
 
-        .activity-name {
-            flex: 1;
-        }
+    border-color: #fed7aa;
+}
 
-        .activity-name strong {
-            display: block;
+.ai-score {
+    font-size: 38px;
 
-            margin-bottom: 6px;
+    color: #f97316;
 
-            font-size: 10px;
-        }
+    font-weight: bold;
+}
 
-        .activity-line {
-            height: 5px;
+.ai-card p {
+    color: #737b87;
 
-            overflow: hidden;
+    font-size: 10px;
 
-            border-radius: 5px;
+    line-height: 1.6;
 
-            background: #edf0f2;
-        }
+    margin-top: 5px;
+}
 
-        .activity-line span {
-            display: block;
+.recommendation {
+    margin-top: 15px;
 
-            height: 100%;
+    padding: 12px;
 
-            border-radius: 5px;
+    background: white;
 
-            background: #f97316;
-        }
+    border: 1px solid #eee;
 
-        .activity > b {
-            color: #ea580c;
-            font-size: 10px;
-        }
+    border-radius: 7px;
+}
 
+.recommendation strong {
+    font-size: 11px;
+}
 
-        /* ---------- TABLE ---------- */
+.recommendation p {
+    margin-top: 4px;
 
-        .recent-trips {
-            grid-column: 1 / -1;
-        }
+    font-size: 9px;
+}
 
-        .table-wrapper {
-            overflow-x: auto;
-        }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+/* ================= TABLE ================= */
 
-        th {
-            padding: 11px;
+.full {
+    grid-column: 1 / -1;
+}
 
-            text-align: left;
+table {
+    width: 100%;
 
-            color: #8a929c;
+    border-collapse: collapse;
+}
 
-            font-size: 9px;
+th {
+    text-align: left;
 
-            border-bottom: 1px solid #e6e9ed;
-        }
+    color: #888;
 
-        td {
-            padding: 12px 11px;
+    font-size: 9px;
 
-            color: #555e69;
+    padding: 12px;
 
-            font-size: 10px;
+    border-bottom: 1px solid #eee;
+}
 
-            border-bottom: 1px solid #f0f1f3;
-        }
+td {
+    padding: 12px;
 
-        .user {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-        }
+    font-size: 10px;
 
-        .avatar {
-            width: 29px;
-            height: 29px;
+    border-bottom: 1px solid #f0f0f0;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+.status {
+    padding: 5px 9px;
 
-            border-radius: 50%;
+    border-radius: 20px;
 
-            background: #fff1e7;
+    font-size: 8px;
 
-            color: #ea580c;
+    background: #edfaf1;
 
-            font-weight: bold;
+    color: #15803d;
+}
 
-            font-size: 10px;
-        }
 
-        .status {
-            display: inline-block;
+/* ================= QUICK ACTIONS ================= */
 
-            padding: 5px 9px;
+.actions {
+    display: grid;
 
-            border-radius: 20px;
+    grid-template-columns:
+        repeat(2, 1fr);
 
-            font-size: 8px;
+    gap: 10px;
+}
 
-            font-weight: bold;
-        }
+.action-btn {
+    padding: 13px;
 
-        .active-status {
-            color: #15803d;
-            background: #edfaf1;
-        }
+    border: 1px solid #e4e7eb;
 
-        .planning {
-            color: #b45309;
-            background: #fff7ed;
-        }
+    background: white;
 
-        .completed {
-            color: #2563eb;
-            background: #edf5ff;
-        }
+    border-radius: 7px;
 
+    cursor: pointer;
 
-        /* ---------- QUICK ACTIONS ---------- */
+    text-align: left;
 
-        .quick-btn {
-            display: flex;
-            align-items: center;
+    font-size: 10px;
+}
 
-            gap: 10px;
+.action-btn:hover {
+    border-color: #f97316;
 
-            width: 100%;
+    color: #ea580c;
 
-            padding: 10px 12px;
+    background: #fffaf5;
+}
 
-            margin-bottom: 8px;
 
-            border: 1px solid #e7e9ec;
+/* ================= MODAL ================= */
 
-            border-radius: 7px;
+.modal {
+    display: none;
 
-            background: white;
+    position: fixed;
 
-            color: #525a65;
+    inset: 0;
 
-            text-align: left;
+    background: rgba(0,0,0,.45);
 
-            font-size: 10px;
+    align-items: center;
 
-            cursor: pointer;
-        }
+    justify-content: center;
 
-        .quick-btn span {
-            width: 27px;
-            height: 27px;
+    z-index: 100;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+.modal-box {
+    width: 400px;
 
-            border-radius: 6px;
+    max-width: 90%;
 
-            background: #fff4eb;
-        }
+    background: white;
 
-        .quick-btn:hover {
-            border-color: #fdba74;
-            color: #ea580c;
-            background: #fffaf5;
-        }
+    border-radius: 12px;
 
+    padding: 25px;
+}
 
-        /* ---------- FOOTER ---------- */
+.modal-box h2 {
+    margin-bottom: 18px;
+}
 
-        footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+.form-group {
+    margin-bottom: 14px;
+}
 
-            gap: 7px;
+.form-group label {
+    display: block;
 
-            padding: 22px;
+    font-size: 10px;
 
-            background: white;
+    font-weight: bold;
 
-            border-top: 1px solid #e5e7eb;
+    margin-bottom: 6px;
+}
 
-            color: #9299a3;
+.form-group input,
+.form-group select {
+    width: 100%;
 
-            font-size: 9px;
-        }
+    padding: 10px;
 
-        footer strong {
-            color: #ea580c;
-        }
+    border: 1px solid #ddd;
 
+    border-radius: 6px;
 
-        /* ---------- RESPONSIVE ---------- */
+    outline: none;
+}
 
-        @media (max-width: 1100px) {
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #f97316;
+}
 
-            .navbar nav {
-                gap: 10px;
-            }
+.modal-buttons {
+    display: flex;
 
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
+    justify-content: flex-end;
 
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
+    gap: 8px;
 
-            .recent-trips {
-                grid-column: auto;
-            }
-        }
+    margin-top: 18px;
+}
 
+.cancel {
+    padding: 10px 15px;
 
-        @media (max-width: 750px) {
+    background: white;
 
-            .navbar {
-                padding: 0 15px;
-            }
+    border: 1px solid #ddd;
 
-            .navbar nav {
-                display: none;
-            }
+    border-radius: 6px;
 
-            .page-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
+    cursor: pointer;
+}
 
-            .container {
-                width: 92%;
-            }
 
-            .stats {
-                grid-template-columns: 1fr;
-            }
+/* ================= FOOTER ================= */
 
-            .ai-data {
-                grid-template-columns: 1fr;
-            }
-        }
+footer {
+    margin-top: 40px;
 
-    </style>
+    padding: 22px;
+
+    text-align: center;
+
+    background: white;
+
+    border-top: 1px solid #eee;
+
+    color: #888;
+
+    font-size: 9px;
+}
+
+footer strong {
+    color: #f97316;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 1000px) {
+
+    .stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+        grid-column: auto;
+    }
+
+}
+
+@media(max-width: 700px) {
+
+    nav {
+        display: none;
+    }
+
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -822,929 +631,1019 @@
 <body>
 
 
-    <!-- ================= NAVBAR ================= -->
+<!-- ================= NAVBAR ================= -->
 
-    <header class="navbar">
+<header class="navbar">
 
-        <div class="logo">
-            🇮🇳
-            <span>
-                GlobalTrotter INDIA MANAGEMENT HUB
-            </span>
-        </div>
+    <div class="logo">
+        🇮🇳 GlobalTrotter
+    </div>
 
-        <nav>
+    <nav>
 
-            <a href="index.html">
-                Explore
-            </a>
+        <a href="index.html">
+            Explore
+        </a>
 
-            <a href="#">
-                Circuits
-            </a>
+        <a href="#">
+            Circuits
+        </a>
 
-            <a href="#">
-                Create Trip
-            </a>
+        <a href="#">
+            Create Trip
+        </a>
 
-            <a href="#">
-                Build Itinerary
-            </a>
+        <a href="#">
+            Build Itinerary
+        </a>
 
-            <a href="calendar.html">
-                Calendar
-            </a>
+        <a href="calendar.html">
+            Calendar
+        </a>
 
-            <a href="admin.html" class="active">
-                Admin Panel
-            </a>
+        <a href="admin.html"
+           class="active">
+            Admin Panel
+        </a>
 
-            <a href="#">
-                Group & Budget
-            </a>
+    </nav>
 
-        </nav>
+    <button class="user-btn">
+        Admin
+    </button>
 
-        <button class="login-btn">
-            Admin
-        </button>
+</header>
 
-    </header>
 
+<!-- ================= HEADER ================= -->
 
+<section class="header">
 
-    <!-- ================= HEADER ================= -->
+    <div>
 
-    <section class="page-header">
-
-        <div>
-
-            <span class="small-title">
-                🇮🇳 INCREDIBLE INDIA • MANAGEMENT
-            </span>
-
-            <h1>
-                Admin Dashboard
-            </h1>
-
-            <p>
-                Manage trips, users, destinations and
-                AI-powered travel recommendations.
-            </p>
-
-        </div>
-
-        <button class="add-btn">
-            + Add Destination
-        </button>
-
-    </section>
-
-
-
-    <!-- ================= MAIN ================= -->
-
-    <main class="container">
-
-
-        <!-- ================= STATISTICS ================= -->
-
-        <section class="stats">
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon orange">
-                    👥
-                </div>
-
-                <div class="stat-content">
-
-                    <span>
-                        Total Users
-                    </span>
-
-                    <h2>
-                        1,248
-                    </h2>
-
-                    <small class="positive">
-                        ↑ 12.5% this month
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon blue">
-                    ✈️
-                </div>
-
-                <div class="stat-content">
-
-                    <span>
-                        Active Trips
-                    </span>
-
-                    <h2>
-                        856
-                    </h2>
-
-                    <small class="positive">
-                        ↑ 8.4% this month
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon green">
-                    📍
-                </div>
-
-                <div class="stat-content">
-
-                    <span>
-                        Destinations
-                    </span>
-
-                    <h2>
-                        48
-                    </h2>
-
-                    <small class="positive">
-                        ↑ 4 new destinations
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon purple">
-                    🤖
-                </div>
-
-                <div class="stat-content">
-
-                    <span>
-                        AI Recommendations
-                    </span>
-
-                    <h2>
-                        2,460
-                    </h2>
-
-                    <small class="positive">
-                        ↑ 21.7% this month
-                    </small>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= DASHBOARD ================= -->
-
-        <section class="dashboard-grid">
-
-
-            <!-- TRIP OVERVIEW -->
-
-            <div class="card trip-overview">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            TRAVEL ANALYTICS
-                        </span>
-
-                        <h2>
-                            Trip Overview
-                        </h2>
-
-                    </div>
-
-                    <button class="view-btn">
-                        Last 6 Months ▾
-                    </button>
-
-                </div>
-
-
-                <div class="chart">
-
-                    <div class="chart-y">
-
-                        <span>1000</span>
-                        <span>750</span>
-                        <span>500</span>
-                        <span>250</span>
-                        <span>0</span>
-
-                    </div>
-
-
-                    <div class="bars">
-
-                        <div class="bar-column">
-                            <div class="bar bar1"></div>
-                            <span>Mar</span>
-                        </div>
-
-                        <div class="bar-column">
-                            <div class="bar bar2"></div>
-                            <span>Apr</span>
-                        </div>
-
-                        <div class="bar-column">
-                            <div class="bar bar3"></div>
-                            <span>May</span>
-                        </div>
-
-                        <div class="bar-column">
-                            <div class="bar bar4"></div>
-                            <span>Jun</span>
-                        </div>
-
-                        <div class="bar-column">
-                            <div class="bar bar5"></div>
-                            <span>Jul</span>
-                        </div>
-
-                        <div class="bar-column">
-                            <div class="bar bar6"></div>
-                            <span>Aug</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- POPULAR DESTINATIONS -->
-
-            <div class="card">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            TRAVEL TRENDS
-                        </span>
-
-                        <h2>
-                            Popular Destinations
-                        </h2>
-
-                    </div>
-
-                    <button class="view-btn">
-                        View All
-                    </button>
-
-                </div>
-
-
-                <div class="destination">
-
-
-                    <div class="destination-icon orange">
-                        🏰
-                    </div>
-
-                    <div class="destination-info">
-
-                        <strong>
-                            Jaipur
-                        </strong>
-
-                        <span>
-                            Rajasthan
-                        </span>
-
-                    </div>
-
-                    <div class="percentage">
-                        32%
-                    </div>
-
-                </div>
-
-
-                <div class="destination">
-
-                    <div class="destination-icon blue">
-                        🏖️
-                    </div>
-
-                    <div class="destination-info">
-
-                        <strong>
-                            Goa
-                        </strong>
-
-                        <span>
-                            Goa
-                        </span>
-
-                    </div>
-
-                    <div class="percentage">
-                        27%
-                    </div>
-
-                </div>
-
-
-                <div class="destination">
-
-                    <div class="destination-icon green">
-                        🌴
-                    </div>
-
-                    <div class="destination-info">
-
-                        <strong>
-                            Munnar
-                        </strong>
-
-                        <span>
-                            Kerala
-                        </span>
-
-                    </div>
-
-                    <div class="percentage">
-                        21%
-                    </div>
-
-                </div>
-
-
-                <div class="destination">
-
-                    <div class="destination-icon purple">
-                        🏔️
-                    </div>
-
-                    <div class="destination-info">
-
-                        <strong>
-                            Leh
-                        </strong>
-
-                        <span>
-                            Ladakh
-                        </span>
-
-                    </div>
-
-                    <div class="percentage">
-                        20%
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- AI RECOMMENDATIONS -->
-
-            <div class="card ai-card">
-
-                <div class="ai-top">
-
-                    <div class="ai-icon">
-                        🤖
-                    </div>
-
-                    <div>
-
-                        <span class="section-label">
-                            SMART TRAVEL
-                        </span>
-
-                        <h2>
-                            AI Recommendations
-                        </h2>
-
-                    </div>
-
-                </div>
-
-
-                <div class="ai-main">
-
-                    <div class="ai-score">
-                        91%
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Average Match Score
-                        </strong>
-
-                        <p>
-                            AI successfully matches
-                            travelers with suitable
-                            destinations and activities.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="ai-data">
-
-                    <div>
-
-                        <span>
-                            Top Interest
-                        </span>
-
-                        <strong>
-                            Adventure
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            Top Suggestion
-                        </span>
-
-                        <strong>
-                            Goa
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            Recommendations
-                        </span>
-
-                        <strong>
-                            2,460
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <button class="ai-btn">
-                    View AI Analytics →
-                </button>
-
-            </div>
-
-
-
-            <!-- POPULAR ACTIVITIES -->
-
-            <div class="card">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            USER PREFERENCES
-                        </span>
-
-                        <h2>
-                            Popular Activities
-                        </h2>
-
-                    </div>
-
-                </div>
-
-
-                <div class="activity">
-
-                    <span class="activity-emoji">
-                        🏖️
-                    </span>
-
-                    <div class="activity-name">
-
-                        <strong>
-                            Beach Activities
-                        </strong>
-
-                        <div class="activity-line">
-
-                            <span style="width: 85%;">
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <b>
-                        85%
-                    </b>
-
-                </div>
-
-
-                <div class="activity">
-
-                    <span class="activity-emoji">
-                        🏔️
-                    </span>
-
-                    <div class="activity-name">
-
-                        <strong>
-                            Adventure
-                        </strong>
-
-                        <div class="activity-line">
-
-                            <span style="width: 78%;">
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <b>
-                        78%
-                    </b>
-
-                </div>
-
-
-                <div class="activity">
-
-                    <span class="activity-emoji">
-                        🍛
-                    </span>
-
-                    <div class="activity-name">
-
-                        <strong>
-                            Food & Culture
-                        </strong>
-
-                        <div class="activity-line">
-
-                            <span style="width: 68%;">
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <b>
-                        68%
-                    </b>
-
-                </div>
-
-
-                <div class="activity">
-
-                    <span class="activity-emoji">
-                        🛍️
-                    </span>
-
-                    <div class="activity-name">
-
-                        <strong>
-                            Shopping
-                        </strong>
-
-                        <div class="activity-line">
-
-                            <span style="width: 54%;">
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <b>
-                        54%
-                    </b>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- RECENT TRIPS -->
-
-            <div class="card recent-trips">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            TRIP MANAGEMENT
-                        </span>
-
-                        <h2>
-                            Recent Trips
-                        </h2>
-
-                    </div>
-
-                    <button class="view-btn">
-                        View All
-                    </button>
-
-                </div>
-
-
-                <div class="table-wrapper">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    Traveler
-                                </th>
-
-                                <th>
-                                    Destination
-                                </th>
-
-                                <th>
-                                    Budget
-                                </th>
-
-                                <th>
-                                    Status
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody>
-
-                            <tr>
-
-                                <td>
-
-                                    <div class="user">
-
-                                        <div class="avatar">
-                                            P
-                                        </div>
-
-                                        <span>
-                                            Prachi
-                                        </span>
-
-                                    </div>
-
-                                </td>
-
-                                <td>
-                                    Jaipur
-                                </td>
-
-                                <td>
-                                    ₹50,000
-                                </td>
-
-                                <td>
-
-                                    <span class="status active-status">
-                                        Active
-                                    </span>
-
-                                </td>
-
-                            </tr>
-
-
-                            <tr>
-
-                                <td>
-
-                                    <div class="user">
-
-                                        <div class="avatar">
-                                            R
-                                        </div>
-
-                                        <span>
-                                            Rahul
-                                        </span>
-
-                                    </div>
-
-                                </td>
-
-                                <td>
-                                    Goa
-                                </td>
-
-                                <td>
-                                    ₹35,000
-                                </td>
-
-                                <td>
-
-                                    <span class="status planning">
-                                        Planning
-                                    </span>
-
-                                </td>
-
-                            </tr>
-
-
-                            <tr>
-
-                                <td>
-
-                                    <div class="user">
-
-                                        <div class="avatar">
-                                            D
-                                        </div>
-
-                                        <span>
-                                            Devanshi
-                                        </span>
-
-                                    </div>
-
-                                </td>
-
-                                <td>
-                                    Kerala
-                                </td>
-
-                                <td>
-                                    ₹60,000
-                                </td>
-
-                                <td>
-
-                                    <span class="status active-status">
-                                        Active
-                                    </span>
-
-                                </td>
-
-                            </tr>
-
-
-                            <tr>
-
-                                <td>
-
-                                    <div class="user">
-
-                                        <div class="avatar">
-                                            A
-                                        </div>
-
-                                        <span>
-                                            Aarav
-                                        </span>
-
-                                    </div>
-
-                                </td>
-
-                                <td>
-                                    Leh
-                                </td>
-
-                                <td>
-                                    ₹80,000
-                                </td>
-
-                                <td>
-
-                                    <span class="status completed">
-                                        Completed
-                                    </span>
-
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- QUICK ACTIONS -->
-
-            <div class="card">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            MANAGEMENT
-                        </span>
-
-                        <h2>
-                            Quick Actions
-                        </h2>
-
-                    </div>
-
-                </div>
-
-
-                <button class="quick-btn">
-                    <span>➕</span>
-                    Add New Trip
-                </button>
-
-                <button class="quick-btn">
-                    <span>📍</span>
-                    Add Destination
-                </button>
-
-                <button class="quick-btn">
-                    <span>👥</span>
-                    Manage Users
-                </button>
-
-                <button class="quick-btn">
-                    <span>🤖</span>
-                    AI Recommendations
-                </button>
-
-                <button class="quick-btn">
-                    <span>💰</span>
-                    Budget Reports
-                </button>
-
-            </div>
-
-
-        </section>
-
-    </main>
-
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-        <strong>
-            GlobalTrotter
-        </strong>
-
-        <span>
-            Smart Travel Management • Incredible India
+        <span class="small">
+            🇮🇳 INCREDIBLE INDIA • MANAGEMENT
         </span>
 
-    </footer>
+        <h1>
+            Admin Dashboard
+        </h1>
+
+        <p>
+            Manage trips, destinations, users and AI recommendations.
+        </p>
+
+    </div>
+
+
+    <button
+        class="primary-btn"
+        onclick="openDestinationModal()">
+
+        + Add Destination
+
+    </button>
+
+</section>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+
+<!-- ================= STATS ================= -->
+
+<section class="stats">
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            👥
+        </div>
+
+        <span>
+            Total Users
+        </span>
+
+        <h2 id="userCount">
+            1248
+        </h2>
+
+        <span class="green-text">
+            ↑ 12.5% this month
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            ✈️
+        </div>
+
+        <span>
+            Active Trips
+        </span>
+
+        <h2 id="tripCount">
+            856
+        </h2>
+
+        <span class="green-text">
+            ↑ 8.4% this month
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            📍
+        </div>
+
+        <span>
+            Destinations
+        </span>
+
+        <h2 id="destinationCount">
+            48
+        </h2>
+
+        <span class="green-text">
+            Updated today
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🤖
+        </div>
+
+        <span>
+            AI Recommendations
+        </span>
+
+        <h2>
+            2460
+        </h2>
+
+        <span class="green-text">
+            ↑ 21.7% this month
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- ================= GRID ================= -->
+
+<section class="grid">
+
+
+<!-- DESTINATIONS -->
+
+<div class="card">
+
+    <span class="label">
+        TRAVEL MANAGEMENT
+    </span>
+
+    <h2>
+        Popular Destinations
+    </h2>
+
+    <div id="destinationList">
+
+        <div class="destination">
+
+            <div class="destination-icon">
+                🏰
+            </div>
+
+            <div class="destination-info">
+
+                <strong>
+                    Jaipur
+                </strong>
+
+                <small>
+                    Rajasthan • 32% popularity
+                </small>
+
+            </div>
+
+            <button
+                onclick="removeDestination(this)">
+                Delete
+            </button>
+
+        </div>
+
+
+        <div class="destination">
+
+            <div class="destination-icon">
+                🏖️
+            </div>
+
+            <div class="destination-info">
+
+                <strong>
+                    Goa
+                </strong>
+
+                <small>
+                    Goa • 27% popularity
+                </small>
+
+            </div>
+
+            <button
+                onclick="removeDestination(this)">
+                Delete
+            </button>
+
+        </div>
+
+
+        <div class="destination">
+
+            <div class="destination-icon">
+                🌴
+            </div>
+
+            <div class="destination-info">
+
+                <strong>
+                    Munnar
+                </strong>
+
+                <small>
+                    Kerala • 21% popularity
+                </small>
+
+            </div>
+
+            <button
+                onclick="removeDestination(this)">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- AI -->
+
+<div class="card ai-card">
+
+    <span class="label">
+        SMART TRAVEL
+    </span>
+
+    <h2>
+        AI Recommendations
+    </h2>
+
+    <div class="ai-score">
+        91%
+    </div>
+
+    <p>
+        Average destination matching score based on
+        traveler interests, budget and trip duration.
+    </p>
+
+
+    <div class="recommendation">
+
+        <strong>
+            🏖️ Recommended for Adventure
+        </strong>
+
+        <p>
+            Goa — Water sports, beaches and nightlife.
+        </p>
+
+    </div>
+
+
+    <div class="recommendation">
+
+        <strong>
+            🏔️ Recommended for Nature
+        </strong>
+
+        <p>
+            Manali — Mountains, trekking and scenic views.
+        </p>
+
+    </div>
+
+
+    <button
+        class="primary-btn"
+        style="margin-top:15px;"
+        onclick="generateRecommendation()">
+
+        Generate Recommendation
+
+    </button>
+
+</div>
+
+
+<!-- RECENT TRIPS -->
+
+<div class="card full">
+
+    <span class="label">
+        TRIP MANAGEMENT
+    </span>
+
+    <h2>
+        Recent Trips
+    </h2>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Traveler
+                </th>
+
+                <th>
+                    Destination
+                </th>
+
+                <th>
+                    Budget
+                </th>
+
+                <th>
+                    Status
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="tripTable">
+
+            <tr>
+
+                <td>
+                    Prachi
+                </td>
+
+                <td>
+                    Jaipur
+                </td>
+
+                <td>
+                    ₹50,000
+                </td>
+
+                <td>
+                    <span class="status">
+                        Active
+                    </span>
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Rahul
+                </td>
+
+                <td>
+                    Goa
+                </td>
+
+                <td>
+                    ₹35,000
+                </td>
+
+                <td>
+                    <span class="status">
+                        Planning
+                    </span>
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Devanshi
+                </td>
+
+                <td>
+                    Kerala
+                </td>
+
+                <td>
+                    ₹60,000
+                </td>
+
+                <td>
+                    <span class="status">
+                        Active
+                    </span>
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- QUICK ACTIONS -->
+
+<div class="card">
+
+    <span class="label">
+        MANAGEMENT
+    </span>
+
+    <h2>
+        Quick Actions
+    </h2>
+
+
+    <div class="actions">
+
+        <button
+            class="action-btn"
+            onclick="openTripModal()">
+
+            ✈️ Add New Trip
+
+        </button>
+
+
+        <button
+            class="action-btn"
+            onclick="openDestinationModal()">
+
+            📍 Add Destination
+
+        </button>
+
+
+        <button
+            class="action-btn"
+            onclick="manageUsers()">
+
+            👥 Manage Users
+
+        </button>
+
+
+        <button
+            class="action-btn"
+            onclick="generateRecommendation()">
+
+            🤖 AI Recommendations
+
+        </button>
+
+
+        <button
+            class="action-btn"
+            onclick="budgetReport()">
+
+            💰 Budget Reports
+
+        </button>
+
+
+        <button
+            class="action-btn"
+            onclick="openCalendar()">
+
+            📅 Open Calendar
+
+        </button>
+
+    </div>
+
+</div>
+
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <strong>
+        GlobalTrotter
+    </strong>
+
+    — Smart Travel Management • Incredible India
+
+</footer>
+
+
+<!-- ================= DESTINATION MODAL ================= -->
+
+<div class="modal" id="destinationModal">
+
+    <div class="modal-box">
+
+        <h2>
+            Add Destination
+        </h2>
+
+        <div class="form-group">
+
+            <label>
+                Destination Name
+            </label>
+
+            <input
+                id="destinationName"
+                placeholder="Example: Udaipur">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                State
+            </label>
+
+            <input
+                id="destinationState"
+                placeholder="Example: Rajasthan">
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel"
+                onclick="closeModals()">
+
+                Cancel
+
+            </button>
+
+            <button
+                class="primary-btn"
+                onclick="addDestination()">
+
+                Add
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TRIP MODAL ================= -->
+
+<div class="modal" id="tripModal">
+
+    <div class="modal-box">
+
+        <h2>
+            Add New Trip
+        </h2>
+
+
+        <div class="form-group">
+
+            <label>
+                Traveler Name
+            </label>
+
+            <input
+                id="travelerName"
+                placeholder="Example: Aisha">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Destination
+            </label>
+
+            <input
+                id="tripDestination"
+                placeholder="Example: Manali">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Budget
+            </label>
+
+            <input
+                id="tripBudget"
+                type="number"
+                placeholder="50000">
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel"
+                onclick="closeModals()">
+
+                Cancel
+
+            </button>
+
+            <button
+                class="primary-btn"
+                onclick="addTrip()">
+
+                Add Trip
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ================= DESTINATION ================= */
+
+function openDestinationModal() {
+
+    document.getElementById(
+        "destinationModal"
+    ).style.display = "flex";
+
+}
+
+
+function addDestination() {
+
+    const name =
+        document.getElementById(
+            "destinationName"
+        ).value.trim();
+
+
+    const state =
+        document.getElementById(
+            "destinationState"
+        ).value.trim();
+
+
+    if(name === "" || state === "") {
+
+        alert("Please enter destination and state.");
+
+        return;
+    }
+
+
+    const list =
+        document.getElementById(
+            "destinationList"
+        );
+
+
+    const item =
+        document.createElement("div");
+
+    item.className = "destination";
+
+
+    item.innerHTML = `
+
+        <div class="destination-icon">
+            📍
+        </div>
+
+        <div class="destination-info">
+
+            <strong>
+                ${name}
+            </strong>
+
+            <small>
+                ${state} • New destination
+            </small>
+
+        </div>
+
+        <button
+            onclick="removeDestination(this)">
+            Delete
+        </button>
+
+    `;
+
+
+    list.appendChild(item);
+
+
+    updateDestinationCount();
+
+
+    closeModals();
+
+    document.getElementById(
+        "destinationName"
+    ).value = "";
+
+    document.getElementById(
+        "destinationState"
+    ).value = "";
+
+}
+
+
+function removeDestination(button) {
+
+    if(confirm("Delete this destination?")) {
+
+        button.parentElement.remove();
+
+        updateDestinationCount();
+
+    }
+
+}
+
+
+function updateDestinationCount() {
+
+    const total =
+        document.querySelectorAll(
+            "#destinationList .destination"
+        ).length;
+
+    document.getElementById(
+        "destinationCount"
+    ).innerText = 45 + total;
+
+}
+
+
+/* ================= TRIP ================= */
+
+function openTripModal() {
+
+    document.getElementById(
+        "tripModal"
+    ).style.display = "flex";
+
+}
+
+
+function addTrip() {
+
+    const traveler =
+        document.getElementById(
+            "travelerName"
+        ).value.trim();
+
+
+    const destination =
+        document.getElementById(
+            "tripDestination"
+        ).value.trim();
+
+
+    const budget =
+        document.getElementById(
+            "tripBudget"
+        ).value;
+
+
+    if(
+        traveler === "" ||
+        destination === "" ||
+        budget === ""
+    ) {
+
+        alert("Please fill all fields.");
+
+        return;
+
+    }
+
+
+    const table =
+        document.getElementById(
+            "tripTable"
+        );
+
+
+    const row =
+        document.createElement("tr");
+
+
+    row.innerHTML = `
+
+        <td>
+            ${traveler}
+        </td>
+
+        <td>
+            ${destination}
+        </td>
+
+        <td>
+            ₹${Number(budget).toLocaleString("en-IN")}
+        </td>
+
+        <td>
+            <span class="status">
+                Planning
+            </span>
+        </td>
+
+    `;
+
+
+    table.prepend(row);
+
+
+    const count =
+        document.getElementById(
+            "tripCount"
+        );
+
+    count.innerText =
+        Number(count.innerText) + 1;
+
+
+    closeModals();
+
+
+    document.getElementById(
+        "travelerName"
+    ).value = "";
+
+    document.getElementById(
+        "tripDestination"
+    ).value = "";
+
+    document.getElementById(
+        "tripBudget"
+    ).value = "";
+
+}
+
+
+/* ================= AI ================= */
+
+function generateRecommendation() {
+
+    const recommendations = [
+
+        "Goa — Best for beaches and adventure.",
+
+        "Jaipur — Best for history, culture and food.",
+
+        "Manali — Best for mountains and trekking.",
+
+        "Kerala — Best for nature and relaxation.",
+
+        "Rishikesh — Best for adventure and rafting."
+
+    ];
+
+
+    const random =
+        recommendations[
+            Math.floor(
+                Math.random() *
+                recommendations.length
+            )
+        ];
+
+
+    alert(
+        "🤖 AI Travel Recommendation\n\n" +
+        random
+    );
+
+}
+
+
+/* ================= USERS ================= */
+
+function manageUsers() {
+
+    alert(
+        "👥 User Management\n\n" +
+
+        "Total Users: 1,248\n" +
+
+        "Active Users: 856\n" +
+
+        "New Users: 124"
+    );
+
+}
+
+
+/* ================= BUDGET ================= */
+
+function budgetReport() {
+
+    alert(
+        "💰 Budget Report\n\n" +
+
+        "Total Trip Budget: ₹2,45,000\n" +
+
+        "Average Trip Budget: ₹61,250\n" +
+
+        "Highest Budget: ₹80,000"
+    );
+
+}
+
+
+/* ================= CALENDAR ================= */
+
+function openCalendar() {
+
+    window.location.href =
+        "calendar.html";
+
+}
+
+
+/* ================= MODALS ================= */
+
+function closeModals() {
+
+    document.getElementById(
+        "destinationModal"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "tripModal"
+    ).style.display = "none";
+
+}
+
+
+/* Close modal when clicking outside */
+
+window.onclick = function(event) {
+
+    if(
+        event.target.classList.contains("modal")
+    ) {
+
+        closeModals();
+
+    }
+
+};
+
+</script>
 
 
 </body>
-
 </html>
