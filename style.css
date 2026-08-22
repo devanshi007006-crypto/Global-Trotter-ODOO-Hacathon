@@ -26,3 +26,8 @@ header{
     font-size:24px;
     font-weight:bold;
 }
+nav a{
+    text-decoration:none;
+    color:#333;
+    margin-left:25px;
+}
