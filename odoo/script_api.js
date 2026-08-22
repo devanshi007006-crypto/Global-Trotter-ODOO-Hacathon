@@ -158,7 +158,25 @@ itinerary.forEach(day => {
         header.className = "day-header";
 
 
-    const badge =
-    document.createElement("span");
+    const badge = document.createElement("span");
     badge.className = "day-badge";
     badge.textContent = `Day ${day.day}`;
+    const titleContainer = document.createElement("div");
+
+
+        const title = document.createElement("h3");
+        title.textContent = day.title || `Day ${day.day}`;
+
+
+        titleContainer.appendChild(title);
+
+        header.appendChild(badge);
+        header.appendChild(titleContainer);
+        card.appendChild(header);
+
+
+        const activityList = document.createElement("ul");
+        activityList.className = "activity-list";
+
+
+        if (Array.isArray(day.activities)) {
