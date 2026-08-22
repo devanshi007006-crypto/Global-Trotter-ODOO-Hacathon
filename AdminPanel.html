@@ -1,1 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>GlobalTrotter - Admin Panel</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+
+<body>
+
+
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <span class="logo-icon">✈</span>
+
+            <span>GlobalTrotter</span>
+
+        </div>
+
+
+        <div class="profile">
+
+            <span class="profile-circle">
+                A
+            </span>
+
+        </div>
+
+    </header>
+
+
+
+    <section class="top-controls">
+
+        <input
+            type="text"
+            placeholder="Search here..."
+            class="search"
+        >
+
+
+        <button>Group By ▾</button>
+
+        <button>Filter</button>
+
+        <button>Sort By ▾</button>
+
+    </section>
+
+
+
+    <section class="admin-tabs">
+
+        <button>Manage Users</button>
+
+        <button>Popular Destinations</button>
+
+        <button>Popular Activities</button>
+
+        <button>User Trends and Analytics</button>
+
+    </section>
+
+
+
+  
+
+    <main class="dashboard">
+
+
+
+        <div class="analytics-card users-card">
+
+            <h2>Manage Users</h2>
+
+            <div class="user">
+
+                <div class="avatar">
+                    P
+                </div>
+
+                <div class="user-info">
+
+                    <strong>Prachi</strong>
+
+                    <span>12 Trips</span>
+
+                </div>
+
+                <span class="status active">
+                    Active
+                </span>
+
+            </div>
+
+
+            <div class="user">
+
+                <div class="avatar">
+                    R
+                </div>
+
+                <div class="user-info">
+
+                    <strong>Rahul</strong>
+
+                    <span>8 Trips</span>
+
+                </div>
+
+                <span class="status active">
+                    Active
+                </span>
+
+            </div>
+
+
+            <div class="user">
+
+                <div class="avatar">
+                    D
+                </div>
+
+                <div class="user-info">
+
+                    <strong>Devanshi</strong>
+
+                    <span>15 Trips</span>
+
+                </div>
+
+                <span class="status active">
+                    Active
+                </span>
+
+            </div>
+
+
+            <div class="user">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div class="user-info">
+
+                    <strong>Aarav</strong>
+
+                    <span>5 Trips</span>
+
+                </div>
+
+                <span class="status inactive">
+                    Inactive
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="analytics-card">
+
+            <h2>Popular Destinations</h2>
+
+            <div class="pie-area">
+
+                <div class="pie-chart"></div>
+
+                <div class="legend">
+
+                    <p>
+                        <span class="dot purple"></span>
+                        Goa - 35%
+                    </p>
+
+                    <p>
+                        <span class="dot blue"></span>
+                        Paris - 25%
+                    </p>
+
+                    <p>
+                        <span class="dot green"></span>
+                        Japan - 20%
+                    </p>
+
+                    <p>
+                        <span class="dot orange"></span>
+                        New York - 20%
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- POPULAR ACTIVITIES -->
+
+        <div class="analytics-card">
+
+            <h2>Popular Activities</h2>
+
+
+            <div class="activity">
+
+                <div class="activity-icon">
+                    🏖️
+                </div>
+
+                <div>
+
+                    <strong>Beach Activities</strong>
+
+                    <span>320 bookings</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <div class="activity-icon">
+                    🏔️
+                </div>
+
+                <div>
+
+                    <strong>Adventure</strong>
+
+                    <span>275 bookings</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <div class="activity-icon">
+                    🍜
+                </div>
+
+                <div>
+
+                    <strong>Food Tours</strong>
+
+                    <span>220 bookings</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <div class="activity-icon">
+                    🛍️
+                </div>
+
+                <div>
+
+                    <strong>Shopping</strong>
+
+                    <span>185 bookings</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- USER TRENDS -->
+
+        <div class="analytics-card">
+
+            <h2>User Trends & Analytics</h2>
+
+
+            <div class="chart">
+
+                <div class="line-chart">
+
+                    <span class="point p1"></span>
+
+                    <span class="point p2"></span>
+
+                    <span class="point p3"></span>
+
+                    <span class="point p4"></span>
+
+                    <span class="point p5"></span>
+
+                    <span class="point p6"></span>
+
+                </div>
+
+            </div>
+
+
+            <div class="trend-info">
+
+                <div>
+
+                    <strong>1,248</strong>
+
+                    <span>Total Users</span>
+
+                </div>
+
+                <div>
+
+                    <strong>+18%</strong>
+
+                    <span>Monthly Growth</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- AI RECOMMENDATION -->
+
+        <div class="analytics-card ai-card">
+
+            <div class="ai-icon">
+                🤖
+            </div>
+
+            <div>
+
+                <h2>AI Recommendation Insights</h2>
+
+                <p>
+                    Adventure is the most requested
+                    travel interest this month.
+                </p>
+
+                <p>
+                    Goa is currently the most
+                    recommended destination.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>
