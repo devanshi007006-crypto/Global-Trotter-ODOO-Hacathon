@@ -3,198 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalTrotter</title>
+    <meta name="description" content="GlobalTrotter India - Smart Travel & Trip Management Workspace built for exploring India. Plan itineraries, track group expenses, and manage budgets efficiently.">
+    <title>GlobalTrotter India | Smart Travel & Trip Management Workspace</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <div class="logo">GlobalTrotter</div>
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
 
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#planner">Plan Trip</a>
-            <a href="#budget">Budget</a>
-            <a href="#group">Group</a>
-        </nav>
+    <!-- Navigation Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-title">GlobalTrotter</span>
+                    <span class="brand-subtitle">INDIA MANAGEMENT HUB</span>
+                </div>
+            </a>
+
+            <nav>
+                <a href="#home" class="nav-link active">Explore India</a>
+                <a href="#destinations" class="nav-link">Destinations</a>
+                <a href="#planner" class="nav-link">Plan Trip</a>
+                <a href="#itinerary" class="nav-link">Itinerary</a>
+                <a href="#budget" class="nav-link">Budget & Group</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#planner" class="btn-primary">
+                    <i class="fa-solid fa-plus"></i> New Trip
+                </a>
+            </div>
+        </div>
     </header>
 
-
+    <!-- Hero Section: Destination Portal Vibe -->
     <section class="hero" id="home">
-        <div>
-            <h1>Plan. Explore. Travel.</h1>
-            <p>
-                Your smart travel companion for planning trips,
-                managing budgets and exploring together.
-            </p>            <a href="#planner" class="hero-btn">Start Planning</a>
-        </div>
-    </section>
-
-
-    <section class="planner" id="planner">
-        <h2>Create Your Trip</h2>
-        <p class="subtitle">Tell us about your dream trip</p>
-
-        <div class="form-grid">
-            <div class="input-box">
-                <label>Destination</label>
-                <input type="text" id="destination" placeholder="e.g. Goa">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="india-badge">
+                <span class="flag-icon">🇮🇳</span> INCREDIBLE INDIA • TRAVEL MANAGEMENT WORKSPACE
             </div>
-
-            <div class="input-box">
-                <label>Number of Days</label>
-                <input type="number" id="days" min="1" placeholder="e.g. 5">
-            </div>
-
-            <div class="input-box">
-                <label>Total Budget</label>
-                <input type="number" id="budget" min="1" placeholder="80000">
-            </div>
-
-            <div class="input-box">
-                <label>Travelers</label>
-                <input type="number" id="travelers" min="1" placeholder="e.g. 2">
-            </div>
-
-            <div class="input-box full">
-                <label>Travel Interest</label>
-                <select id="interest">
-                    <option value="Food">Food</option>
-                    <option value="History">History</option>
-                    <option value="Beach">Beach</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Shopping">Shopping</option>
-                    <option value="Nature">Nature</option>
-                </select>
-            </div>
-        </div>
-
-        <button class="generate-btn" onclick="generateTrip()">
-            Generate My Trip
-        </button>
-    </section>
-
-
-    <section class="dashboard" id="dashboard">
-        <h2>Your Trip Dashboard</h2>
-
-        <div class="summary">
-            <div class="summary-card">
-                <span>Destination</span>
-                <strong id="showDestination">-</strong>
-            </div>
-
-            <div class="summary-card">
-                <span>Days</span>
-                <strong id="showDays">-</strong>
-            </div>
-
-            <div class="summary-card">
-                <span>Travelers</span>
-                <strong id="showTravelers">-</strong>
-            </div>
-
-            <div class="summary-card">
-                <span>Budget</span>
-                <strong id="showBudget">-</strong>
+            <h1>Manage Your Ultimate <span>Indian Journey</span></h1>
+            <p>From Rajasthan's royal forts & Kerala's tranquil backwaters to Goa's sunlit shores & Himalayan peaks—curate day-wise itineraries, track group expenses, and equalize debts in one smart workspace.</p>
+            
+            <!-- Category Filter Chips -->
+            <div class="filter-chips">
+                <button class="chip active" onclick="filterCategory('all')">
+                    <i class="fa-solid fa-border-all"></i> All Experiences
+                </button>
+                <button class="chip" onclick="filterCategory('heritage')">
+                    <i class="fa-solid fa-landmark"></i> Heritage & Forts
+                </button>
+                <button class="chip" onclick="filterCategory('nature')">
+                    <i class="fa-solid fa-tree"></i> Backwaters & Beaches
+                </button>
+                <button class="chip" onclick="filterCategory('adventure')">
+                    <i class="fa-solid fa-mountain"></i> Himalayan Adventure
+                </button>
+                <button class="chip" onclick="filterCategory('spiritual')">
+                    <i class="fa-solid fa-om"></i> Culture & Spiritual
+                </button>
             </div>
         </div>
     </section>
 
+    <!-- Featured Indian Destinations Grid -->
+    <section class="destinations-section" id="destinations">
+        <div class="section-header">
+            <div>
+                <h2>Popular Indian Destinations</h2>
+                <p>Select a destination to auto-populate recommended travel management templates.</p>
+            </div>
+        </div>
 
-    <section class="itinerary">
-        <h2>Day-wise Itinerary</h2>
+        <div class="destinations-grid">
+            <!-- Destination Card 1 -->
+            <div class="dest-card" data-category="heritage" onclick="quickSelectDest('Jaipur, Rajasthan', 5, 45000, 'History & Royalty')">
+                <div class="dest-badge">Royal Heritage</div>
+                <div class="dest-info">
+                    <h3>Jaipur, Rajasthan</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> Amber Fort, Hawa Mahal & Palaces</p>
+                    <div class="dest-meta">
+                        <span><i class="fa-solid fa-clock"></i> 5 Days</span>
+                        <span><i class="fa-solid fa-indian-rupee-sign"></i> 45,000</span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="day-container">
+            <!-- Destination Card 2 -->
+            <div class="dest-card" data-category="nature" onclick="quickSelectDest('Kerala Backwaters', 6, 55000, 'Nature & Relaxation')">
+                <div class="dest-badge">Tranquil Nature</div>
+                <div class="dest-info">
+                    <h3>Alleppey, Kerala</h3>
+                    <p><i class="fa-solid fa-water"></i> Houseboats, Spices & Palm Beaches</p>
+                    <div class="dest-meta">
+                        <span><i class="fa-solid fa-clock"></i> 6 Days</span>
+                        <span><i class="fa-solid fa-indian-rupee-sign"></i> 55,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Destination Card 3 -->
+            <div class="dest-card" data-category="nature" onclick="quickSelectDest('North Goa', 4, 35000, 'Beaches & Nightlife')">
+                <div class="dest-badge">Sun & Sand</div>
+                <div class="dest-info">
+                    <h3>Goa Beach Circuit</h3>
+                    <p><i class="fa-solid fa-umbrella-beach"></i> Baga Beach, Fort Aguada & Water Sports</p>
+                    <div class="dest-meta">
+                        <span><i class="fa-solid fa-clock"></i> 4 Days</span>
+                        <span><i class="fa-solid fa-indian-rupee-sign"></i> 35,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Destination Card 4 -->
+            <div class="dest-card" data-category="adventure" onclick="quickSelectDest('Leh-Ladakh', 7, 75000, 'Himalayan Adventure')">
+                <div class="dest-badge">High Altitude</div>
+                <div class="dest-info">
+                    <h3>Leh & Pangong Lake</h3>
+                    <p><i class="fa-solid fa-mountain"></i> Nubra Valley, Khardung La & Monasteries</p>
+                    <div class="dest-meta">
+                        <span><i class="fa-solid fa-clock"></i> 7 Days</span>
+                        <span><i class="fa-solid fa-indian-rupee-sign"></i> 75,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trip Planner & Management Form -->
+    <section class="planner-section" id="planner">
+        <div class="planner-card">
+            <div class="planner-header">
+                <h2><i class="fa-solid fa-sliders"></i> Create & Manage Trip</h2>
+                <p>Configure trip details to generate your customized day-by-day itinerary & budget breakdown.</p>
+            </div>
+
+            <div class="form-grid">
+                <div class="input-box">
+                    <label><i class="fa-solid fa-map-pin"></i> Destination</label>
+                    <input type="text" id="destination" placeholder="e.g. Jaipur, Goa, Kerala, Varanasi" value="Jaipur, Rajasthan">
+                </div>
+
+                <div class="input-box">
+                    <label><i class="fa-solid fa-calendar-day"></i> Number of Days</label>
+                    <input type="number" id="days" min="1" max="30" placeholder="e.g. 5" value="5">
+                </div>
+
+                <div class="input-box">
+                    <label><i class="fa-solid fa-indian-rupee-sign"></i> Total Budget (₹)</label>
+                    <input type="number" id="budget" min="1000" placeholder="e.g. 50000" value="50000">
+                </div>
+
+                <div class="input-box">
+                    <label><i class="fa-solid fa-users"></i> Travelers</label>
+                    <input type="number" id="travelers" min="1" max="20" placeholder="e.g. 3" value="3">
+                </div>
+
+                <div class="input-box full">
+                    <label><i class="fa-solid fa-compass"></i> Travel Preference & Style</label>
+                    <select id="interest">
+                        <option value="Heritage & Royalty" selected>Heritage & Forts (Rajasthan Style)</option>
+                        <option value="Nature & Relaxation">Nature & Backwaters (Kerala Style)</option>
+                        <option value="Beaches & Nightlife">Beaches & Coastal (Goa Style)</option>
+                        <option value="Himalayan Adventure">Himalayan Adventure (Ladakh Style)</option>
+                        <option value="Spiritual & Culinary">Spiritual & Food Tour (Varanasi/Amritsar)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="generate-btn" onclick="generateTrip()">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Trip Workspace
+            </button>
+        </div>
+    </section>
+
+    <!-- Trip Overview Dashboard -->
+    <section class="dashboard-section" id="dashboard">
+        <div class="section-header text-center">
+            <h2>Live Trip Dashboard</h2>
+            <p>Real-time trip metrics synchronized with your trip configuration.</p>
+        </div>
+
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="card-icon icon-purple"><i class="fa-solid fa-map-location-dot"></i></div>
+                <div>
+                    <span>Destination</span>
+                    <strong id="showDestination">Jaipur, Rajasthan</strong>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="card-icon icon-blue"><i class="fa-solid fa-clock"></i></div>
+                <div>
+                    <span>Duration</span>
+                    <strong id="showDays">5 Days</strong>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="card-icon icon-cyan"><i class="fa-solid fa-user-group"></i></div>
+                <div>
+                    <span>Group Members</span>
+                    <strong id="showTravelers">3 Travelers</strong>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="card-icon icon-green"><i class="fa-solid fa-wallet"></i></div>
+                <div>
+                    <span>Total Budget</span>
+                    <strong id="showBudget">₹50,000</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day-wise Itinerary Manager -->
+    <section class="itinerary-section" id="itinerary">
+        <div class="section-header text-center">
+            <h2>Day-Wise Itinerary Manager</h2>
+            <p>Curated day activities with timing, categories, and weather activity flags.</p>
+        </div>
+
+        <div class="day-container" id="dayContainer">
+            <!-- Day 1 Card -->
             <div class="day-card">
-                <h3>Day 1</h3>
-                <p>Explore popular attractions</p>
-                <p>Local lunch</p>
-                <p>Evening sightseeing</p>
+                <div class="day-header">
+                    <span class="day-badge">Day 1</span>
+                    <h3>Arrival & Fort Exploration</h3>
+                </div>
+                <ul class="activity-list">
+                    <li><i class="fa-solid fa-sun icon-amber"></i> <strong>09:00 AM:</strong> Hotel Check-in & Breakfast</li>
+                    <li><i class="fa-solid fa-fort-awesome icon-purple"></i> <strong>11:30 AM:</strong> Amber Fort Guided Tour</li>
+                    <li><i class="fa-solid fa-utensils icon-blue"></i> <strong>01:30 PM:</strong> Traditional Rajasthani Thali Lunch</li>
+                    <li><i class="fa-solid fa-camera icon-cyan"></i> <strong>04:30 PM:</strong> Jal Mahal Sunset Photography</li>
+                </ul>
             </div>
 
+            <!-- Day 2 Card -->
             <div class="day-card">
-                <h3>Day 2</h3>
-                <p>Visit major tourist places</p>
-                <p>Try local activities</p>
-                <p>Dinner experience</p>
+                <div class="day-header">
+                    <span class="day-badge">Day 2</span>
+                    <h3>Palaces & Old City Bazaar</h3>
+                </div>
+                <ul class="activity-list">
+                    <li><i class="fa-solid fa-building-columns icon-purple"></i> <strong>09:30 AM:</strong> City Palace & Jantar Mantar</li>
+                    <li><i class="fa-solid fa-camera icon-cyan"></i> <strong>12:00 PM:</strong> Hawa Mahal (Palace of Winds)</li>
+                    <li><i class="fa-solid fa-bag-shopping icon-amber"></i> <strong>04:00 PM:</strong> Johari Bazaar Local Handicrafts</li>
+                    <li><i class="fa-solid fa-wine-glass icon-pink"></i> <strong>08:00 PM:</strong> Chokhi Dhani Cultural Night</li>
+                </ul>
             </div>
 
+            <!-- Day 3 Card -->
             <div class="day-card">
-                <h3>Day 3</h3>
-                <p>Nature exploration</p>
-                <p>Local shopping</p>
-                <p>Relax and explore</p>
+                <div class="day-header">
+                    <span class="day-badge">Day 3</span>
+                    <h3>Nahargarh Fort & Local Flavors</h3>
+                </div>
+                <ul class="activity-list">
+                    <li><i class="fa-solid fa-mountain icon-blue"></i> <strong>10:00 AM:</strong> Nahargarh Fort Sunset Viewpoint</li>
+                    <li><i class="fa-solid fa-bowl-food icon-amber"></i> <strong>01:00 PM:</strong> Local Food Tasting & Lassi</li>
+                    <li><i class="fa-solid fa-spa icon-green"></i> <strong>05:00 PM:</strong> Heritage Spa & Relaxation</li>
+                    <li><i class="fa-solid fa-moon icon-purple"></i> <strong>08:30 PM:</strong> Farewell Group Dinner</li>
+                </ul>
             </div>
         </div>
     </section>
 
-
+    <!-- Group Budget & Debt Equalizer -->
     <section class="budget-section" id="budget">
-        <h2>Smart Budget Manager</h2>
+        <div class="section-header text-center">
+            <h2>Smart Budget & Group Equalizer</h2>
+            <p>Track spent vs remaining budget and settle group balances instantly.</p>
+        </div>
 
         <div class="budget-grid">
             <div class="budget-card">
-                <h3>Total Budget</h3>
-                <p id="totalBudget">₹0</p>
+                <div class="budget-title">Total Allocated Budget</div>
+                <div class="budget-amount text-purple" id="totalBudget">₹50,000</div>
             </div>
 
             <div class="budget-card">
-                <h3>Estimated Spent</h3>
-                <p id="spentBudget">₹0</p>
+                <div class="budget-title">Estimated Spent</div>
+                <div class="budget-amount text-amber" id="spentBudget">₹32,500</div>
             </div>
 
             <div class="budget-card">
-                <h3>Remaining</h3>
-                <p id="remainingBudget">₹0</p>
+                <div class="budget-title">Remaining Balance</div>
+                <div class="budget-amount text-green" id="remainingBudget">₹17,500</div>
+            </div>
+        </div>
+
+        <!-- Group Debt Settlement Section -->
+        <div class="group-box">
+            <h3><i class="fa-solid fa-users-viewfinder"></i> Group Debt Equalizer ("Who Owes Whom")</h3>
+            <p class="subtitle">Calculated using minimum-cash-flow algorithm between trip members.</p>
+
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-avatar">👩‍💻</div>
+                    <div class="member-details">
+                        <strong>Mishva</strong>
+                        <p>Paid: ₹15,000</p>
+                    </div>
+                    <span class="status-badge badge-green">Settled</span>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-avatar">👨‍💻</div>
+                    <div class="member-details">
+                        <strong>Rahul</strong>
+                        <p>Paid: ₹9,500</p>
+                    </div>
+                    <span class="status-badge badge-amber">Owes ₹2,500</span>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-avatar">👩‍💼</div>
+                    <div class="member-details">
+                        <strong>Devanshi</strong>
+                        <p>Paid: ₹18,000</p>
+                    </div>
+                    <span class="status-badge badge-purple">Gets ₹3,000</span>
+                </div>
+            </div>
+
+            <div class="debt-summary-alert">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <span><strong>Settlement Suggestion:</strong> Rahul pays Devanshi ➡️ <strong>₹2,500</strong> to balance group expenses.</span>
             </div>
         </div>
     </section>
 
-
-    <section class="group-section" id="group">
-        <h2>Group Trip</h2>
-
-        <p class="subtitle">
-            Plan and manage your trip together.
-        </p>
-
-        <div class="members">
-            <div class="member">
-                <span>👨‍💻</span>
-                <div>
-                    <strong>you</strong>
-                    <p>₹15,000 spent</p>
-                </div>
-            </div>
-
-            <div class="member">
-                <span>👩‍💻</span>
-                <div>
-                    <strong>Mishva</strong>
-                    <p>₹12,500 spent</p>
-                </div>
-            </div>
-
-            <div class="member">
-                <span>👩‍💼</span>
-                <div>
-                    <strong>Devanshi</strong>
-                    <p>₹18,000 spent</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
+    <!-- Footer -->
     <footer>
-        <h3>GlobalTrotter</h3>
-        <p>Smart Travel • Smart Budget • Smart Planning</p>
+        <div class="footer-content">
+            <div class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-compass"></i></div>
+                <span>GlobalTrotter India</span>
+            </div>
+            <p>Smart Travel Management Platform • Built for Odoo ERP Workspace</p>
+            <p class="copyright">&copy; 2026 GlobalTrotter Team. Released under LGPL-3 License.</p>
+        </div>
     </footer>
 
-    <script src="odoo/script_api.js"></script>
-    <script src="AI.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
