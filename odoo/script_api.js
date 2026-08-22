@@ -29,7 +29,7 @@ async function generateTrip() {
     const days = parseInt(document.getElementById("days").value);
     const budget = parseFloat(document.getElementById("budget").value);
     const travelers = parseInt(document.getElementById("travelers").value);
-    const interest = document.getById("interest").value;
+    const interest = document.getElementById("interest").value;
 
 if(!destination) {
     alert("Please enter a destination.");
