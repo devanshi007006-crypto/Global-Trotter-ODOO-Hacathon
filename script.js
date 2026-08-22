@@ -35,4 +35,6 @@ function generateTrip() {
     if (dashboard) {
         dashboard.scrollIntoView({ behavior: "smooth" });
     }
+    
+}
 }
