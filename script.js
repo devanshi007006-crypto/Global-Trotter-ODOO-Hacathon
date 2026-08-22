@@ -643,95 +643,89 @@ function generateTrip() {
 
 
     /* =========================================
-       ITINERARY GENERATION
+       ITINERARY GENERATION & SAVED SECTIONS
        ========================================= */
 
-    const dayContainer =
-        document.getElementById("dayContainer");
-
+    const dayContainer = document.getElementById("dayContainer");
 
     if (dayContainer) {
-
-        const baseItinerary =
-            getIndianItinerary(destination);
-
         dayContainer.innerHTML = "";
 
+        const savedSectionsData = localStorage.getItem("gt_saved_itinerary_sections");
+        let hasCustomSections = false;
 
-        for (let i = 0; i < days; i++) {
+        if (savedSectionsData) {
+            try {
+                const parsedSections = JSON.parse(savedSectionsData);
+                if (Array.isArray(parsedSections) && parsedSections.length > 0) {
+                    hasCustomSections = true;
+                    let secNum = 1;
 
-            const baseDay =
-                baseItinerary[i % baseItinerary.length];
+                    parsedSections.forEach(sec => {
+                        const card = document.createElement("div");
+                        card.className = "day-card glass-panel";
+                        const catTag = sec.category ? sec.category.toUpperCase() : "ACTIVITY";
+                        const budgetText = sec.budget ? `₹${Number(sec.budget).toLocaleString("en-IN")}` : "Budget Included";
 
-            const dayNumber = i + 1;
+                        card.innerHTML = `
+                            <div class="day-header">
+                                <span class="day-badge">Section ${secNum}</span>
+                                <div>
+                                    <h3>Section ${secNum}: ${catTag}</h3>
+                                    <span class="weather-badge"><i class="fa-solid fa-calendar-days"></i> ${sec.start_date || '2026-10-10'} to ${sec.end_date || '2026-10-12'}</span>
+                                </div>
+                            </div>
+                            <ul class="activity-list">
+                                <li>
+                                    <div class="act-time"><i class="fa-solid fa-indian-rupee-sign"></i> Section Budget</div>
+                                    <div class="act-text"><strong>${budgetText}</strong> <span class="tag-pill tag-purple">${catTag}</span></div>
+                                </li>
+                                <li>
+                                    <div class="act-time"><i class="fa-solid fa-circle-info"></i> Details</div>
+                                    <div class="act-text"><span>${sec.info || 'No details provided.'}</span></div>
+                                </li>
+                            </ul>
+                        `;
+                        dayContainer.appendChild(card);
+                        secNum++;
+                    });
+                }
+            } catch(e) {
+                console.error("Saved sections parse error:", e);
+            }
+        }
 
+        if (!hasCustomSections) {
+            const baseItinerary = getIndianItinerary(destination);
 
-            const card =
-                document.createElement("div");
+            for (let i = 0; i < days; i++) {
+                const baseDay = baseItinerary[i % baseItinerary.length];
+                const dayNumber = i + 1;
 
-            card.className =
-                "day-card glass-panel";
+                const card = document.createElement("div");
+                card.className = "day-card glass-panel";
 
-
-            card.innerHTML = `
-
-                <div class="day-header">
-
-                    <span class="day-badge">
-                        Day ${dayNumber}
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            ${baseDay.title}
-                        </h3>
-
-                        <span class="weather-badge">
-                            ${baseDay.weather}
-                        </span>
-
+                card.innerHTML = `
+                    <div class="day-header">
+                        <span class="day-badge">Day ${dayNumber}</span>
+                        <div>
+                            <h3>${baseDay.title}</h3>
+                            <span class="weather-badge">${baseDay.weather}</span>
+                        </div>
                     </div>
 
-                </div>
+                    <ul class="activity-list">
+                        ${baseDay.act.map(activity => `
+                            <li>
+                                <div class="act-time"><i class="fa-solid fa-clock"></i> ${activity.time}</div>
+                                <div class="act-text"><strong>${activity.title}</strong> <span class="tag-pill ${activity.tagClass}">${activity.tag}</span></div>
+                            </li>
+                        `).join("")}
+                    </ul>
+                `;
 
-
-                <ul class="activity-list">
-
-                    ${baseDay.act.map(activity => `
-
-                        <li>
-
-                            <div class="act-time">
-
-                                <i class="fa-solid fa-clock"></i>
-
-                                ${activity.time}
-
-                            </div>
-
-
-                            <div class="act-text">
-
-                                <strong>
-                                    ${activity.title}
-                                </strong>
-
-                                <span class="tag-pill ${activity.tagClass}">
-                                    ${activity.tag}
-                                </span>
-
-                            </div>
-
-                        </li>
-
-                    `).join("")}
-
-                </ul>
-            `;
-
-
-            dayContainer.appendChild(card);
+                dayContainer.appendChild(card);
+            }
         }
     }
 

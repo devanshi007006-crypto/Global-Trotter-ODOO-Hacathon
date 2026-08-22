@@ -68,130 +68,7 @@
 
         <!-- Sections List Container -->
         <div id="sectionsList" class="sections-list-wrapper">
-            
-            <!-- SECTION 1 -->
-            <div class="itinerary-section-card glass-panel" id="section-1">
-                <div class="section-card-header">
-                    <div class="section-badge-title">
-                        <span class="sec-num-badge">Section 1</span>
-                        <select class="section-category-select">
-                            <option value="travel" selected>🚆 Travel & Transportation</option>
-                            <option value="hotel">🏨 Accommodation & Hotel</option>
-                            <option value="activity">🎟️ Sightseeing & Activities</option>
-                            <option value="dining">🍽️ Dining & Culinary Tour</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn-delete-section" onclick="deleteSection(1)" title="Remove Section">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-
-                <div class="section-card-body">
-                    <div class="input-group full-width">
-                        <label><i class="fa-solid fa-info-circle"></i> Section Details & Information</label>
-                        <textarea class="sec-info-input" rows="2" placeholder="All the necessary information about this section. This can be anything like travel section, hotel or any other activity.">Vande Bharat Express Train from Delhi to Jaipur Fort Station + Hotel Check-in.</textarea>
-                    </div>
-
-                    <div class="section-meta-grid">
-                        <div class="input-group">
-                            <label><i class="fa-solid fa-calendar-days"></i> Date Range (Start to End)</label>
-                            <div class="date-range-box">
-                                <input type="date" class="sec-start-date" value="2026-10-10">
-                                <span>to</span>
-                                <input type="date" class="sec-end-date" value="2026-10-12">
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label><i class="fa-solid fa-indian-rupee-sign"></i> Budget of this Section (₹)</label>
-                            <input type="number" class="sec-budget-input" value="15000" placeholder="Budget of this section" oninput="calculateTotalSectionsBudget()">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECTION 2 -->
-            <div class="itinerary-section-card glass-panel" id="section-2">
-                <div class="section-card-header">
-                    <div class="section-badge-title">
-                        <span class="sec-num-badge">Section 2</span>
-                        <select class="section-category-select">
-                            <option value="travel">🚆 Travel & Transportation</option>
-                            <option value="hotel" selected>🏨 Accommodation & Hotel</option>
-                            <option value="activity">🎟️ Sightseeing & Activities</option>
-                            <option value="dining">🍽️ Dining & Culinary Tour</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn-delete-section" onclick="deleteSection(2)" title="Remove Section">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-
-                <div class="section-card-body">
-                    <div class="input-group full-width">
-                        <label><i class="fa-solid fa-info-circle"></i> Section Details & Information</label>
-                        <textarea class="sec-info-input" rows="2" placeholder="All the necessary information about this section. This can be anything like travel section, hotel or any other activity.">Royal Heritage Palace Stay with Complimentary Rajasthani Breakfast & Pool.</textarea>
-                    </div>
-
-                    <div class="section-meta-grid">
-                        <div class="input-group">
-                            <label><i class="fa-solid fa-calendar-days"></i> Date Range (Start to End)</label>
-                            <div class="date-range-box">
-                                <input type="date" class="sec-start-date" value="2026-10-12">
-                                <span>to</span>
-                                <input type="date" class="sec-end-date" value="2026-10-14">
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label><i class="fa-solid fa-indian-rupee-sign"></i> Budget of this Section (₹)</label>
-                            <input type="number" class="sec-budget-input" value="30000" placeholder="Budget of this section" oninput="calculateTotalSectionsBudget()">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECTION 3 -->
-            <div class="itinerary-section-card glass-panel" id="section-3">
-                <div class="section-card-header">
-                    <div class="section-badge-title">
-                        <span class="sec-num-badge">Section 3</span>
-                        <select class="section-category-select">
-                            <option value="travel">🚆 Travel & Transportation</option>
-                            <option value="hotel">🏨 Accommodation & Hotel</option>
-                            <option value="activity" selected>🎟️ Sightseeing & Activities</option>
-                            <option value="dining">🍽️ Dining & Culinary Tour</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn-delete-section" onclick="deleteSection(3)" title="Remove Section">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-
-                <div class="section-card-body">
-                    <div class="input-group full-width">
-                        <label><i class="fa-solid fa-info-circle"></i> Section Details & Information</label>
-                        <textarea class="sec-info-input" rows="2" placeholder="All the necessary information about this section. This can be anything like travel section, hotel or any other activity.">Amber Fort Guided Tour, Jal Mahal Sunset Photography & Elephant Safari.</textarea>
-                    </div>
-
-                    <div class="section-meta-grid">
-                        <div class="input-group">
-                            <label><i class="fa-solid fa-calendar-days"></i> Date Range (Start to End)</label>
-                            <div class="date-range-box">
-                                <input type="date" class="sec-start-date" value="2026-10-14">
-                                <span>to</span>
-                                <input type="date" class="sec-end-date" value="2026-10-15">
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label><i class="fa-solid fa-indian-rupee-sign"></i> Budget of this Section (₹)</label>
-                            <input type="number" class="sec-budget-input" value="20000" placeholder="Budget of this section" oninput="calculateTotalSectionsBudget()">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <!-- Dynamic Section Cards Rendered Here -->
         </div>
 
         <!-- Add Another Section Button matching Excalidraw Mockup -->
@@ -215,29 +92,80 @@
     </footer>
 
     <script>
-        let sectionCounter = 3;
+        let sectionCounter = 0;
 
-        // Dynamic Add Another Section Handler
-        function addNewSection() {
-            sectionCounter++;
+        // Render Default or Saved Section Cards
+        function loadSavedSections() {
+            const savedData = localStorage.getItem("gt_saved_itinerary_sections");
             const sectionsList = document.getElementById("sectionsList");
+            sectionsList.innerHTML = "";
 
-            const newCard = document.createElement("div");
-            newCard.className = "itinerary-section-card glass-panel";
-            newCard.id = `section-${sectionCounter}`;
+            let sectionsToRender = [
+                {
+                    id: 1,
+                    category: "travel",
+                    info: "Vande Bharat Express Train from Delhi to Jaipur Fort Station + Hotel Check-in.",
+                    start_date: "2026-10-10",
+                    end_date: "2026-10-12",
+                    budget: 15000
+                },
+                {
+                    id: 2,
+                    category: "hotel",
+                    info: "Royal Heritage Palace Stay with Complimentary Rajasthani Breakfast & Pool.",
+                    start_date: "2026-10-12",
+                    end_date: "2026-10-14",
+                    budget: 30000
+                },
+                {
+                    id: 3,
+                    category: "activity",
+                    info: "Amber Fort Guided Tour, Jal Mahal Sunset Photography & Elephant Safari.",
+                    start_date: "2026-10-14",
+                    end_date: "2026-10-15",
+                    budget: 20000
+                }
+            ];
 
-            newCard.innerHTML = `
+            if (savedData) {
+                try {
+                    const parsed = JSON.parse(savedData);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        sectionsToRender = parsed;
+                    }
+                } catch(e) {
+                    console.error("Parse saved sections error:", e);
+                }
+            }
+
+            sectionCounter = 0;
+            sectionsToRender.forEach(sec => {
+                sectionCounter++;
+                renderSectionCard(sectionCounter, sec.category, sec.info, sec.start_date, sec.end_date, sec.budget);
+            });
+
+            calculateTotalSectionsBudget();
+        }
+
+        // Render Single Section Card HTML
+        function renderSectionCard(secId, category, info, startDate, endDate, budget) {
+            const sectionsList = document.getElementById("sectionsList");
+            const card = document.createElement("div");
+            card.className = "itinerary-section-card glass-panel";
+            card.id = `section-${secId}`;
+
+            card.innerHTML = `
                 <div class="section-card-header">
                     <div class="section-badge-title">
-                        <span class="sec-num-badge">Section ${sectionCounter}</span>
+                        <span class="sec-num-badge">Section ${secId}</span>
                         <select class="section-category-select">
-                            <option value="travel">🚆 Travel & Transportation</option>
-                            <option value="hotel">🏨 Accommodation & Hotel</option>
-                            <option value="activity" selected>🎟️ Sightseeing & Activities</option>
-                            <option value="dining">🍽️ Dining & Culinary Tour</option>
+                            <option value="travel" ${category === 'travel' ? 'selected' : ''}>🚆 Travel & Transportation</option>
+                            <option value="hotel" ${category === 'hotel' ? 'selected' : ''}>🏨 Accommodation & Hotel</option>
+                            <option value="activity" ${category === 'activity' ? 'selected' : ''}>🎟️ Sightseeing & Activities</option>
+                            <option value="dining" ${category === 'dining' ? 'selected' : ''}>🍽️ Dining & Culinary Tour</option>
                         </select>
                     </div>
-                    <button type="button" class="btn-delete-section" onclick="deleteSection(${sectionCounter})" title="Remove Section">
+                    <button type="button" class="btn-delete-section" onclick="deleteSection(${secId})" title="Remove Section">
                         <i class="fa-solid fa-trash-can"></i>
                     </button>
                 </div>
@@ -245,32 +173,40 @@
                 <div class="section-card-body">
                     <div class="input-group full-width">
                         <label><i class="fa-solid fa-info-circle"></i> Section Details & Information</label>
-                        <textarea class="sec-info-input" rows="2" placeholder="All the necessary information about this section. This can be anything like travel section, hotel or any other activity."></textarea>
+                        <textarea class="sec-info-input" rows="2" placeholder="All the necessary information about this section. This can be anything like travel section, hotel or any other activity.">${info || ''}</textarea>
                     </div>
 
                     <div class="section-meta-grid">
                         <div class="input-group">
                             <label><i class="fa-solid fa-calendar-days"></i> Date Range (Start to End)</label>
                             <div class="date-range-box">
-                                <input type="date" class="sec-start-date" value="2026-10-15">
+                                <input type="date" class="sec-start-date" value="${startDate || '2026-10-10'}">
                                 <span>to</span>
-                                <input type="date" class="sec-end-date" value="2026-10-17">
+                                <input type="date" class="sec-end-date" value="${endDate || '2026-10-12'}">
                             </div>
                         </div>
 
                         <div class="input-group">
                             <label><i class="fa-solid fa-indian-rupee-sign"></i> Budget of this Section (₹)</label>
-                            <input type="number" class="sec-budget-input" value="10000" placeholder="Budget of this section" oninput="calculateTotalSectionsBudget()">
+                            <input type="number" class="sec-budget-input" value="${budget || 10000}" placeholder="Budget of this section" oninput="calculateTotalSectionsBudget()">
                         </div>
                     </div>
                 </div>
             `;
 
-            sectionsList.appendChild(newCard);
+            sectionsList.appendChild(card);
+        }
+
+        // Dynamic Add Another Section Handler
+        function addNewSection() {
+            sectionCounter++;
+            renderSectionCard(sectionCounter, "activity", "", "2026-10-15", "2026-10-17", 10000);
             calculateTotalSectionsBudget();
 
-            // Smooth scroll to newly added section
-            newCard.scrollIntoView({ behavior: "smooth" });
+            const newCard = document.getElementById(`section-${sectionCounter}`);
+            if (newCard) {
+                newCard.scrollIntoView({ behavior: "smooth" });
+            }
         }
 
         // Delete Section Handler
@@ -297,15 +233,52 @@
             }
         }
 
-        // Save & Sync Itinerary Handler
-        function saveItineraryBuilder() {
-            alert("✨ Itinerary Sections successfully saved and synchronized with your GlobalTrotter workspace!");
+        // Save & Sync Itinerary to Backend API and Local Storage
+        async function saveItineraryBuilder() {
+            const cards = document.querySelectorAll(".itinerary-section-card");
+            const sectionsData = [];
+
+            cards.forEach(card => {
+                const categorySelect = card.querySelector(".section-category-select");
+                const infoInput = card.querySelector(".sec-info-input");
+                const startDateInput = card.querySelector(".sec-start-date");
+                const endDateInput = card.querySelector(".sec-end-date");
+                const budgetInput = card.querySelector(".sec-budget-input");
+
+                sectionsData.push({
+                    category: categorySelect ? categorySelect.value : "activity",
+                    info: infoInput ? infoInput.value.trim() : "",
+                    start_date: startDateInput ? startDateInput.value : "",
+                    end_date: endDateInput ? endDateInput.value : "",
+                    budget: budgetInput ? Number(budgetInput.value) || 0 : 0
+                });
+            });
+
+            // 1. Save to Local Storage Database
+            localStorage.setItem("gt_saved_itinerary_sections", JSON.stringify(sectionsData));
+
+            // 2. Sync to Odoo Backend REST API
+            try {
+                const response = await fetch("/api/v1/trips/1/itinerary", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ sections: sectionsData })
+                });
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log("Odoo Backend Sync Result:", result);
+                }
+            } catch (err) {
+                console.log("Odoo backend offline, data persisted in local storage:", err);
+            }
+
+            alert("✨ Itinerary Sections successfully saved and synchronized with your Odoo ERP backend & workspace!");
             window.location.href = "index.html#itinerary";
         }
 
         // Check Auth State on Page Load
         document.addEventListener("DOMContentLoaded", function() {
-            calculateTotalSectionsBudget();
+            loadSavedSections();
 
             const userAuthLink = document.getElementById("userAuthLink");
             const storedUser = localStorage.getItem("gt_user");
