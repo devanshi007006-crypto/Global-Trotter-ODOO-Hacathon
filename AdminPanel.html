@@ -877,6 +877,37 @@
 
     </main>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const registeredUsers = JSON.parse(localStorage.getItem("gt_accounts") || "[]");
+            const createdTrips = JSON.parse(localStorage.getItem("gt_trips") || "[]");
+
+            const totalUsersEl = document.querySelector(".card-value");
+            if (totalUsersEl && registeredUsers.length > 0) {
+                totalUsersEl.textContent = (1248 + registeredUsers.length).toLocaleString();
+            }
+
+            const userTableBody = document.querySelector(".data-table tbody");
+            if (userTableBody && registeredUsers.length > 0) {
+                registeredUsers.forEach(u => {
+                    const row = document.createElement("tr");
+                    const initial = u.name ? u.name.charAt(0).toUpperCase() : "U";
+                    row.innerHTML = `
+                        <td>
+                            <div class="table-user">
+                                <div class="small-avatar">${initial}</div>
+                                <span>${u.name} (${u.email})</span>
+                            </div>
+                        </td>
+                        <td>${u.city || 'India'}</td>
+                        <td>${u.info || 'Traveler'}</td>
+                        <td><span class="status active">Active Registered</span></td>
+                    `;
+                    userTableBody.prepend(row);
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

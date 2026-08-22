@@ -3,83 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalTrotter | User Trip Listing</title>
+    <meta name="description" content="GlobalTrotter User Trip Listing - View ongoing, upcoming, and completed travel circuits.">
+    <title>GlobalTrotter | My Trips Listing</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+    <!-- Ambient Glow Orbs -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="ambient-glow-3"></div>
+
+    <!-- Navigation Header -->
     <header>
-        <div class="logo">
-            GLOBALTROTTER
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-compass fa-spin-pulse" style="--fa-animation-duration: 12s;"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-title">GlobalTrotter</span>
+                    <span class="brand-subtitle">MY TRIPS DASHBOARD</span>
+                </div>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home Dashboard</a>
+                <a href="new_trip.html" class="nav-link"><i class="fa-solid fa-plus-circle"></i> Create Trip</a>
+                <a href="trip_list.html" class="nav-link active"><i class="fa-solid fa-list-check"></i> My Trips</a>
+                <a href="itinerary_builder.html" class="nav-link"><i class="fa-solid fa-calendar-week"></i> Build Itinerary</a>
+                <a href="calendar.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i> Calendar</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn-auth-link" id="userAuthLink">
+                    <i class="fa-solid fa-circle-user"></i> Account
+                </a>
+            </div>
         </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="screen3.html">My Trips</a>
-            <a href="index.html#planner">Planner</a>
-        </nav>
     </header>
 
-    <section class="main-landing-section" id="trips">
-        <div class="landing-wrapper">
+    <main class="itinerary-builder-container">
+        
+        <div class="builder-title-header">
+            <div>
+                <h2>My Trips Directory</h2>
+                <p>Track ongoing journeys, upcoming planned circuits, and completed travel itineraries.</p>
+            </div>
+            
+            <a href="new_trip.html" class="btn-primary glow-button">
+                <i class="fa-solid fa-plus"></i> Plan a New Trip
+            </a>
+        </div>
 
-            <div class="landing-controls">
-                <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Search bar ......">
-                </div>
-
-                <button class="control-btn" type="button">
-                    <i class="fa-solid fa-layer-group"></i>
-                    Group by
-                </button>
-
-                <button class="control-btn" type="button">
-                    <i class="fa-solid fa-filter"></i>
-                    Filter
-                </button>
-
-                <button class="control-btn" type="button">
-                    <i class="fa-solid fa-arrow-down-a-z"></i>
-                    Sort by...
-                </button>
+        <div class="screen9-controls-bar glass-panel">
+            <div class="search-input-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="tripSearchInput" class="search-bar-input" placeholder="Search trips by destination or place......" oninput="filterTrips(this.value)">
             </div>
 
-            <div class="trip-category">
-                <h3 class="category-title">Ongoing</h3>
-                <div class="trip-overview-card glass-panel">
-                    <div class="overview-content">
-                        <h4>Short Overview of the Trip</h4>
+            <div class="controls-actions-group">
+                <button class="control-btn" type="button"><i class="fa-solid fa-layer-group"></i> Group by</button>
+                <button class="control-btn" type="button"><i class="fa-solid fa-filter"></i> Filter</button>
+                <button class="control-btn" type="button"><i class="fa-solid fa-arrow-down-a-z"></i> Sort by...</button>
+            </div>
+        </div>
+
+        <div id="tripsListContainer">
+            
+            <!-- Ongoing Trips Category -->
+            <div class="trip-category" style="margin-bottom: 2rem;">
+                <h3 class="category-title" style="color: var(--accent-gold); font-size: 1.3rem; margin-bottom: 1rem;"><i class="fa-solid fa-plane-departure"></i> Ongoing Trips</h3>
+                <div id="ongoingTripsGrid" class="sections-list-wrapper">
+                    <!-- Ongoing Card 1 -->
+                    <div class="itinerary-section-card glass-panel trip-card-item">
+                        <div class="section-card-header">
+                            <div class="section-badge-title">
+                                <span class="sec-num-badge" style="background: rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.4); color: #6ee7b7;">Active Now</span>
+                                <h4 style="font-size: 1.2rem; font-weight: 700;">Jaipur Royal Heritage & Fort Circuit</h4>
+                            </div>
+                            <span class="text-gold" style="font-weight: 800; font-size: 1.2rem;">₹50,000</span>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">5 Days • Delhi ➔ Jaipur ➔ Amer Fort • 3 Travelers</p>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="itinerary_view.html" class="control-btn"><i class="fa-solid fa-timeline"></i> View Itinerary</a>
+                            <a href="itinerary_builder.html" class="control-btn"><i class="fa-solid fa-pen-to-square"></i> Edit Sections</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="trip-category">
-                <h3 class="category-title">Up-coming</h3>
-                <div class="trip-overview-card glass-panel">
-                    <div class="overview-content">
-                        <h4>Short Overview of the Trip</h4>
-                    </div>
+            <!-- Upcoming Trips Category -->
+            <div class="trip-category" style="margin-bottom: 2rem;">
+                <h3 class="category-title" style="color: #60a5fa; font-size: 1.3rem; margin-bottom: 1rem;"><i class="fa-solid fa-calendar-plus"></i> Upcoming Trips</h3>
+                <div id="upcomingTripsGrid" class="sections-list-wrapper">
+                    <!-- Dynamic User Created Trips Inserted Here -->
                 </div>
             </div>
 
-            <div class="trip-category">
-                <h3 class="category-title">Completed</h3>
-                <div class="trip-overview-card glass-panel">
-                    <div class="overview-content">
-                        <h4>Short Overview of the Trip</h4>
-                    </div>
-                </div>
-                <div class="trip-overview-card glass-panel">
-                    <div class="overview-content">
-                        <h4>Short Overview of the Trip</h4>
+            <!-- Completed Trips Category -->
+            <div class="trip-category" style="margin-bottom: 2rem;">
+                <h3 class="category-title" style="color: var(--text-secondary); font-size: 1.3rem; margin-bottom: 1rem;"><i class="fa-solid fa-circle-check"></i> Completed Trips</h3>
+                <div id="completedTripsGrid" class="sections-list-wrapper">
+                    <div class="itinerary-section-card glass-panel trip-card-item">
+                        <div class="section-card-header">
+                            <div class="section-badge-title">
+                                <span class="sec-num-badge" style="background: rgba(255, 255, 255, 0.1); color: var(--text-secondary); border-color: rgba(255,255,255,0.2);">Completed</span>
+                                <h4 style="font-size: 1.2rem; font-weight: 700;">Goa Beach & Water Sports Vacation</h4>
+                            </div>
+                            <span style="font-weight: 800; color: var(--text-secondary);">₹35,000</span>
+                        </div>
+                        <p style="color: var(--text-secondary);">05 - 08 December 2025 • North Goa & Fort Aguada</p>
                     </div>
                 </div>
             </div>
 
         </div>
-    </section>
 
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 GlobeTrotter Team. Odoo ERP User Trip Listing Screen 4.</p>
+        </div>
+    </footer>
+
+    <script>
+        function loadTripsDatabase() {
+            const upcomingGrid = document.getElementById("upcomingTripsGrid");
+            const localTrips = JSON.parse(localStorage.getItem("gt_trips") || "[]");
+
+            if (localTrips.length === 0) {
+                upcomingGrid.innerHTML = `
+                    <div class="itinerary-section-card glass-panel trip-card-item">
+                        <div class="section-card-header">
+                            <div class="section-badge-title">
+                                <span class="sec-num-badge">Planned</span>
+                                <h4 style="font-size: 1.2rem; font-weight: 700;">Kerala Backwaters & Houseboat Cruise</h4>
+                            </div>
+                            <span class="text-gold" style="font-weight: 800; font-size: 1.2rem;">₹45,000</span>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">15 - 20 November 2026 • Kochi ➔ Alleppey ➔ Munnar</p>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="itinerary_builder.html" class="control-btn"><i class="fa-solid fa-sliders"></i> Plan Details</a>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            upcomingGrid.innerHTML = "";
+            localTrips.forEach(trip => {
+                const card = document.createElement("div");
+                card.className = "itinerary-section-card glass-panel trip-card-item";
+                card.innerHTML = `
+                    <div class="section-card-header">
+                        <div class="section-badge-title">
+                            <span class="sec-num-badge" style="background: rgba(96, 165, 250, 0.2); border-color: rgba(96, 165, 250, 0.4); color: #93c5fd;">${trip.status || 'Planned'}</span>
+                            <h4 style="font-size: 1.2rem; font-weight: 700;">Trip to ${trip.destination}</h4>
+                        </div>
+                        <span class="text-gold" style="font-weight: 800; font-size: 1.2rem;">₹${Number(trip.budget || 50000).toLocaleString("en-IN")}</span>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Dates: ${trip.start_date || 'TBD'} to ${trip.end_date || 'TBD'}</p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="itinerary_view.html" class="control-btn"><i class="fa-solid fa-timeline"></i> View Itinerary</a>
+                        <a href="itinerary_builder.html" class="control-btn"><i class="fa-solid fa-pen-to-square"></i> Edit Sections</a>
+                    </div>
+                `;
+                upcomingGrid.appendChild(card);
+            });
+        }
+
+        function filterTrips(query) {
+            const q = query.toLowerCase().trim();
+            const cards = document.querySelectorAll(".trip-card-item");
+            cards.forEach(card => {
+                if (card.textContent.toLowerCase().includes(q)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadTripsDatabase();
+
+            const userAuthLink = document.getElementById("userAuthLink");
+            const storedUser = localStorage.getItem("gt_user");
+            if (storedUser && userAuthLink) {
+                try {
+                    const user = JSON.parse(storedUser);
+                    if (user && user.isLoggedIn) {
+                        userAuthLink.innerHTML = `<i class="fa-solid fa-circle-user"></i> Hi, ${user.name.split(' ')[0]}`;
+                    }
+                } catch(e){}
+            }
+        });
+    </script>
 </body>
 </html>
