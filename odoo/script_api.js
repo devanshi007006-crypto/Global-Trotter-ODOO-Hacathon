@@ -145,3 +145,20 @@ function displayItinerary(itinerary) {
         `;
         return;
     }
+    
+itinerary.forEach(day => {
+
+        const card = document.createElement("div");
+
+        card.className = "day-card glass-panel";
+
+
+        const header =
+        document.createElement("div");
+        header.className = "day-header";
+
+
+    const badge =
+    document.createElement("span");
+    badge.className = "day-badge";
+    badge.textContent = `Day ${day.day}`;
