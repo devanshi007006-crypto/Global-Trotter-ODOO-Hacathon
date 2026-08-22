@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GlobalTrotter Community Tab Screen (Screen 10) - Connect with fellow travelers, share circuit recommendations, upvote tips, and post discussions.">
+    <title>GlobalTrotter | Community Tab Screen (Screen 10)</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ambient Glowing Orbs -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="ambient-glow-3"></div>
+
+    <!-- Header Navigation Bar -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-compass fa-spin-pulse" style="--fa-animation-duration: 12s;"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-title">GlobalTrotter</span>
+                    <span class="brand-subtitle">COMMUNITY TAB HUB</span>
+                </div>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home Dashboard</a>
+                <a href="search.html" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Search Places</a>
+                <a href="trip_list.html" class="nav-link"><i class="fa-solid fa-list-check"></i> My Trips</a>
+                <a href="community.html" class="nav-link active"><i class="fa-solid fa-users"></i> Community Tab</a>
+                <a href="itinerary_builder.html" class="nav-link"><i class="fa-solid fa-calendar-week"></i> Build Itinerary</a>
+                <a href="calendar.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i> Calendar</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn-auth-link" id="userAuthLink">
+                    <i class="fa-solid fa-circle-user"></i> Account
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Community Container matching Screen 10 Excalidraw Mockup -->
+    <main class="itinerary-view-container">
+
+        <!-- Controls Toolbar Bar matching Screen 10 mockup -->
+        <section class="screen9-controls-bar glass-panel">
+            <div class="search-input-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="communitySearchInput" class="search-bar-input" placeholder="Search bar...... (e.g. Jaipur, Kerala, Budget, Homestay)" oninput="filterCommunityFeed(this.value)">
+            </div>
+
+            <div class="controls-actions-group">
+                <select class="control-btn-select" id="groupCommunitySelect" onchange="applyCommunityFilter()">
+                    <option value="all">Group by: All Posts ▾</option>
+                    <option value="itinerary">Group by: Itineraries ▾</option>
+                    <option value="tips">Group by: Travel Tips ▾</option>
+                    <option value="budget">Group by: Budget Advice ▾</option>
+                </select>
+
+                <button class="control-btn" onclick="toggleCommunityFilter()">
+                    <i class="fa-solid fa-filter"></i> Filter
+                </button>
+
+                <select class="control-btn-select" id="sortCommunitySelect" onchange="applyCommunityFilter()">
+                    <option value="recent">Sort by: Most Recent ▾</option>
+                    <option value="likes">Sort by: Top Upvoted ▾</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Main Title Header matching Screen 10 Excalidraw -->
+        <div class="screen9-header-title">
+            <h2>Community tab</h2>
+            <p class="subtitle">Connect, ask questions, share itineraries, and exchange authentic travel tips with GlobalTrotters worldwide.</p>
+        </div>
+
+        <!-- New Post Input Box -->
+        <div class="community-new-post-card glass-panel" style="margin-bottom: 2.5rem; padding: 1.5rem 2rem;">
+            <div style="display: flex; gap: 15px; align-items: flex-start;">
+                <div class="photo-avatar" style="width: 48px; height: 48px; font-size: 1.2rem; flex-shrink: 0; background: rgba(245, 158, 11, 0.2); border: 1px solid var(--accent-gold); color: var(--accent-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div style="flex: 1;">
+                    <textarea id="newPostContent" rows="3" class="sec-info-input" placeholder="Share a travel story, ask for circuit recommendations, or post your itinerary budget..."></textarea>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                        <div style="display: flex; gap: 10px;">
+                            <span class="tag-pill tag-purple" style="cursor: pointer;"><i class="fa-solid fa-image"></i> Photo</span>
+                            <span class="tag-pill tag-blue" style="cursor: pointer;"><i class="fa-solid fa-map-pin"></i> Location Tag</span>
+                        </div>
+                        <button type="button" class="btn-primary glow-button" onclick="createNewCommunityPost()">
+                            <i class="fa-solid fa-paper-plane"></i> Post to Community
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community Feed List with Circle Avatars matching Screen 10 Excalidraw -->
+        <div class="day-timeline-wrapper" id="communityFeedList">
+
+            <!-- POST 1 -->
+            <div class="community-post-item" style="display: flex; gap: 20px; align-items: flex-start;">
+                <div class="community-circle-avatar" style="width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fff; font-weight: 800; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);">
+                    D
+                </div>
+                <div class="itinerary-section-card glass-panel" style="flex: 1; padding: 1.75rem 2rem;">
+                    <div class="section-card-header" style="margin-bottom: 1rem; padding-bottom: 0.75rem;">
+                        <div class="section-badge-title">
+                            <h4 style="font-size: 1.15rem; font-weight: 800;">Devanshi Sharma <i class="fa-solid fa-circle-check text-emerald" style="font-size: 0.9rem;"></i></h4>
+                            <span class="tag-pill tag-purple">#JaipurForts</span>
+                        </div>
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">2 hours ago</span>
+                    </div>
+                    <p style="color: var(--text-primary); font-size: 1rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                        ✨ <strong>Pro-tip for Amer Fort, Jaipur!</strong> Make sure to arrive before 09:30 AM to beat the crowd and get clear morning sunlight for Jal Mahal sunset photography. Combined entry pass saves ₹400 across all 5 heritage monuments!
+                    </p>
+                    <div style="display: flex; gap: 15px; align-items: center; border-top: 1px solid var(--border-card); padding-top: 1rem;">
+                        <button type="button" class="control-btn" onclick="likePost(this, 142)" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.3); color: var(--accent-gold);">
+                            <i class="fa-solid fa-thumbs-up"></i> <span class="like-count">142</span> Upvotes
+                        </button>
+                        <button type="button" class="control-btn" onclick="focusCommentInput(1)">
+                            <i class="fa-solid fa-comment"></i> 18 Comments
+                        </button>
+                        <button type="button" class="control-btn">
+                            <i class="fa-solid fa-share-nodes"></i> Share Circuit
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 2 -->
+            <div class="community-post-item" style="display: flex; gap: 20px; align-items: flex-start;">
+                <div class="community-circle-avatar" style="width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fff; font-weight: 800; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">
+                    M
+                </div>
+                <div class="itinerary-section-card glass-panel" style="flex: 1; padding: 1.75rem 2rem;">
+                    <div class="section-card-header" style="margin-bottom: 1rem; padding-bottom: 0.75rem;">
+                        <div class="section-badge-title">
+                            <h4 style="font-size: 1.15rem; font-weight: 800;">Mishva Patel <i class="fa-solid fa-circle-check text-emerald" style="font-size: 0.9rem;"></i></h4>
+                            <span class="tag-pill tag-cyan">#KeralaBackwaters</span>
+                        </div>
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">5 hours ago</span>
+                    </div>
+                    <p style="color: var(--text-primary); font-size: 1rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                        🛶 Just completed a 3-day houseboat itinerary in Alleppey! Total budget per person came out to ₹12,500 including fresh seafood dinners. Ask me anything about room bookings or boat captain contact details!
+                    </p>
+                    <div style="display: flex; gap: 15px; align-items: center; border-top: 1px solid var(--border-card); padding-top: 1rem;">
+                        <button type="button" class="control-btn" onclick="likePost(this, 98)">
+                            <i class="fa-solid fa-thumbs-up"></i> <span class="like-count">98</span> Upvotes
+                        </button>
+                        <button type="button" class="control-btn">
+                            <i class="fa-solid fa-comment"></i> 24 Comments
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 3 -->
+            <div class="community-post-item" style="display: flex; gap: 20px; align-items: flex-start;">
+                <div class="community-circle-avatar" style="width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #047857); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fff; font-weight: 800; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);">
+                    P
+                </div>
+                <div class="itinerary-section-card glass-panel" style="flex: 1; padding: 1.75rem 2rem;">
+                    <div class="section-card-header" style="margin-bottom: 1rem; padding-bottom: 0.75rem;">
+                        <div class="section-badge-title">
+                            <h4 style="font-size: 1.15rem; font-weight: 800;">Prachi Kanwar</h4>
+                            <span class="tag-pill tag-amber">#GoaSunsets</span>
+                        </div>
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">Yesterday</span>
+                    </div>
+                    <p style="color: var(--text-primary); font-size: 1rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                        🌊 Looking for 2 fellow travelers to split taxi fare from Madgaon Station to Palolem Beach on October 18th! DM or comment below if interested in joining our group budget split.
+                    </p>
+                    <div style="display: flex; gap: 15px; align-items: center; border-top: 1px solid var(--border-card); padding-top: 1rem;">
+                        <button type="button" class="control-btn" onclick="likePost(this, 67)">
+                            <i class="fa-solid fa-thumbs-up"></i> <span class="like-count">67</span> Upvotes
+                        </button>
+                        <button type="button" class="control-btn">
+                            <i class="fa-solid fa-comment"></i> 11 Comments
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 GlobeTrotter Team. Odoo ERP Community Tab Screen 10.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Upvote Like Button Toggle
+        function likePost(btn, initialLikes) {
+            const countSpan = btn.querySelector(".like-count");
+            let current = parseInt(countSpan.textContent) || initialLikes;
+            if (btn.classList.contains("liked")) {
+                btn.classList.remove("liked");
+                btn.style.background = "";
+                btn.style.color = "";
+                countSpan.textContent = current - 1;
+            } else {
+                btn.classList.add("liked");
+                btn.style.background = "rgba(245, 158, 11, 0.2)";
+                btn.style.color = "var(--accent-gold)";
+                countSpan.textContent = current + 1;
+            }
+        }
+
+        // Create New Community Post
+        function createNewCommunityPost() {
+            const textarea = document.getElementById("newPostContent");
+            const text = textarea.value.trim();
+            if (!text) {
+                alert("Please write something to share with the community!");
+                return;
+            }
+
+            const storedUser = JSON.parse(localStorage.getItem("gt_user") || "{}");
+            const userName = storedUser.name || "Traveler";
+            const initial = userName.charAt(0).toUpperCase();
+
+            const feed = document.getElementById("communityFeedList");
+            const postItem = document.createElement("div");
+            postItem.className = "community-post-item";
+            postItem.style.cssText = "display: flex; gap: 20px; align-items: flex-start;";
+
+            postItem.innerHTML = `
+                <div class="community-circle-avatar" style="width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fff; font-weight: 800; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.2);">
+                    ${initial}
+                </div>
+                <div class="itinerary-section-card glass-panel" style="flex: 1; padding: 1.75rem 2rem;">
+                    <div class="section-card-header" style="margin-bottom: 1rem; padding-bottom: 0.75rem;">
+                        <div class="section-badge-title">
+                            <h4 style="font-size: 1.15rem; font-weight: 800;">${userName} <i class="fa-solid fa-circle-check text-emerald" style="font-size: 0.9rem;"></i></h4>
+                            <span class="tag-pill tag-purple">#GlobalTrotter</span>
+                        </div>
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">Just now</span>
+                    </div>
+                    <p style="color: var(--text-primary); font-size: 1rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                        ${text}
+                    </p>
+                    <div style="display: flex; gap: 15px; align-items: center; border-top: 1px solid var(--border-card); padding-top: 1rem;">
+                        <button type="button" class="control-btn" onclick="likePost(this, 1)">
+                            <i class="fa-solid fa-thumbs-up"></i> <span class="like-count">1</span> Upvote
+                        </button>
+                        <button type="button" class="control-btn">
+                            <i class="fa-solid fa-comment"></i> 0 Comments
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            feed.prepend(postItem);
+            textarea.value = "";
+            alert("🎉 Your post has been published to the Community Tab!");
+        }
+
+        // Live Search Filter for Community Posts
+        function filterCommunityFeed(query) {
+            const q = query.toLowerCase().trim();
+            const posts = document.querySelectorAll(".community-post-item");
+            posts.forEach(post => {
+                if (post.textContent.toLowerCase().includes(q)) {
+                    post.style.display = "flex";
+                } else {
+                    post.style.display = "none";
+                }
+            });
+        }
+
+        function applyCommunityFilter() {
+            console.log("Community filter applied.");
+        }
+
+        function toggleCommunityFilter() {
+            alert("🔍 Filter by Tag: #JaipurForts, #KeralaBackwaters, #GoaSunsets, #BudgetAdvice");
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const userAuthLink = document.getElementById("userAuthLink");
+            const storedUser = localStorage.getItem("gt_user");
+            if (storedUser && userAuthLink) {
+                try {
+                    const user = JSON.parse(storedUser);
+                    if (user && user.isLoggedIn) {
+                        userAuthLink.innerHTML = `<i class="fa-solid fa-circle-user"></i> Hi, ${user.name.split(' ')[0]}`;
+                    }
+                } catch(e){}
+            }
+        });
+    </script>
+</body>
+</html>
