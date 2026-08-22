@@ -777,18 +777,41 @@ function generateTrip() {
     }
 }
 
-
 /* =========================================
-   PAGE LOAD
+   PAGE LOAD & AUTH CHECK
    ========================================= */
 
+/**
+ * Check User Auth state from localStorage on page load
+ */
+function checkUserAuth() {
+    const userAuthLink = document.getElementById("userAuthLink");
+    const storedUser = localStorage.getItem("gt_user");
+
+    if (storedUser && userAuthLink) {
+        try {
+            const user = JSON.parse(storedUser);
+            if (user && user.isLoggedIn) {
+                userAuthLink.innerHTML = `<i class="fa-solid fa-circle-user"></i> Hi, ${user.name.split(' ')[0]}`;
+                userAuthLink.href = "#";
+                userAuthLink.onclick = function(e) {
+                    e.preventDefault();
+                    if (confirm(`Logged in as ${user.name} (${user.email}). Do you want to log out?`)) {
+                        localStorage.removeItem("gt_user");
+                        window.location.reload();
+                    }
+                };
+            }
+        } catch (e) {
+            console.error("Auth state parse error:", e);
+        }
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-
-    /*
-     * Generate initial dashboard
-     * using default HTML values.
-     */
-
-    generateTrip();
-
+    if (typeof generateTrip === "function") {
+        generateTrip();
+    }
+    checkUserAuth();
 });
+

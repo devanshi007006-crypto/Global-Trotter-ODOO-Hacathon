@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GlobeTrotter Authentication Gateway - Login and Register for your personalized travel planning workspace.">
+    <title>GlobeTrotter | Login & Registration</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-body">
+
+    <!-- Ambient Glowing Orbs -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="ambient-glow-3"></div>
+
+    <!-- Header Navigation Bar -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-compass fa-spin-pulse" style="--fa-animation-duration: 12s;"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-title">GlobeTrotter</span>
+                    <span class="brand-subtitle">TRAVEL PLANNING PLATFORM</span>
+                </div>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home Dashboard</a>
+                <a href="index.html#destinations" class="nav-link"><i class="fa-solid fa-map-location-dot"></i> Explore Cities</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Auth Wrapper -->
+    <main class="auth-container">
+        
+        <!-- Auth Navigation Tabs -->
+        <div class="auth-tabs">
+            <button class="auth-tab-btn active" id="tabLogin" onclick="switchAuthTab('login')">
+                <i class="fa-solid fa-right-to-bracket"></i> Login (Screen 1)
+            </button>
+            <button class="auth-tab-btn" id="tabRegister" onclick="switchAuthTab('register')">
+                <i class="fa-solid fa-user-plus"></i> Registration (Screen 2)
+            </button>
+        </div>
+
+        <!-- ==========================================================================
+             SCREEN 1: LOGIN SCREEN
+             ========================================================================== -->
+        <div class="auth-card glass-panel" id="screenLogin">
+            <div class="auth-header">
+                <!-- User Photo Avatar Circle -->
+                <div class="photo-avatar-wrapper">
+                    <div class="photo-avatar" id="loginAvatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+                <h2>Login Screen <span class="screen-tag">(Screen 1)</span></h2>
+                <p>Enter your credentials to access your personal travel workspace</p>
+            </div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label for="loginUsername"><i class="fa-solid fa-user"></i> Username or Email</label>
+                    <input type="text" id="loginUsername" placeholder="e.g. devanshi@globetrotter.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="loginPassword"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••••••" required>
+                </div>
+
+                <div class="auth-meta-row">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe"> Remember Me
+                    </label>
+                    <a href="#" class="forgot-pass-link" onclick="alert('Password reset link sent to your registered email.')">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="auth-btn glow-button">
+                    <i class="fa-solid fa-right-to-bracket"></i> Login Button
+                </button>
+
+                <div class="auth-footer-text">
+                    Don't have an account? <a href="#" onclick="switchAuthTab('register')">Register Now</a>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- ==========================================================================
+             SCREEN 2: REGISTRATION SCREEN
+             ========================================================================== -->
+        <div class="auth-card glass-panel hidden" id="screenRegister">
+            <div class="auth-header">
+                <!-- User Photo Avatar Upload Circle -->
+                <div class="photo-avatar-wrapper">
+                    <div class="photo-avatar" id="regAvatar">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <span class="photo-label">Photo</span>
+                </div>
+                <h2>Registration Screen <span class="screen-tag">(Screen 2)</span></h2>
+                <p>Create a new account to design multi-city itineraries and manage trip budgets</p>
+            </div>
+
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-row-2">
+                    <div class="input-group">
+                        <label for="regFirstName"><i class="fa-solid fa-signature"></i> First Name</label>
+                        <input type="text" id="regFirstName" placeholder="First Name" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regLastName"><i class="fa-solid fa-signature"></i> Last Name</label>
+                        <input type="text" id="regLastName" placeholder="Last Name" required>
+                    </div>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="input-group">
+                        <label for="regEmail"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                        <input type="email" id="regEmail" placeholder="Email Address" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regPhone"><i class="fa-solid fa-phone"></i> Phone Number</label>
+                        <input type="tel" id="regPhone" placeholder="Phone Number">
+                    </div>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="input-group">
+                        <label for="regCity"><i class="fa-solid fa-city"></i> City</label>
+                        <input type="text" id="regCity" placeholder="City">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regCountry"><i class="fa-solid fa-globe"></i> Country</label>
+                        <input type="text" id="regCountry" placeholder="Country">
+                    </div>
+                </div>
+
+                <div class="input-group full-width">
+                    <label for="regInfo"><i class="fa-solid fa-info-circle"></i> Additional Information ....</label>
+                    <textarea id="regInfo" rows="3" placeholder="Additional Information .... (Travel preferences, bio, dietary interests)"></textarea>
+                </div>
+
+                <button type="submit" class="auth-btn glow-button">
+                    <i class="fa-solid fa-user-check"></i> Register Users
+                </button>
+
+                <div class="auth-footer-text">
+                    Already have an account? <a href="#" onclick="switchAuthTab('login')">Log In</a>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 GlobeTrotter Team. Odoo ERP Travel Planning Platform.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Auth Tab Switching Logic (Screen 1 vs Screen 2)
+        function switchAuthTab(tab) {
+            const screenLogin = document.getElementById("screenLogin");
+            const screenRegister = document.getElementById("screenRegister");
+            const tabLogin = document.getElementById("tabLogin");
+            const tabRegister = document.getElementById("tabRegister");
+
+            if (tab === 'login') {
+                screenLogin.classList.remove("hidden");
+                screenRegister.classList.add("hidden");
+                tabLogin.classList.add("active");
+                tabRegister.classList.remove("active");
+            } else {
+                screenLogin.classList.add("hidden");
+                screenRegister.classList.remove("hidden");
+                tabLogin.classList.remove("active");
+                tabRegister.classList.add("active");
+            }
+        }
+
+        // Login Handler (Screen 1)
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById("loginUsername").value.trim();
+
+            const user = {
+                name: username.split('@')[0] || "Explorer",
+                email: username,
+                isLoggedIn: true
+            };
+
+            localStorage.setItem("gt_user", JSON.stringify(user));
+            alert("✨ Login Successful! Welcome back, " + user.name);
+            window.location.href = "index.html";
+        }
+
+        // Register Handler (Screen 2)
+        function handleRegister(e) {
+            e.preventDefault();
+            const firstName = document.getElementById("regFirstName").value.trim();
+            const lastName = document.getElementById("regLastName").value.trim();
+            const email = document.getElementById("regEmail").value.trim();
+            const city = document.getElementById("regCity").value.trim();
+            const country = document.getElementById("regCountry").value.trim();
+
+            const user = {
+                name: firstName + " " + lastName,
+                firstName: firstName,
+                email: email,
+                city: city,
+                country: country,
+                isLoggedIn: true
+            };
+
+            localStorage.setItem("gt_user", JSON.stringify(user));
+            alert("🎉 Registration Successful! Account created for " + user.name);
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

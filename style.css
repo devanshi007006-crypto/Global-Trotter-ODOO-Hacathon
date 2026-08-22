@@ -637,3 +637,198 @@ footer p {
         padding: 13px 25px;
     }
 }
+
+/* ==========================================================================
+   Authentication Screens (Screen 1 Login & Screen 2 Registration)
+   ========================================================================== */
+
+.btn-auth-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-card);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-auth-link:hover {
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    background: rgba(245, 158, 11, 0.12);
+}
+
+.auth-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-container {
+    max-width: 580px;
+    margin: 3rem auto 5rem;
+    width: 90%;
+    flex: 1;
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    background: rgba(18, 24, 40, 0.6);
+    padding: 6px;
+    border-radius: 18px;
+    border: 1px solid var(--border-card);
+}
+
+.auth-tab-btn {
+    flex: 1;
+    padding: 0.85rem;
+    border-radius: 14px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.auth-tab-btn.active {
+    background: var(--gradient-hero);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+}
+
+.auth-card {
+    padding: 2.75rem 2.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
+}
+
+.auth-card.hidden {
+    display: none;
+}
+
+.photo-avatar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.photo-avatar {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    background: rgba(245, 158, 11, 0.15);
+    border: 2px dashed var(--accent-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: var(--accent-gold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+}
+
+.photo-avatar:hover {
+    transform: scale(1.05);
+    border-style: solid;
+    background: rgba(245, 158, 11, 0.25);
+}
+
+.photo-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 700;
+    margin-top: 6px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-header h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 0.35rem;
+}
+
+.screen-tag {
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    font-weight: 700;
+}
+
+.auth-header p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.auth-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 1.75rem;
+    font-size: 0.85rem;
+}
+
+.remember-me {
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.forgot-pass-link {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 1.1rem;
+    border-radius: 16px;
+    font-size: 1.05rem;
+    justify-content: center;
+}
+
+.auth-footer-text {
+    text-align: center;
+    margin-top: 1.75rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.auth-footer-text a {
+    color: var(--accent-gold);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    .form-row-2 { grid-template-columns: 1fr; }
+    .auth-card { padding: 2rem 1.5rem; }
+}
