@@ -1823,3 +1823,45 @@ footer p {
     }
 
 }
+
+/* =========================================
+   FORCE LIGHT THEME - SCREEN 9 FIX
+========================================= */
+
+body {
+    background: #f8f5ee !important;
+    color: #263331 !important;
+}
+
+.itinerary-view-container {
+    background: #f8f5ee !important;
+}
+
+.screen9-controls-bar,
+.columns-header-row,
+.activity-row-card,
+.screen9-summary-card {
+    background: #ffffff !important;
+    color: #263331 !important;
+}
+
+.search-bar-input,
+.control-btn,
+.control-btn-select,
+.section-category-select {
+    background: #ffffff !important;
+    color: #263331 !important;
+    border: 1px solid #ddd8ca !important;
+}
+
+.search-icon,
+.physical-activity-box p,
+.expense-tag {
+    color: #68736f !important;
+}
+
+.screen9-header-title h2,
+.physical-activity-box h4,
+.col-header-title {
+    color: #173b38 !important;
+}
