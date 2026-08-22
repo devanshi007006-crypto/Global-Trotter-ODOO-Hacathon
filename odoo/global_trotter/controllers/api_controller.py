@@ -9,8 +9,8 @@ class GlobalTrotterApiController(http.Controller):
         headers = [
             ('Content-Type', 'application/json'),
             ('Access-Control-Allow-Origin', '*'),
-            ('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'),
-            ('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+            ('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'),
+            ('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
         ]
         return Response(json.dumps(data), status=status, headers=headers)
 
@@ -29,8 +29,11 @@ class GlobalTrotterApiController(http.Controller):
                     'destination': t.destination,
                     'start_date': str(t.start_date),
                     'end_date': str(t.end_date),
+                    'days': t.duration_days,
                     'duration_days': t.duration_days,
+                    'travelers': t.num_travelers,
                     'num_travelers': t.num_travelers,
+                    'budget': t.budget_total,
                     'budget_total': t.budget_total,
                     'budget_spent': t.budget_spent,
                     'budget_remaining': t.budget_remaining,
@@ -38,27 +41,55 @@ class GlobalTrotterApiController(http.Controller):
                     'travel_style': t.travel_style,
                     'status': t.status,
                 })
-            return self._json_response({'status': 'success', 'data': res})
+            return self._json_response({'status': 'success', 'data': res, 'trips': res})
 
         if request.httprequest.method == 'POST':
             try:
                 body = json.loads(request.httprequest.data.decode('utf-8'))
+                destination = body.get('destination', 'Destination')
+                days = int(body.get('days', body.get('duration_days', 5)))
+                budget = float(body.get('budget', body.get('budget_total', 50000.0)))
+                travelers = int(body.get('travelers', body.get('num_travelers', 1)))
+                interest = body.get('interest', body.get('interests', 'Balanced Exploration'))
+
+                # Map travel style selection safely
+                style_lower = interest.lower()
+                travel_style = 'balanced'
+                if 'luxury' in style_lower or 'royalty' in style_lower:
+                    travel_style = 'luxury'
+                elif 'budget' in style_lower or 'backpacker' in style_lower:
+                    travel_style = 'budget'
+
                 trip = request.env['gt.trip'].sudo().create({
-                    'name': body.get('name', 'New Trip'),
-                    'destination': body.get('destination', 'Destination'),
-                    'start_date': body.get('start_date'),
-                    'end_date': body.get('end_date'),
-                    'budget_total': float(body.get('budget_total', 50000.0)),
-                    'num_travelers': int(body.get('num_travelers', 1)),
-                    'travel_style': body.get('travel_style', 'balanced'),
-                    'interests': body.get('interests', ''),
+                    'name': body.get('name', f"{destination} Trip"),
+                    'destination': destination,
+                    'start_date': body.get('start_date', fields.Date.today()),
+                    'end_date': body.get('end_date', fields.Date.today() + timedelta(days=days-1)),
+                    'budget_total': budget,
+                    'num_travelers': travelers,
+                    'travel_style': travel_style,
+                    'interests': interest,
                 })
                 trip.sudo().action_generate_days()
-                return self._json_response({'status': 'success', 'trip_id': trip.id, 'message': 'Trip created successfully'})
+
+                return self._json_response({
+                    'status': 'success',
+                    'trip_id': trip.id,
+                    'trip': {
+                        'id': trip.id,
+                        'destination': trip.destination,
+                        'days': trip.duration_days,
+                        'budget': trip.budget_total,
+                        'travelers': trip.num_travelers,
+                        'travel_style': trip.travel_style,
+                        'interests': trip.interests
+                    },
+                    'message': 'Trip created successfully in Odoo ERP backend'
+                })
             except Exception as e:
                 return self._json_response({'status': 'error', 'message': str(e)}, status=400)
 
-    @http.route('/api/v1/trips/<int:trip_id>', type='http', auth='none', methods=['GET', 'OPTIONS'], csrf=False)
+    @http.route('/api/v1/trips/<int:trip_id>', type='http', auth='none', methods=['GET', 'PUT', 'OPTIONS'], csrf=False)
     def get_trip_detail(self, trip_id, **kwargs):
         if request.httprequest.method == 'OPTIONS':
             return self._json_response({'status': 'ok'})
@@ -66,6 +97,18 @@ class GlobalTrotterApiController(http.Controller):
         trip = request.env['gt.trip'].sudo().browse(trip_id)
         if not trip.exists():
             return self._json_response({'status': 'error', 'message': 'Trip not found'}, status=404)
+
+        if request.httprequest.method == 'PUT':
+            try:
+                body = json.loads(request.httprequest.data.decode('utf-8'))
+                update_vals = {}
+                if 'destination' in body: update_vals['destination'] = body['destination']
+                if 'budget' in body: update_vals['budget_total'] = float(body['budget'])
+                if 'travelers' in body: update_vals['num_travelers'] = int(body['travelers'])
+                if update_vals:
+                    trip.sudo().write(update_vals)
+            except Exception as e:
+                return self._json_response({'status': 'error', 'message': str(e)}, status=400)
 
         days_data = []
         for day in trip.day_ids:
@@ -109,6 +152,21 @@ class GlobalTrotterApiController(http.Controller):
 
         return self._json_response({
             'status': 'success',
+            'trip': {
+                'id': trip.id,
+                'destination': trip.destination,
+                'days': trip.duration_days,
+                'duration_days': trip.duration_days,
+                'budget': trip.budget_total,
+                'budget_total': trip.budget_total,
+                'budget_spent': trip.budget_spent,
+                'budget_remaining': trip.budget_remaining,
+                'travelers': trip.num_travelers,
+                'num_travelers': trip.num_travelers,
+                'travel_style': trip.travel_style,
+                'interests': trip.interests,
+                'status': trip.status,
+            },
             'data': {
                 'id': trip.id,
                 'name': trip.name,
@@ -133,6 +191,36 @@ class GlobalTrotterApiController(http.Controller):
             }
         })
 
+    @http.route('/api/v1/trips/<int:trip_id>/itinerary', type='http', auth='none', methods=['GET', 'OPTIONS'], csrf=False)
+    def get_trip_itinerary(self, trip_id, **kwargs):
+        if request.httprequest.method == 'OPTIONS':
+            return self._json_response({'status': 'ok'})
+
+        trip = request.env['gt.trip'].sudo().browse(trip_id)
+        if not trip.exists():
+            return self._json_response({'status': 'error', 'message': 'Trip not found'}, status=404)
+
+        days_data = []
+        for day in trip.day_ids:
+            activities = []
+            for act in day.activity_ids:
+                activities.append({
+                    'id': act.id,
+                    'name': act.name,
+                    'category': act.category,
+                    'start_time': act.start_time,
+                    'cost': act.cost,
+                    'rating': act.rating,
+                    'is_indoor': act.is_indoor,
+                })
+            days_data.append({
+                'day': day.day_number,
+                'title': day.title,
+                'activities': activities
+            })
+
+        return self._json_response({'status': 'success', 'itinerary': days_data})
+
     @http.route('/api/v1/trips/<int:trip_id>/optimize', type='http', auth='none', methods=['POST', 'OPTIONS'], csrf=False)
     def optimize_trip(self, trip_id, **kwargs):
         if request.httprequest.method == 'OPTIONS':
@@ -152,44 +240,5 @@ class GlobalTrotterApiController(http.Controller):
                 'new_budget_spent': trip.budget_spent,
                 'new_budget_remaining': trip.budget_remaining
             })
-        except Exception as e:
-            return self._json_response({'status': 'error', 'message': str(e)}, status=400)
-
-    @http.route('/api/v1/trips/<int:trip_id>/ai_sync', type='http', auth='none', methods=['POST', 'OPTIONS'], csrf=False)
-    def sync_ai_itinerary(self, trip_id, **kwargs):
-        """ Bulk load AI-generated itinerary into Odoo itinerary & activity models """
-        if request.httprequest.method == 'OPTIONS':
-            return self._json_response({'status': 'ok'})
-
-        trip = request.env['gt.trip'].sudo().browse(trip_id)
-        if not trip.exists():
-            return self._json_response({'status': 'error', 'message': 'Trip not found'}, status=404)
-
-        try:
-            body = json.loads(request.httprequest.data.decode('utf-8'))
-            days_payload = body.get('days', [])
-
-            # Clear existing days to sync fresh AI itinerary
-            trip.sudo().day_ids.unlink()
-
-            for day_info in days_payload:
-                day_rec = request.env['gt.itinerary.day'].sudo().create({
-                    'trip_id': trip.id,
-                    'day_number': day_info.get('day_number', 1),
-                    'date': day_info.get('date', str(trip.start_date)),
-                    'title': day_info.get('title', f"Day {day_info.get('day_number', 1)} Exploration")
-                })
-                for act_info in day_info.get('activities', []):
-                    request.env['gt.activity'].sudo().create({
-                        'itinerary_day_id': day_rec.id,
-                        'name': act_info.get('name'),
-                        'category': act_info.get('category', 'sightseeing'),
-                        'start_time': act_info.get('start_time', '09:00 AM'),
-                        'duration_hours': float(act_info.get('duration_hours', 2.0)),
-                        'cost': float(act_info.get('cost', 0.0)),
-                        'is_indoor': bool(act_info.get('is_indoor', False)),
-                        'location': act_info.get('location', ''),
-                    })
-            return self._json_response({'status': 'success', 'message': 'AI Itinerary synchronized with Odoo backend.'})
         except Exception as e:
             return self._json_response({'status': 'error', 'message': str(e)}, status=400)
