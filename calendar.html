@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,247 +11,416 @@
 
 <body>
 
-    <header class="navbar">
 
-        <div class="logo">
-            <span class="logo-icon">✈</span>
-            <span>GlobalTrotter</span>
+
+<header class="navbar">
+
+    <div class="logo">
+        🇮🇳
+        <span>GlobalTrotter INDIA MANAGEMENT HUB</span>
+    </div>
+
+    <nav>
+        <a href="index.html">Explore</a>
+        <a href="#">Circuits</a>
+        <a href="#">Create Trip</a>
+        <a href="#">Build Itinerary</a>
+        <a href="#">Itinerary View</a>
+        <a href="calendar.html" class="active">Calendar</a>
+        <a href="admin.html">Admin Panel</a>
+        <a href="#">Group & Budget</a>
+    </nav>
+
+    <button class="login-btn">
+        Login / Register
+    </button>
+
+</header>
+
+
+<section class="hero">
+
+    <div>
+        <span class="tag">
+            🇮🇳 INCREDIBLE INDIA • TRIP CALENDAR
+        </span>
+
+        <h1>
+            Travel Calendar
+        </h1>
+
+        <p>
+            Manage your upcoming journeys, activities
+            and important trip dates in one workspace.
+        </p>
+    </div>
+
+    <button class="create-btn">
+        + Create Trip
+    </button>
+
+</section>
+
+
+
+<section class="controls">
+
+    <input
+        type="text"
+        placeholder="🔍 Search Trip..."
+    >
+
+    <select>
+        <option>Group By</option>
+        <option>Destination</option>
+        <option>Month</option>
+        <option>Status</option>
+    </select>
+
+    <select>
+        <option>Filter</option>
+        <option>Upcoming</option>
+        <option>Completed</option>
+        <option>Active</option>
+    </select>
+
+    <select>
+        <option>Sort By</option>
+        <option>Date</option>
+        <option>Budget</option>
+        <option>Destination</option>
+    </select>
+
+</section>
+
+
+<main class="container">
+
+    <div class="calendar-card">
+
+        <div class="calendar-header">
+
+            <button class="arrow">
+                ‹
+            </button>
+
+            <div>
+                <h2>August 2026</h2>
+                <span>Trip Schedule</span>
+            </div>
+
+            <button class="arrow">
+                ›
+            </button>
+
         </div>
 
-        <div class="profile">
-            <span class="profile-circle">P</span>
+
+        <div class="weekdays">
+
+            <span>MON</span>
+            <span>TUE</span>
+            <span>WED</span>
+            <span>THU</span>
+            <span>FRI</span>
+            <span>SAT</span>
+            <span>SUN</span>
+
         </div>
 
-    </header>
+
+        <div class="dates">
+
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div class="empty"></div>
+
+            <div class="date">
+                <b>1</b>
+            </div>
+
+            <div class="date">
+                <b>2</b>
+            </div>
+
+            <div class="date">
+                <b>3</b>
+            </div>
+
+
+            <div class="date">
+                <b>4</b>
+            </div>
+
+            <div class="date">
+                <b>5</b>
+
+                <div class="event orange">
+                    Jaipur Trip
+                </div>
+            </div>
+
+            <div class="date">
+                <b>6</b>
+
+                <div class="event orange">
+                    Amber Fort
+                </div>
+            </div>
+
+            <div class="date">
+                <b>7</b>
+            </div>
+
+            <div class="date">
+                <b>8</b>
+            </div>
+
+            <div class="date">
+                <b>9</b>
+            </div>
+
+            <div class="date">
+                <b>10</b>
+            </div>
+
+
+            <div class="date">
+                <b>11</b>
+
+                <div class="event blue">
+                    Goa Circuit
+                </div>
+            </div>
+
+            <div class="date">
+                <b>12</b>
+
+                <div class="event blue">
+                    Beach Day
+                </div>
+            </div>
+
+            <div class="date">
+                <b>13</b>
+
+                <div class="event blue">
+                    Water Sports
+                </div>
+            </div>
+
+            <div class="date">
+                <b>14</b>
+            </div>
+
+            <div class="date">
+                <b>15</b>
+            </div>
+
+            <div class="date">
+                <b>16</b>
+            </div>
+
+            <div class="date">
+                <b>17</b>
+            </div>
+
+
+            <div class="date">
+                <b>18</b>
+
+                <div class="event green">
+                    Kerala Trip
+                </div>
+            </div>
+
+            <div class="date">
+                <b>19</b>
+
+                <div class="event green">
+                    Munnar
+                </div>
+            </div>
+
+            <div class="date">
+                <b>20</b>
+            </div>
+
+            <div class="date">
+                <b>21</b>
+            </div>
+
+            <div class="date today">
+                <b>22</b>
+
+                <span class="today-label">
+                    TODAY
+                </span>
+            </div>
+
+            <div class="date">
+                <b>23</b>
+            </div>
+
+            <div class="date">
+                <b>24</b>
+            </div>
+
+
+            <div class="date">
+                <b>25</b>
+
+                <div class="event purple">
+                    Leh Trip
+                </div>
+            </div>
+
+            <div class="date">
+                <b>26</b>
+
+                <div class="event purple">
+                    Pangong Lake
+                </div>
+            </div>
+
+            <div class="date">
+                <b>27</b>
+
+                <div class="event purple">
+                    Nubra Valley
+                </div>
+            </div>
+
+            <div class="date">
+                <b>28</b>
+            </div>
+
+            <div class="date">
+                <b>29</b>
+            </div>
+
+            <div class="date">
+                <b>30</b>
+            </div>
+
+            <div class="date">
+                <b>31</b>
+            </div>
+
+        </div>
+
+    </div>
 
 
 
-    <section class="controls">
+    <section class="upcoming">
 
-        <input
-            type="text"
-            class="search"
-            placeholder="Search trip..."
-        >
+        <div class="section-title">
 
-        <button>Group By ▾</button>
+            <div>
+                <span class="tag">UPCOMING JOURNEYS</span>
 
-        <button>Filter</button>
+                <h2>Upcoming Trips</h2>
+            </div>
 
-        <button>Sort By ▾</button>
+            <button>
+                View All →
+            </button>
+
+        </div>
+
+
+        <div class="trip-grid">
+
+            <div class="trip-card">
+
+                <div class="trip-icon orange-bg">
+                    🏰
+                </div>
+
+                <div class="trip-info">
+
+                    <span>05 Aug - 10 Aug</span>
+
+                    <h3>
+                        Jaipur & Amber Fort
+                    </h3>
+
+                    <p>
+                        📍 Rajasthan
+                    </p>
+
+                    <div class="trip-bottom">
+                        <b>₹50,000</b>
+                        <small>5 Days</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="trip-card">
+
+                <div class="trip-icon blue-bg">
+                    🏖️
+                </div>
+
+                <div class="trip-info">
+
+                    <span>11 Aug - 14 Aug</span>
+
+                    <h3>
+                        Goa Beach Circuit
+                    </h3>
+
+                    <p>
+                        📍 Goa
+                    </p>
+
+                    <div class="trip-bottom">
+                        <b>₹35,000</b>
+                        <small>4 Days</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="trip-card">
+
+                <div class="trip-icon green-bg">
+                    🌿
+                </div>
+
+                <div class="trip-info">
+
+                    <span>18 Aug - 23 Aug</span>
+
+                    <h3>
+                        Alleppey & Munnar
+                    </h3>
+
+                    <p>
+                        📍 Kerala
+                    </p>
+
+                    <div class="trip-bottom">
+                        <b>₹60,000</b>
+                        <small>6 Days</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </section>
 
-
-
-    <main class="calendar-section">
-
-        <h2>Calendar View</h2>
-
-        <div class="calendar">
-
-       
-            <div class="calendar-header">
-
-                <button class="arrow">‹</button>
-
-                <h1>January 2026</h1>
-
-                <button class="arrow">›</button>
-
-            </div>
-
-
-            
-            <div class="weekdays">
-
-                <div>SUN</div>
-                <div>MON</div>
-                <div>TUE</div>
-                <div>WED</div>
-                <div>THU</div>
-                <div>FRI</div>
-                <div>SAT</div>
-
-            </div>
-
-
-            
-            <div class="dates">
-
-                <div class="empty"></div>
-                <div class="empty"></div>
-                <div class="empty"></div>
-                <div class="empty"></div>
-
-                <div class="date">
-                    <span>1</span>
-                </div>
-
-                <div class="date">
-                    <span>2</span>
-                </div>
-
-                <div class="date">
-                    <span>3</span>
-                </div>
-
-
-                <div class="date">
-                    <span>4</span>
-                </div>
-
-                <div class="date">
-                    <span>5</span>
-                </div>
-
-                <div class="date">
-                    <span>6</span>
-                </div>
-
-                <div class="date">
-                    <span>7</span>
-                </div>
-
-                <div class="date">
-                    <span>8</span>
-                </div>
-
-                <div class="date trip paris">
-                    <span>9</span>
-                    <small>PARIS TRIP</small>
-                </div>
-
-                <div class="date trip paris">
-                    <span>10</span>
-                </div>
-
-
-                <div class="date">
-                    <span>11</span>
-                </div>
-
-                <div class="date">
-                    <span>12</span>
-                </div>
-
-                <div class="date">
-                    <span>13</span>
-                </div>
-
-                <div class="date">
-                    <span>14</span>
-                </div>
-
-                <div class="date trip nyc">
-                    <span>15</span>
-                    <small>NYC GETAWAY</small>
-                </div>
-
-                <div class="date trip nyc">
-                    <span>16</span>
-                </div>
-
-                <div class="date">
-                    <span>17</span>
-                </div>
-
-
-                <div class="date trip japan">
-                    <span>18</span>
-                    <small>JAPAN ADVENTURE</small>
-                </div>
-
-                <div class="date trip japan">
-                    <span>19</span>
-                </div>
-
-                <div class="date trip japan">
-                    <span>20</span>
-                </div>
-
-                <div class="date">
-                    <span>21</span>
-                </div>
-
-                <div class="date">
-                    <span>22</span>
-                </div>
-
-                <div class="date">
-                    <span>23</span>
-                </div>
-
-                <div class="date">
-                    <span>24</span>
-                </div>
-
-
-                <div class="date">
-                    <span>25</span>
-                </div>
-
-                <div class="date trip paris">
-                    <span>26</span>
-                    <small>PARIS TRIP</small>
-                </div>
-
-                <div class="date">
-                    <span>27</span>
-                </div>
-
-                <div class="date">
-                    <span>28</span>
-                </div>
-
-                <div class="date trip nyc">
-                    <span>29</span>
-                    <small>NYC GETAWAY</small>
-                </div>
-
-                <div class="date">
-                    <span>30</span>
-                </div>
-
-                <div class="date">
-                    <span>31</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <section class="trip-summary">
-
-            <h2>Upcoming Trips</h2>
-
-            <div class="trip-cards">
-
-                <div class="trip-card">
-                    <h3>🇫🇷 Paris Trip</h3>
-                    <p>9 Jan - 10 Jan</p>
-                    <span>Food + History</span>
-                </div>
-
-                <div class="trip-card">
-                    <h3>🇺🇸 NYC Getaway</h3>
-                    <p>15 Jan - 16 Jan</p>
-                    <span>Shopping + Food</span>
-                </div>
-
-                <div class="trip-card">
-                    <h3>🇯🇵 Japan Adventure</h3>
-                    <p>18 Jan - 20 Jan</p>
-                    <span>Adventure + Nature</span>
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
+</main>
 
 </body>
-
 </html>
