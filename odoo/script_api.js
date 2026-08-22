@@ -79,10 +79,38 @@ if (!travelers || travelers < 1) {
 async function loadTrip(tripId) {
     try {
         const result = await apiRequest(`/trips/${tripId}`);
-
         const trip = result.trip;
 
-        document.getElementById("showDestination").textContent =
-            trip.destination;
+        document.getElementById("showDestination").textContent = trip.destination;
+        document.getElementById("showDays").textContent = trip.days;
+        document.getElementById("showTravelers").textContent = trip.travelers;
+        document.getElementById("showBudget").textContent = formatCurrency(trip.budget);
 
-        document.getElementById("showDays").textContent =
+    } 
+    
+    catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
+
+async function updateTrip(updatedData) {
+    if (!currentTripId) {
+        alert("Please create a trip first.");
+        return;
+    }
+
+    try {
+        await apiRequest(
+            `/trips/${currentTripId}`,
+            "PUT",
+            updatedData
+        );
+
+        await loadTrip(currentTripId);
+
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
