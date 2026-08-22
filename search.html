@@ -88,7 +88,7 @@
             font-size: 1.25rem;
             letter-spacing: -0.02em;
             color: #ffffff;
-            text-decoration: none;
+            cursor: pointer;
         }
 
         .user-profile-icon {
@@ -102,7 +102,6 @@
             justify-content: center;
             color: #ffffff;
             cursor: pointer;
-            text-decoration: none;
             transition: var(--transition);
         }
 
@@ -140,7 +139,7 @@
         .search-controls {
             display: flex;
             gap: 0.75rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             flex-wrap: wrap;
         }
 
@@ -179,7 +178,6 @@
         .control-select {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
             padding: 0.75rem 1rem;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -216,6 +214,16 @@
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--text-secondary);
+        }
+
+        .reset-btn {
+            background: transparent;
+            border: none;
+            color: var(--header-bg);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-left: auto;
         }
 
         .results-header {
@@ -517,15 +525,19 @@
                 flex-direction: column;
                 align-items: stretch;
             }
+
+            .reset-btn {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="logo">
+        <div class="logo" onclick="resetAllFilters()">
             GlobalTrotter
-        </a>
+        </div>
         
         <div class="header-categories">
             <button class="category-btn active" data-category="All"><i class="fa-solid fa-border-all"></i> All Circuits</button>
@@ -535,9 +547,9 @@
             <button class="category-btn" data-category="Culture & Spiritual"><i class="fa-solid fa-om"></i> Culture & Spiritual</button>
         </div>
 
-        <a href="index.html" class="user-profile-icon" title="Go to Main Index Page">
+        <div class="user-profile-icon" title="Reset to Home Index View" onclick="resetAllFilters()">
             <i class="fa-solid fa-house"></i>
-        </a>
+        </div>
     </header>
 
     <section class="main-search-section">
@@ -582,6 +594,8 @@
                         <option value="5+">5+ Days</option>
                     </select>
                 </div>
+
+                <button class="reset-btn" onclick="resetAllFilters()">Reset Filters</button>
             </div>
 
             <div class="results-header">
@@ -641,6 +655,19 @@
             },
             {
                 id: 3,
+                title: "Jaisalmer & Thar Desert",
+                location: "Rajasthan, India",
+                category: "Royal Forts",
+                tag: "Desert Safari",
+                price: 40000,
+                days: 3,
+                img: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80",
+                desc: "Jaisalmer stands in the heart of the Thar Desert, distinguished by yellow sandstone architecture and the world's only living hill fort.",
+                shortDesc: "Living Fort, Sand Dunes Camping & Camel Safaris",
+                highlights: "Overnight desert camp in Sam Sand Dunes, Camel & Jeep safari, Exploring Jaisalmer Fort, Patwon Ki Haveli"
+            },
+            {
+                id: 4,
                 title: "Alleppey & Munnar",
                 location: "Kerala, India",
                 category: "Backwaters & Beaches",
@@ -653,46 +680,7 @@
                 highlights: "Overnight houseboat stay, Tea tasting in Munnar, Eravikulam National Park, Kathakali dance performance"
             },
             {
-                id: 4,
-                title: "Manali & Solang Valley",
-                location: "Himachal Pradesh, India",
-                category: "Himalayan Treks",
-                tag: "Mountain Adventure",
-                price: 32000,
-                days: 5,
-                img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80",
-                desc: "A picturesque high-altitude Himalayan resort town nestled on the Beas River, perfect for adventure sports and serene mountain views.",
-                shortDesc: "Solang Valley Snow Sports, Atal Tunnel & Jogini Falls",
-                highlights: "Paragliding in Solang Valley, Drive through Atal Tunnel to Sissu, Trek to Jogini Waterfall, Old Manali Cafe Hopping"
-            },
-            {
                 id: 5,
-                title: "Varanasi & River Ghats",
-                location: "Uttar Pradesh, India",
-                category: "Culture & Spiritual",
-                tag: "Spiritual Heritage",
-                price: 25000,
-                days: 2,
-                img: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80",
-                desc: "One of the world's oldest continually inhabited cities, Varanasi is the spiritual core of India along the sacred river Ganges.",
-                shortDesc: "Evening Ganga Aarti, Kashi Vishwanath & Sunrise Boat Cruise",
-                highlights: "Evening Ganga Aarti at Dashashwamedh Ghat, Sunrise boat ride, Kashi Vishwanath Corridor, Street food tour in narrow lanes"
-            },
-            {
-                id: 6,
-                title: "Rishikesh & Haridwar",
-                location: "Uttarakhand, India",
-                category: "Culture & Spiritual",
-                tag: "Yoga & River Rafting",
-                price: 22000,
-                days: 3,
-                img: "https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=800&q=80",
-                desc: "Located on the banks of the sacred Ganges at the Himalayan foothills, world-renowned for white-water rafting, yoga, and evening ghat rituals.",
-                shortDesc: "Ganges White Water Rafting, Beatles Ashram & Har Ki Pauri",
-                highlights: "White water river rafting, Beatles Ashram visit, Har Ki Pauri evening Aarti, Laxman Jhula cliff jump"
-            },
-            {
-                id: 7,
                 title: "Goa Coast & Old Goa",
                 location: "Goa, India",
                 category: "Backwaters & Beaches",
@@ -705,7 +693,20 @@
                 highlights: "Water sports at Calangute, Fontainhas heritage walk, Dudhsagar Waterfall Jeep safari, Sunset beach shacks"
             },
             {
-                id: 8,
+                id: 6,
+                title: "Manali & Solang Valley",
+                location: "Himachal Pradesh, India",
+                category: "Himalayan Treks",
+                tag: "Mountain Adventure",
+                price: 32000,
+                days: 5,
+                img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80",
+                desc: "A picturesque high-altitude Himalayan resort town nestled on the Beas River, perfect for adventure sports and serene mountain views.",
+                shortDesc: "Solang Valley Snow Sports, Atal Tunnel & Jogini Falls",
+                highlights: "Paragliding in Solang Valley, Drive through Atal Tunnel to Sissu, Trek to Jogini Waterfall, Old Manali Cafe Hopping"
+            },
+            {
+                id: 7,
                 title: "Ladakh & Pangong Tso",
                 location: "Ladakh, India",
                 category: "Himalayan Treks",
@@ -716,6 +717,32 @@
                 desc: "A mesmerizing high-altitude desert region featuring rugged mountain passes, ancient Buddhist monasteries, and crystal-blue alpine lakes.",
                 shortDesc: "Pangong Lake Camping, Khardung La Pass & Nubra Valley",
                 highlights: "Overnight camp at Pangong Lake, Double-humped Camel ride in Nubra Valley, Drive across Khardung La, Thiksey Monastery"
+            },
+            {
+                id: 8,
+                title: "Varanasi & River Ghats",
+                location: "Uttar Pradesh, India",
+                category: "Culture & Spiritual",
+                tag: "Spiritual Heritage",
+                price: 25000,
+                days: 2,
+                img: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80",
+                desc: "One of the world's oldest continually inhabited cities, Varanasi is the spiritual core of India along the sacred river Ganges.",
+                shortDesc: "Evening Ganga Aarti, Kashi Vishwanath & Sunrise Boat Cruise",
+                highlights: "Evening Ganga Aarti at Dashashwamedh Ghat, Sunrise boat ride, Kashi Vishwanath Corridor, Street food tour in narrow lanes"
+            },
+            {
+                id: 9,
+                title: "Rishikesh & Haridwar",
+                location: "Uttarakhand, India",
+                category: "Culture & Spiritual",
+                tag: "Yoga & River Rafting",
+                price: 22000,
+                days: 3,
+                img: "https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=800&q=80",
+                desc: "Located on the banks of the sacred Ganges at the Himalayan foothills, world-renowned for white-water rafting, yoga, and evening ghat rituals.",
+                shortDesc: "Ganges White Water Rafting, Beatles Ashram & Har Ki Pauri",
+                highlights: "White water river rafting, Beatles Ashram visit, Har Ki Pauri evening Aarti, Laxman Jhula cliff jump"
             }
         ];
 
@@ -770,7 +797,10 @@
             resultsCount.textContent = `Showing ${filtered.length} places`;
 
             if (filtered.length === 0) {
-                container.innerHTML = `<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No travel circuits match your current filters.</p>`;
+                container.innerHTML = `<div style="text-align: center; color: var(--text-secondary); padding: 3rem 1rem;">
+                    <i class="fa-solid fa-compass" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                    <p>No travel circuits match your active search and filters.</p>
+                </div>`;
                 return;
             }
 
@@ -816,6 +846,19 @@
 
                 container.appendChild(card);
             });
+        }
+
+        function resetAllFilters() {
+            currentCategory = "All";
+            categoryBtns.forEach(b => {
+                if (b.getAttribute('data-category') === 'All') b.classList.add('active');
+                else b.classList.remove('active');
+            });
+            searchInput.value = "";
+            sortSelect.value = "default";
+            budgetFilter.value = "all";
+            durationFilter.value = "all";
+            renderCards();
         }
 
         categoryBtns.forEach(btn => {
