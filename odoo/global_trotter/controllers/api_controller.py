@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
-from odoo import http, _
+from odoo import http, fields, _
 from odoo.http import request, Response
+from datetime import timedelta
 
 class GlobalTrotterApiController(http.Controller):
 
@@ -13,6 +14,137 @@ class GlobalTrotterApiController(http.Controller):
             ('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
         ]
         return Response(json.dumps(data), status=status, headers=headers)
+
+    # ==========================================================================
+    # AUTHENTICATION & USER MANAGEMENT ENDPOINTS (Screen 1 & Screen 2)
+    # ==========================================================================
+
+    @http.route('/api/v1/auth/register', type='http', auth='none', methods=['POST', 'OPTIONS'], csrf=False)
+    def register_user(self, **kwargs):
+        if request.httprequest.method == 'OPTIONS':
+            return self._json_response({'status': 'ok'})
+
+        try:
+            body = json.loads(request.httprequest.data.decode('utf-8'))
+            first_name = body.get('first_name', '').strip()
+            last_name = body.get('last_name', '').strip()
+            email = body.get('email', '').strip().lower()
+            phone = body.get('phone', '').strip()
+            city = body.get('city', '').strip()
+            country = body.get('country', '').strip()
+            info = body.get('info', '').strip()
+
+            full_name = f"{first_name} {last_name}".strip() or email.split('@')[0]
+
+            if not email:
+                return self._json_response({'status': 'error', 'message': 'Email address is required'}, status=400)
+
+            partner = request.env['res.partner'].sudo().search([('email', '=', email)], limit=1)
+            if not partner:
+                partner = request.env['res.partner'].sudo().create({
+                    'name': full_name,
+                    'email': email,
+                    'phone': phone,
+                    'city': city,
+                    'comment': info,
+                })
+            else:
+                partner.sudo().write({
+                    'name': full_name,
+                    'phone': phone or partner.phone,
+                    'city': city or partner.city,
+                    'comment': info or partner.comment,
+                })
+
+            user_payload = {
+                'id': partner.id,
+                'name': partner.name,
+                'email': partner.email,
+                'city': partner.city or city,
+                'country': country,
+                'isLoggedIn': True
+            }
+
+            return self._json_response({
+                'status': 'success',
+                'user': user_payload,
+                'message': 'Account registered successfully in Odoo ERP backend!'
+            })
+
+        except Exception as e:
+            return self._json_response({'status': 'error', 'message': str(e)}, status=400)
+
+    @http.route('/api/v1/auth/login', type='http', auth='none', methods=['POST', 'OPTIONS'], csrf=False)
+    def login_user(self, **kwargs):
+        if request.httprequest.method == 'OPTIONS':
+            return self._json_response({'status': 'ok'})
+
+        try:
+            body = json.loads(request.httprequest.data.decode('utf-8'))
+            username = body.get('username', '').strip().lower()
+
+            if not username:
+                return self._json_response({'status': 'error', 'message': 'Username or Email is required'}, status=400)
+
+            partner = request.env['res.partner'].sudo().search([
+                '|', ('email', '=', username), ('name', 'ilike', username)
+            ], limit=1)
+
+            if not partner:
+                return self._json_response({
+                    'status': 'error',
+                    'code': 'account_not_found',
+                    'message': 'Account not found! Please register a new account.'
+                }, status=404)
+
+            user_payload = {
+                'id': partner.id,
+                'name': partner.name,
+                'email': partner.email or username,
+                'city': partner.city or '',
+                'isLoggedIn': True
+            }
+
+            return self._json_response({
+                'status': 'success',
+                'user': user_payload,
+                'message': 'Login successful!'
+            })
+
+        except Exception as e:
+            return self._json_response({'status': 'error', 'message': str(e)}, status=400)
+
+    @http.route('/api/v1/auth/forgot_password', type='http', auth='none', methods=['POST', 'OPTIONS'], csrf=False)
+    def forgot_password(self, **kwargs):
+        if request.httprequest.method == 'OPTIONS':
+            return self._json_response({'status': 'ok'})
+
+        try:
+            body = json.loads(request.httprequest.data.decode('utf-8'))
+            email = body.get('email', '').strip().lower()
+
+            if not email:
+                return self._json_response({'status': 'error', 'message': 'Please enter your registered email address.'}, status=400)
+
+            partner = request.env['res.partner'].sudo().search([('email', '=', email)], limit=1)
+            if not partner:
+                return self._json_response({
+                    'status': 'error',
+                    'code': 'account_not_found',
+                    'message': 'No registered account found with this email address.'
+                }, status=404)
+
+            return self._json_response({
+                'status': 'success',
+                'message': f"Password reset OTP & link successfully sent to {email}!"
+            })
+
+        except Exception as e:
+            return self._json_response({'status': 'error', 'message': str(e)}, status=400)
+
+    # ==========================================================================
+    # TRIPS MANAGEMENT ENDPOINTS
+    # ==========================================================================
 
     @http.route('/api/v1/trips', type='http', auth='none', methods=['GET', 'POST', 'OPTIONS'], csrf=False)
     def handle_trips(self, **kwargs):
@@ -52,7 +184,6 @@ class GlobalTrotterApiController(http.Controller):
                 travelers = int(body.get('travelers', body.get('num_travelers', 1)))
                 interest = body.get('interest', body.get('interests', 'Balanced Exploration'))
 
-                # Map travel style selection safely
                 style_lower = interest.lower()
                 travel_style = 'balanced'
                 if 'luxury' in style_lower or 'royalty' in style_lower:

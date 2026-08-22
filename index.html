@@ -11,7 +11,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome Icons -->
+    <!-- Auth Entry Guard Script -->
+    <script>
+        (function() {
+            try {
+                const storedUser = localStorage.getItem("gt_user");
+                if (!storedUser) {
+                    window.location.href = "login.html";
+                } else {
+                    const parsed = JSON.parse(storedUser);
+                    if (!parsed || !parsed.isLoggedIn) {
+                        window.location.href = "login.html";
+                    }
+                }
+            } catch(e) {
+                window.location.href = "login.html";
+            }
+        })();
+    </script>
+    
+    <!-- FontAwesome Icons & Stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
