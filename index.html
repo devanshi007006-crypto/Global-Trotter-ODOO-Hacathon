@@ -1,9 +1,270 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <meta charset=" UTF-8"
-        <meta name ="viewport" content="Width=device-Width,intial-Scale = 1.0"
-        <title>Global Trotter</title>
-    </head>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalTrotter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">GlobalTrotter</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#planner">Plan Trip</a>
+        <a href="#budget">Budget</a>
+        <a href="#group">Group</a>
+    </nav>
+</header>
+
+
+<section class="hero" id="home">
+
+    <div>
+        <h1>Plan. Explore. Travel.</h1>
+
+        <p>
+            Your smart travel companion for planning trips,
+            managing budgets and exploring together.
+        </p>
+
+        <a href="#planner" class="hero-btn">Start Planning</a>
+    </div>
+
+</section>
+
+
+<section class="planner" id="planner">
+
+    <h2>Create Your Trip</h2>
+    <p class="subtitle">Tell us about your dream trip</p>
+
+    <div class="form-grid">
+
+        <div class="input-box">
+            <label>Destination</label>
+            <input type="text" id="destination" placeholder="e.g. Goa">
+        </div>
+
+
+        <div class="input-box">
+            <label>Number of Days</label>
+
+            <!-- Minimum 1 day -->
+            <input
+                type="number"
+                id="days"
+                min="1"
+                placeholder="e.g. 5"
+            >
+        </div>
+
+
+        <div class="input-box">
+            <label>Total Budget</label>
+
+            <input
+                type="number"
+                id="budget"
+                min="1"
+                placeholder="80000"
+            >
+        </div>
+
+
+        <div class="input-box">
+            <label>Travelers</label>
+
+            <!-- Minimum 1 traveler -->
+            <input
+                type="number"
+                id="travelers"
+                min="1"
+                placeholder="e.g. 2"
+            >
+        </div>
+
+
+        <div class="input-box full">
+            <label>Travel Interest</label>
+
+            <select id="interest">
+                <option value="Food">Food</option>
+                <option value="History">History</option>
+                <option value="Beach">Beach</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Nature">Nature</option>
+            </select>
+        </div>
+
+    </div>
+
+
+    <button class="generate-btn" onclick="generateTrip()">
+        Generate My Trip
+    </button>
+
+</section>
+
+
+<section class="dashboard" id="dashboard">
+
+    <h2>Your Trip Dashboard</h2>
+
+    <div class="summary">
+
+        <div class="summary-card">
+            <span>Destination</span>
+            <strong id="showDestination">-</strong>
+        </div>
+
+
+        <div class="summary-card">
+            <span>Days</span>
+            <strong id="showDays">-</strong>
+        </div>
+
+
+        <div class="summary-card">
+            <span>Travelers</span>
+            <strong id="showTravelers">-</strong>
+        </div>
+
+
+        <div class="summary-card">
+            <span>Budget</span>
+            <strong id="showBudget">-</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="itinerary">
+
+    <h2>Day-wise Itinerary</h2>
+
+    <div class="day-container">
+
+        <div class="day-card">
+            <h3>Day 1</h3>
+            <p>Explore popular attractions</p>
+            <p>Local lunch</p>
+            <p>Evening sightseeing</p>
+        </div>
+
+
+        <div class="day-card">
+            <h3>Day 2</h3>
+            <p>Visit major tourist places</p>
+            <p>Try local activities</p>
+            <p>Dinner experience</p>
+        </div>
+
+
+        <div class="day-card">
+            <h3>Day 3</h3>
+            <p>Nature exploration</p>
+            <p>Local shopping</p>
+            <p>Relax and explore</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="budget-section" id="budget">
+
+    <h2>Smart Budget Manager</h2>
+
+    <div class="budget-grid">
+
+        <div class="budget-card">
+            <h3>Total Budget</h3>
+            <p id="totalBudget">₹0</p>
+        </div>
+
+
+        <div class="budget-card">
+            <h3>Estimated Spent</h3>
+            <p id="spentBudget">₹0</p>
+        </div>
+
+
+        <div class="budget-card">
+            <h3>Remaining</h3>
+            <p id="remainingBudget">₹0</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="group-section" id="group">
+
+    <h2>Group Trip</h2>
+
+    <p class="subtitle">
+        Plan and manage your trip together.
+    </p>
+
+    <div class="members">
+
+        <div class="member">
+            <span></span>
+
+            <div>
+                <strong>You</strong>
+                <p>₹15,000 spent</p>
+            </div>
+        </div>
+
+
+        <div class="member">
+            <span></span>
+
+            <div>
+                <strong>Rahul</strong>
+                <p>₹12,500 spent</p>
+            </div>
+        </div>
+
+
+        <div class="member">
+            <span></span>
+
+            <div>
+                <strong>Devanshi</strong>
+                <p>₹18,000 spent</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <h3>GlobalTrotter</h3>
+
+    <p>
+        Smart Travel • Smart Budget • Smart Planning
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
 </html>
 
