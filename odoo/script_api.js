@@ -149,12 +149,10 @@ function displayItinerary(itinerary) {
 itinerary.forEach(day => {
 
         const card = document.createElement("div");
-
         card.className = "day-card glass-panel";
 
 
-        const header =
-        document.createElement("div");
+        const header = document.createElement("div");
         header.className = "day-header";
 
 
