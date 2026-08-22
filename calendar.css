@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -5,23 +6,26 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #0b0f19;
-    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #070b14;
+    color: #f8fafc;
+    min-height: 100vh;
 }
 
 
 .navbar {
-    height: 70px;
+    height: 72px;
     padding: 0 45px;
 
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
-    border-bottom: 1px solid #303746;
+    background: #0b1020;
 
-    background: #0b0f19;
+    border-bottom: 1px solid #20283a;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .logo {
@@ -29,172 +33,253 @@ body {
     align-items: center;
     gap: 12px;
 
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
 .logo-icon {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
     background: linear-gradient(
         135deg,
         #8b5cf6,
-        #3b82f6
+        #6366f1
     );
+
+    box-shadow:
+        0 0 20px rgba(99, 102, 241, 0.35);
 }
 
 .profile-circle {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
 
-    border: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #6366f1;
 
     border-radius: 50%;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: #151b2d;
 
-    font-weight: bold;
+    font-weight: 600;
 }
 
-
-/* =========================
-   CONTROLS
-========================= */
 
 .controls {
     display: flex;
     gap: 10px;
 
-    padding: 25px 45px;
+    padding: 24px 45px;
 
-    border-bottom: 1px solid #303746;
+    background: #090e1a;
+
+    border-bottom: 1px solid #20283a;
 }
 
 .search {
     flex: 1;
 
-    padding: 12px 18px;
+    height: 42px;
 
-    border-radius: 8px;
+    padding: 0 16px;
 
-    border: 1px solid #596174;
+    border: 1px solid #303a52;
+
+    border-radius: 9px;
+
+    outline: none;
 
     background: #111827;
 
-    color: white;
+    color: #ffffff;
 
-    outline: none;
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+.search::placeholder {
+    color: #64748b;
+}
+
+.search:focus {
+    border-color: #6366f1;
+
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.12);
 }
 
 .controls button {
-    padding: 10px 18px;
+    height: 42px;
 
-    border-radius: 8px;
+    padding: 0 17px;
 
-    border: 1px solid #596174;
+    border: 1px solid #303a52;
+
+    border-radius: 9px;
 
     background: #111827;
 
-    color: white;
+    color: #dbeafe;
 
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
 .controls button:hover {
-    background: #1d2638;
+    background: #1a2336;
+
+    border-color: #6366f1;
+
+    transform: translateY(-1px);
 }
 
 
-/* =========================
-   CALENDAR SECTION
-========================= */
-
 .calendar-section {
-    max-width: 1100px;
+    max-width: 1180px;
 
     margin: auto;
 
-    padding: 40px 25px;
+    padding: 42px 25px 70px;
 }
 
 .calendar-section > h2 {
+    margin-bottom: 28px;
+
     text-align: center;
 
-    margin-bottom: 25px;
+    font-size: 28px;
 
-    font-size: 26px;
+    font-weight: 600;
+
+    color: #f8fafc;
+}
+
+.calendar-section > h2::after {
+    content: "";
+
+    display: block;
+
+    width: 55px;
+    height: 3px;
+
+    margin: 10px auto 0;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #8b5cf6,
+        #3b82f6
+    );
 }
 
 
 .calendar {
-    background: #f8fafc;
-
-    color: #111827;
-
-    border-radius: 12px;
-
     overflow: hidden;
 
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    background: #111827;
+
+    border: 1px solid #273149;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4);
+
+    transition: 0.3s;
+}
+
+.calendar:hover {
+    border-color: #35415e;
 }
 
 
 .calendar-header {
-    height: 75px;
+    height: 82px;
+
+    padding: 0 25px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 25px;
+    background: #151c2e;
 
-    border-bottom: 1px solid #d1d5db;
+    border-bottom: 1px solid #273149;
 }
 
 .calendar-header h1 {
     font-size: 22px;
+
+    font-weight: 600;
+
+    color: #f8fafc;
 }
 
 .arrow {
-    border: none;
+    width: 42px;
+    height: 42px;
 
-    background: transparent;
+    border: 1px solid #303a52;
 
-    font-size: 35px;
+    border-radius: 10px;
+
+    background: #0f172a;
+
+    color: #cbd5e1;
+
+    font-size: 28px;
 
     cursor: pointer;
 
-    color: #374151;
+    transition: 0.2s;
+}
+
+.arrow:hover {
+    background: #6366f1;
+
+    color: white;
+
+    border-color: #6366f1;
+
+    transform: scale(1.05);
 }
 
 
 .weekdays {
     display: grid;
 
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns:
+        repeat(7, 1fr);
 
-    background: #f1f5f9;
+    background: #0d1424;
 
-    border-bottom: 1px solid #d1d5db;
+    border-bottom: 1px solid #273149;
 }
 
 .weekdays div {
-    padding: 15px;
+    padding: 14px 5px;
 
     text-align: center;
 
-    font-size: 12px;
+    font-size: 11px;
 
-    font-weight: bold;
+    font-weight: 600;
+
+    letter-spacing: 1px;
 
     color: #64748b;
 }
@@ -203,66 +288,151 @@ body {
 .dates {
     display: grid;
 
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    background: #111827;
 }
 
 .date {
-    min-height: 95px;
+    min-height: 105px;
 
-    padding: 10px;
-
-    border-right: 1px solid #e5e7eb;
-    border-bottom: 1px solid #e5e7eb;
+    padding: 12px;
 
     position: relative;
 
-    background: white;
+    background: #111827;
+
+    border-right: 1px solid #202a3d;
+
+    border-bottom: 1px solid #202a3d;
+
+    transition: 0.2s;
+
+    cursor: pointer;
+}
+
+.date:hover {
+    background: #182238;
+
+    box-shadow:
+        inset 0 0 0 1px #3b4a68;
+
+    z-index: 2;
 }
 
 .date > span {
-    font-weight: 500;
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 8px;
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+}
+
+.date:hover > span {
+    background: #6366f1;
+
+    color: white;
 }
 
 .empty {
-    min-height: 95px;
+    min-height: 105px;
 
-    background: #f8fafc;
+    background: #0d1422;
 
-    border-right: 1px solid #e5e7eb;
-    border-bottom: 1px solid #e5e7eb;
+    border-right: 1px solid #202a3d;
+
+    border-bottom: 1px solid #202a3d;
 }
-
 
 
 .trip small {
     display: block;
 
-    margin-top: 18px;
+    margin-top: 17px;
 
-    padding: 5px;
+    padding: 7px 8px;
 
-    border-radius: 4px;
+    border-radius: 7px;
 
     font-size: 9px;
 
-    font-weight: bold;
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+
+.paris {
+    background:
+        linear-gradient(
+            145deg,
+            #151a30,
+            #17182d
+        );
 }
 
 .paris small {
-    background: #ddd6fe;
-    color: #6d28d9;
+    background: rgba(139, 92, 246, 0.18);
+
+    color: #c4b5fd;
+
+    border-left: 3px solid #8b5cf6;
+}
+
+
+
+.nyc {
+    background:
+        linear-gradient(
+            145deg,
+            #111d30,
+            #121b2d
+        );
 }
 
 .nyc small {
-    background: #bfdbfe;
-    color: #1d4ed8;
+    background: rgba(59, 130, 246, 0.18);
+
+    color: #93c5fd;
+
+    border-left: 3px solid #3b82f6;
+}
+
+
+
+
+.japan {
+    background:
+        linear-gradient(
+            145deg,
+            #10231e,
+            #111f1c
+        );
 }
 
 .japan small {
-    background: #bbf7d0;
-    color: #15803d;
-}
+    background: rgba(34, 197, 94, 0.15);
 
+    color: #86efac;
+
+    border-left: 3px solid #22c55e;
+}
 
 
 .trip-summary {
@@ -271,46 +441,102 @@ body {
 
 .trip-summary h2 {
     margin-bottom: 20px;
+
+    font-size: 22px;
+
+    font-weight: 600;
 }
 
 .trip-cards {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit, minmax(250px, 1fr));
+        repeat(3, 1fr);
 
-    gap: 20px;
+    gap: 18px;
 }
 
 .trip-card {
-    background: #161d2f;
+    padding: 22px;
 
-    border: 1px solid #303746;
+    background:
+        linear-gradient(
+            145deg,
+            #151d31,
+            #101625
+        );
 
-    border-radius: 14px;
+    border: 1px solid #273149;
 
-    padding: 20px;
+    border-radius: 15px;
+
+    transition: 0.25s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.trip-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background: linear-gradient(
+        #8b5cf6,
+        #3b82f6
+    );
+}
+
+.trip-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #4c5d82;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.25);
 }
 
 .trip-card h3 {
     margin-bottom: 10px;
+
+    font-size: 17px;
+
+    color: #f8fafc;
 }
 
 .trip-card p {
+    margin-bottom: 12px;
+
     color: #94a3b8;
 
-    margin-bottom: 12px;
+    font-size: 13px;
 }
 
 .trip-card span {
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: #202943;
+
     color: #a78bfa;
 
-    font-size: 14px;
+    font-size: 11px;
+
+    font-weight: 600;
 }
 
 
-
-@media (max-width: 700px) {
+@media (max-width: 850px) {
 
     .navbar {
         padding: 0 20px;
@@ -327,22 +553,58 @@ body {
     }
 
     .calendar-section {
-        padding: 30px 10px;
+        padding: 30px 12px 50px;
+    }
+
+    .trip-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .calendar-header {
+        height: 65px;
+
+        padding: 0 12px;
+    }
+
+    .calendar-header h1 {
+        font-size: 17px;
+    }
+
+    .arrow {
+        width: 35px;
+        height: 35px;
+
+        font-size: 22px;
     }
 
     .date {
-        min-height: 70px;
+        min-height: 75px;
 
-        padding: 5px;
+        padding: 7px;
+    }
+
+    .date > span {
+        width: 24px;
+        height: 24px;
 
         font-size: 11px;
     }
 
     .date small {
+        margin-top: 8px;
+
         font-size: 7px;
+
+        padding: 5px;
     }
 
     .weekdays div {
-        font-size: 9px;
+        padding: 10px 2px;
+
+        font-size: 8px;
     }
 }
