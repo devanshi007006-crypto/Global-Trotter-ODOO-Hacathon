@@ -3,9 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>GlobalTrotter - Admin Panel</title>
 
@@ -14,234 +12,148 @@
 
 <body>
 
+    <!-- ================= NAVBAR ================= -->
 
-    <aside class="sidebar">
+    <header class="navbar">
 
-        <div class="brand">
-
-            <div class="brand-icon">✈</div>
-
-            <span>GlobalTrotter</span>
-
+        <div class="logo">
+            🇮🇳
+            <span>GlobalTrotter INDIA MANAGEMENT HUB</span>
         </div>
 
-
-        <nav class="menu">
-
-            <a href="#" class="menu-item active">
-                <span>▦</span>
-                Dashboard
-            </a>
-
-            <a href="#" class="menu-item">
-                <span>👥</span>
-                Users
-            </a>
-
-            <a href="#" class="menu-item">
-                <span>🌍</span>
-                Destinations
-            </a>
-
-            <a href="#" class="menu-item">
-                <span>📅</span>
-                Trips
-            </a>
-
-            <a href="#" class="menu-item">
-                <span>🤖</span>
-                AI Recommendations
-            </a>
-
-            <a href="#" class="menu-item">
-                <span>⚙</span>
-                Settings
-            </a>
-
+        <nav>
+            <a href="index.html">Explore</a>
+            <a href="#">Circuits</a>
+            <a href="#">Create Trip</a>
+            <a href="#">Build Itinerary</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="admin.html" class="active">Admin Panel</a>
+            <a href="#">Group & Budget</a>
         </nav>
 
+        <button class="login-btn">
+            Admin
+        </button>
 
-        <div class="sidebar-bottom">
+    </header>
 
-            <div class="admin-profile">
 
-                <div class="avatar">
-                    A
-                </div>
+    <!-- ================= PAGE HEADER ================= -->
 
-                <div>
-                    <strong>Admin</strong>
-                    <small>Administrator</small>
-                </div>
+    <section class="page-header">
 
-            </div>
+        <div>
+
+            <span class="small-title">
+                🇮🇳 INCREDIBLE INDIA • MANAGEMENT
+            </span>
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p>
+                Manage trips, users, destinations and
+                AI-powered travel recommendations.
+            </p>
 
         </div>
 
-    </aside>
+        <button class="add-btn">
+            + Add Destination
+        </button>
+
+    </section>
 
 
+    <!-- ================= MAIN ================= -->
 
-    <main class="main">
-
-
-
-        <header class="topbar">
-
-            <div>
-
-                <h1>Admin Dashboard</h1>
-
-                <p>
-                    Manage and monitor GlobalTrotter
-                </p>
-
-            </div>
+    <main class="container">
 
 
-            <div class="top-actions">
-
-                <button class="notification">
-                    🔔
-                    <span>3</span>
-                </button>
-
-                <div class="profile-circle">
-                    A
-                </div>
-
-            </div>
-
-        </header>
-
-       
-
-        <section class="search-section">
-
-            <div class="search-box">
-
-                🔍
-
-                <input
-                    type="text"
-                    placeholder="Search users, trips, destinations..."
-                >
-
-            </div>
-
-
-            <button class="filter-btn">
-                ☰ Filter
-            </button>
-
-            <button class="sort-btn">
-                ↕ Sort By
-            </button>
-
-        </section>
-
+        <!-- ================= STAT CARDS ================= -->
 
         <section class="stats">
 
-
             <div class="stat-card">
 
-                <div class="stat-top">
-
-                    <div class="stat-icon purple">
-                        👥
-                    </div>
-
-                    <span class="growth">
-                        +12.5%
-                    </span>
-
+                <div class="stat-icon orange">
+                    👥
                 </div>
 
-                <h2>1,248</h2>
+                <div class="stat-content">
 
-                <p>Total Users</p>
+                    <span>Total Users</span>
 
-                <div class="progress">
-                    <span style="width: 75%"></span>
+                    <h2>1,248</h2>
+
+                    <small class="positive">
+                        ↑ 12.5% this month
+                    </small>
+
                 </div>
 
             </div>
 
 
-
             <div class="stat-card">
 
-                <div class="stat-top">
-
-                    <div class="stat-icon blue">
-                        ✈
-                    </div>
-
-                    <span class="growth">
-                        +8.4%
-                    </span>
-
+                <div class="stat-icon blue">
+                    ✈️
                 </div>
 
-                <h2>856</h2>
+                <div class="stat-content">
 
-                <p>Total Trips</p>
+                    <span>Active Trips</span>
 
-                <div class="progress">
-                    <span style="width: 62%"></span>
+                    <h2>856</h2>
+
+                    <small class="positive">
+                        ↑ 8.4% this month
+                    </small>
+
                 </div>
 
             </div>
 
 
-
             <div class="stat-card">
 
-                <div class="stat-top">
-
-                    <div class="stat-icon green">
-                        🌍
-                    </div>
-
-                    <span class="growth">
-                        +15.2%
-                    </span>
-
+                <div class="stat-icon green">
+                    📍
                 </div>
 
-                <h2>48</h2>
+                <div class="stat-content">
 
-                <p>Destinations</p>
+                    <span>Destinations</span>
 
-                <div class="progress">
-                    <span style="width: 82%"></span>
+                    <h2>48</h2>
+
+                    <small class="positive">
+                        ↑ 4 new destinations
+                    </small>
+
                 </div>
 
             </div>
 
 
-
             <div class="stat-card">
 
-                <div class="stat-top">
-
-                    <div class="stat-icon orange">
-                        🤖
-                    </div>
-
-                    <span class="growth">
-                        +21.7%
-                    </span>
-
+                <div class="stat-icon purple">
+                    🤖
                 </div>
 
-                <h2>2,460</h2>
+                <div class="stat-content">
 
-                <p>AI Recommendations</p>
+                    <span>AI Recommendations</span>
 
-                <div class="progress">
-                    <span style="width: 90%"></span>
+                    <h2>2,460</h2>
+
+                    <small class="positive">
+                        ↑ 21.7% this month
+                    </small>
+
                 </div>
 
             </div>
@@ -249,94 +161,82 @@
         </section>
 
 
+
+        <!-- ================= MAIN GRID ================= -->
 
         <section class="dashboard-grid">
 
 
+            <!-- ================= TRIP OVERVIEW ================= -->
 
-            <div class="card user-trends">
+            <div class="card trip-overview">
 
                 <div class="card-header">
 
                     <div>
+                        <span class="section-label">
+                            TRAVEL ANALYTICS
+                        </span>
 
-                        <h2>User Trends</h2>
-
-                        <p>
-                            Monthly user growth
-                        </p>
-
+                        <h2>Trip Overview</h2>
                     </div>
 
                     <select>
-
                         <option>Last 6 Months</option>
-
                         <option>Last Year</option>
-
                     </select>
 
                 </div>
 
 
+                <!-- SIMPLE BAR CHART -->
+
                 <div class="chart">
 
-                    <div class="y-labels">
+                    <div class="chart-y">
 
-                        <span>1200</span>
-                        <span>900</span>
-                        <span>600</span>
-                        <span>300</span>
+                        <span>1000</span>
+                        <span>750</span>
+                        <span>500</span>
+                        <span>250</span>
                         <span>0</span>
 
                     </div>
 
 
-                    <div class="chart-area">
+                    <div class="bars">
 
-                        <div class="grid-line line1"></div>
-                        <div class="grid-line line2"></div>
-                        <div class="grid-line line3"></div>
-                        <div class="grid-line line4"></div>
-
-
-                        <div class="bar b1">
-                            <span>620</span>
+                        <div class="bar-column">
+                            <div class="bar bar1"></div>
+                            <span>Mar</span>
                         </div>
 
-                        <div class="bar b2">
-                            <span>700</span>
+                        <div class="bar-column">
+                            <div class="bar bar2"></div>
+                            <span>Apr</span>
                         </div>
 
-                        <div class="bar b3">
-                            <span>780</span>
+                        <div class="bar-column">
+                            <div class="bar bar3"></div>
+                            <span>May</span>
                         </div>
 
-                        <div class="bar b4">
-                            <span>890</span>
+                        <div class="bar-column">
+                            <div class="bar bar4"></div>
+                            <span>Jun</span>
                         </div>
 
-                        <div class="bar b5">
-                            <span>1050</span>
+                        <div class="bar-column">
+                            <div class="bar bar5"></div>
+                            <span>Jul</span>
                         </div>
 
-                        <div class="bar b6">
-                            <span>1248</span>
+                        <div class="bar-column">
+                            <div class="bar bar6"></div>
+                            <span>Aug</span>
                         </div>
 
                     </div>
-
-                </div>
-
-
-                <div class="months">
-
-                    <span>Mar</span>
-                    <span>Apr</span>
-                    <span>May</span>
-                    <span>Jun</span>
-                    <span>Jul</span>
-                    <span>Aug</span>
 
                 </div>
 
@@ -344,24 +244,24 @@
 
 
 
-            <!-- POPULAR DESTINATIONS -->
+            <!-- ================= TOP DESTINATIONS ================= -->
 
-            <div class="card destinations">
+            <div class="card">
 
                 <div class="card-header">
 
                     <div>
 
-                        <h2>Popular Destinations</h2>
+                        <span class="section-label">
+                            TRAVEL TRENDS
+                        </span>
 
-                        <p>
-                            Based on user trips
-                        </p>
+                        <h2>Popular Destinations</h2>
 
                     </div>
 
-                    <button class="more">
-                        ⋮
+                    <button class="view-btn">
+                        View All
                     </button>
 
                 </div>
@@ -372,251 +272,83 @@
 
                     <div class="destination">
 
-                        <div class="place-image goa">
+                        <div class="destination-icon orange-bg">
+                            🏰
+                        </div>
+
+                        <div class="destination-info">
+
+                            <strong>Jaipur</strong>
+
+                            <span>Rajasthan</span>
+
+                        </div>
+
+                        <div class="percentage">
+                            32%
+                        </div>
+
+                    </div>
+
+
+                    <div class="destination">
+
+                        <div class="destination-icon blue-bg">
                             🏖️
                         </div>
 
-                        <div class="place-info">
+                        <div class="destination-info">
 
                             <strong>Goa</strong>
 
-                            <span>
-                                India
-                            </span>
+                            <span>Goa</span>
 
                         </div>
 
-                        <div class="place-percent">
-
-                            <strong>35%</strong>
-
-                            <div class="mini-progress">
-                                <span
-                                    style="width: 80%">
-                                </span>
-                            </div>
-
+                        <div class="percentage">
+                            27%
                         </div>
 
                     </div>
-
 
 
                     <div class="destination">
 
-                        <div class="place-image paris">
-                            🗼
+                        <div class="destination-icon green-bg">
+                            🌴
                         </div>
 
-                        <div class="place-info">
+                        <div class="destination-info">
 
-                            <strong>Paris</strong>
+                            <strong>Munnar</strong>
 
-                            <span>
-                                France
-                            </span>
+                            <span>Kerala</span>
 
                         </div>
 
-                        <div class="place-percent">
-
-                            <strong>25%</strong>
-
-                            <div class="mini-progress">
-                                <span
-                                    style="width: 60%">
-                                </span>
-                            </div>
-
+                        <div class="percentage">
+                            21%
                         </div>
 
                     </div>
-
 
 
                     <div class="destination">
 
-                        <div class="place-image japan">
-                            🗾
-                        </div>
-
-                        <div class="place-info">
-
-                            <strong>Tokyo</strong>
-
-                            <span>
-                                Japan
-                            </span>
-
-                        </div>
-
-                        <div class="place-percent">
-
-                            <strong>20%</strong>
-
-                            <div class="mini-progress">
-                                <span
-                                    style="width: 48%">
-                                </span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="destination">
-
-                        <div class="place-image nyc">
-                            🗽
-                        </div>
-
-                        <div class="place-info">
-
-                            <strong>New York</strong>
-
-                            <span>
-                                USA
-                            </span>
-
-                        </div>
-
-                        <div class="place-percent">
-
-                            <strong>20%</strong>
-
-                            <div class="mini-progress">
-                                <span
-                                    style="width: 48%">
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="card activities">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <h2>Popular Activities</h2>
-
-                        <p>
-                            Most selected activities
-                        </p>
-
-                    </div>
-
-                    <button class="more">
-                        ⋮
-                    </button>
-
-                </div>
-
-
-                <div class="activity-list">
-
-
-                    <div class="activity-row">
-
-                        <div class="activity-icon">
-                            🏖️
-                        </div>
-
-                        <div class="activity-info">
-
-                            <strong>Beach Activities</strong>
-
-                            <span>
-                                320 selections
-                            </span>
-
-                        </div>
-
-                        <div class="rating">
-                            ⭐ 4.9
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="activity-row">
-
-                        <div class="activity-icon">
+                        <div class="destination-icon purple-bg">
                             🏔️
                         </div>
 
-                        <div class="activity-info">
+                        <div class="destination-info">
 
-                            <strong>Adventure</strong>
+                            <strong>Leh</strong>
 
-                            <span>
-                                275 selections
-                            </span>
+                            <span>Ladakh</span>
 
                         </div>
 
-                        <div class="rating">
-                            ⭐ 4.8
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="activity-row">
-
-                        <div class="activity-icon">
-                            🍜
-                        </div>
-
-                        <div class="activity-info">
-
-                            <strong>Food Tours</strong>
-
-                            <span>
-                                220 selections
-                            </span>
-
-                        </div>
-
-                        <div class="rating">
-                            ⭐ 4.7
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="activity-row">
-
-                        <div class="activity-icon">
-                            🛍️
-                        </div>
-
-                        <div class="activity-info">
-
-                            <strong>Shopping</strong>
-
-                            <span>
-                                185 selections
-                            </span>
-
-                        </div>
-
-                        <div class="rating">
-                            ⭐ 4.6
+                        <div class="percentage">
+                            20%
                         </div>
 
                     </div>
@@ -627,21 +359,45 @@
 
 
 
+            <!-- ================= AI RECOMMENDATION ================= -->
 
-            <div class="card ai-insights">
+            <div class="card ai-card">
 
-                <div class="ai-header">
+                <div class="ai-top">
 
-                    <div class="ai-logo">
+                    <div class="ai-icon">
                         🤖
                     </div>
 
                     <div>
 
-                        <h2>AI Recommendation Insights</h2>
+                        <span class="section-label">
+                            SMART TRAVEL
+                        </span>
+
+                        <h2>AI Recommendations</h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ai-main">
+
+                    <div class="ai-score">
+                        91%
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Average Match Score
+                        </strong>
 
                         <p>
-                            Smart travel analytics
+                            Your AI system is successfully
+                            matching travelers with suitable
+                            destinations and activities.
                         </p>
 
                     </div>
@@ -649,101 +405,174 @@
                 </div>
 
 
-                <div class="ai-highlight">
+                <div class="ai-data">
 
-                    <span class="label">
-                        Most Popular Interest
-                    </span>
+                    <div>
+                        <span>Top Interest</span>
+                        <strong>Adventure</strong>
+                    </div>
 
-                    <strong>
-                        Adventure
-                    </strong>
+                    <div>
+                        <span>Top Suggestion</span>
+                        <strong>Goa</strong>
+                    </div>
 
-                    <span class="value">
-                        42% of users
-                    </span>
-
-                </div>
-
-
-                <div class="ai-highlight">
-
-                    <span class="label">
-                        Top AI Recommendation
-                    </span>
-
-                    <strong>
-                        Goa
-                    </strong>
-
-                    <span class="value">
-                        386 recommendations
-                    </span>
+                    <div>
+                        <span>Recommendations</span>
+                        <strong>2,460</strong>
+                    </div>
 
                 </div>
 
 
-                <div class="ai-highlight">
-
-                    <span class="label">
-                        Average AI Match
-                    </span>
-
-                    <strong>
-                        91%
-                    </strong>
-
-                    <span class="value">
-                        Recommendation accuracy
-                    </span>
-
-                </div>
-
-
-                <button class="ai-button">
+                <button class="ai-btn">
                     View AI Analytics →
                 </button>
 
             </div>
 
 
-            <div class="card users-table">
+
+            <!-- ================= POPULAR ACTIVITIES ================= -->
+
+            <div class="card">
 
                 <div class="card-header">
 
                     <div>
 
-                        <h2>Recent Users</h2>
+                        <span class="section-label">
+                            USER PREFERENCES
+                        </span>
 
-                        <p>
-                            Recently registered users
-                        </p>
+                        <h2>Popular Activities</h2>
 
                     </div>
 
-                    <button class="view-all">
+                </div>
+
+
+                <div class="activity">
+
+                    <span class="activity-emoji">
+                        🏖️
+                    </span>
+
+                    <div class="activity-name">
+
+                        <strong>Beach Activities</strong>
+
+                        <div class="activity-line">
+                            <span style="width: 85%;"></span>
+                        </div>
+
+                    </div>
+
+                    <b>85%</b>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <span class="activity-emoji">
+                        🏔️
+                    </span>
+
+                    <div class="activity-name">
+
+                        <strong>Adventure</strong>
+
+                        <div class="activity-line">
+                            <span style="width: 78%;"></span>
+                        </div>
+
+                    </div>
+
+                    <b>78%</b>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <span class="activity-emoji">
+                        🍛
+                    </span>
+
+                    <div class="activity-name">
+
+                        <strong>Food & Culture</strong>
+
+                        <div class="activity-line">
+                            <span style="width: 68%;"></span>
+                        </div>
+
+                    </div>
+
+                    <b>68%</b>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <span class="activity-emoji">
+                        🛍️
+                    </span>
+
+                    <div class="activity-name">
+
+                        <strong>Shopping</strong>
+
+                        <div class="activity-line">
+                            <span style="width: 54%;"></span>
+                        </div>
+
+                    </div>
+
+                    <b>54%</b>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= RECENT TRIPS ================= -->
+
+            <div class="card recent-trips">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            TRIP MANAGEMENT
+                        </span>
+
+                        <h2>Recent Trips</h2>
+
+                    </div>
+
+                    <button class="view-btn">
                         View All
                     </button>
 
                 </div>
 
 
-                <div class="table-container">
+                <div class="table-wrapper">
 
                     <table>
 
                         <thead>
 
                             <tr>
-
-                                <th>User</th>
-
-                                <th>Trips</th>
-
-                                <th>Favourite</th>
-
+                                <th>Traveler</th>
+                                <th>Destination</th>
+                                <th>Budget</th>
                                 <th>Status</th>
-
                             </tr>
 
                         </thead>
@@ -754,9 +583,9 @@
                             <tr>
 
                                 <td>
-                                    <div class="table-user">
+                                    <div class="user">
 
-                                        <div class="small-avatar">
+                                        <div class="avatar">
                                             P
                                         </div>
 
@@ -765,9 +594,9 @@
                                     </div>
                                 </td>
 
-                                <td>12</td>
+                                <td>Jaipur</td>
 
-                                <td>Adventure</td>
+                                <td>₹50,000</td>
 
                                 <td>
                                     <span class="status active">
@@ -781,26 +610,24 @@
                             <tr>
 
                                 <td>
+                                    <div class="user">
 
-                                    <div class="table-user">
-
-                                        <div class="small-avatar">
+                                        <div class="avatar">
                                             R
                                         </div>
 
                                         <span>Rahul</span>
 
                                     </div>
-
                                 </td>
 
-                                <td>8</td>
+                                <td>Goa</td>
 
-                                <td>Food</td>
+                                <td>₹35,000</td>
 
                                 <td>
-                                    <span class="status active">
-                                        Active
+                                    <span class="status planning">
+                                        Planning
                                     </span>
                                 </td>
 
@@ -810,22 +637,20 @@
                             <tr>
 
                                 <td>
+                                    <div class="user">
 
-                                    <div class="table-user">
-
-                                        <div class="small-avatar">
+                                        <div class="avatar">
                                             D
                                         </div>
 
                                         <span>Devanshi</span>
 
                                     </div>
-
                                 </td>
 
-                                <td>15</td>
+                                <td>Kerala</td>
 
-                                <td>History</td>
+                                <td>₹60,000</td>
 
                                 <td>
                                     <span class="status active">
@@ -839,26 +664,24 @@
                             <tr>
 
                                 <td>
+                                    <div class="user">
 
-                                    <div class="table-user">
-
-                                        <div class="small-avatar">
+                                        <div class="avatar">
                                             A
                                         </div>
 
                                         <span>Aarav</span>
 
                                     </div>
-
                                 </td>
 
-                                <td>5</td>
+                                <td>Leh</td>
 
-                                <td>Shopping</td>
+                                <td>₹80,000</td>
 
                                 <td>
-                                    <span class="status inactive">
-                                        Inactive
+                                    <span class="status completed">
+                                        Completed
                                     </span>
                                 </td>
 
@@ -873,41 +696,73 @@
             </div>
 
 
+
+            <!-- ================= QUICK ACTIONS ================= -->
+
+            <div class="card quick-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            MANAGEMENT
+                        </span>
+
+                        <h2>Quick Actions</h2>
+
+                    </div>
+
+                </div>
+
+
+                <button class="quick-btn">
+                    <span>➕</span>
+                    Add New Trip
+                </button>
+
+
+                <button class="quick-btn">
+                    <span>📍</span>
+                    Add Destination
+                </button>
+
+
+                <button class="quick-btn">
+                    <span>👥</span>
+                    Manage Users
+                </button>
+
+
+                <button class="quick-btn">
+                    <span>🤖</span>
+                    AI Recommendations
+                </button>
+
+
+                <button class="quick-btn">
+                    <span>💰</span>
+                    Budget Reports
+                </button>
+
+            </div>
+
         </section>
 
     </main>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const registeredUsers = JSON.parse(localStorage.getItem("gt_accounts") || "[]");
-            const createdTrips = JSON.parse(localStorage.getItem("gt_trips") || "[]");
 
-            const totalUsersEl = document.querySelector(".card-value");
-            if (totalUsersEl && registeredUsers.length > 0) {
-                totalUsersEl.textContent = (1248 + registeredUsers.length).toLocaleString();
-            }
+    <!-- ================= FOOTER ================= -->
 
-            const userTableBody = document.querySelector(".data-table tbody");
-            if (userTableBody && registeredUsers.length > 0) {
-                registeredUsers.forEach(u => {
-                    const row = document.createElement("tr");
-                    const initial = u.name ? u.name.charAt(0).toUpperCase() : "U";
-                    row.innerHTML = `
-                        <td>
-                            <div class="table-user">
-                                <div class="small-avatar">${initial}</div>
-                                <span>${u.name} (${u.email})</span>
-                            </div>
-                        </td>
-                        <td>${u.city || 'India'}</td>
-                        <td>${u.info || 'Traveler'}</td>
-                        <td><span class="status active">Active Registered</span></td>
-                    `;
-                    userTableBody.prepend(row);
-                });
-            }
-        });
-    </script>
+    <footer>
+
+        <strong>GlobalTrotter</strong>
+
+        <span>
+            Smart Travel Management • Incredible India
+        </span>
+
+    </footer>
+
 </body>
-
 </html>
