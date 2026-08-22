@@ -97,3 +97,118 @@ h2 {
     margin-bottom: 8px;
     font-weight: bold;
 }
+.input-box input,
+.input-box select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+}
+
+.full {
+    grid-column: 1 / 3;
+}
+
+.generate-btn {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #1677ff;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.generate-btn:hover,
+.hero-btn:hover {
+    background: #095dcc;
+}
+
+.summary,
+.budget-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.summary-card,
+.budget-card,
+.day-card,
+.member {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #ddd;
+}
+
+.summary-card span {
+    display: block;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.summary-card strong {
+    font-size: 20px;
+}
+
+.day-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.day-card h3 {
+    margin-bottom: 15px;
+}
+
+.day-card p {
+    margin: 10px 0;
+}
+
+.budget-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.budget-card h3 {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.budget-card p {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.members {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.member {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.member span {
+    font-size: 35px;
+}
+
+.member p {
+    color: #777;
+    margin-top: 5px;
+}
+
+footer {
+    text-align: center;
+    background: #222;
+    color: white;
+    padding: 30px;
+    margin-top: 50px;
+}
