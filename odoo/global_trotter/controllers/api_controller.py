@@ -417,11 +417,20 @@ class GlobalTrotterApiController(http.Controller):
             body = json.loads(request.httprequest.data.decode('utf-8'))
             text = body.get('text', '')
             author = body.get('author', 'Traveler')
+            
+            # Save record in Odoo ORM Database Model
+            post_rec = request.env['gt.community.post'].sudo().create({
+                'author_name': author,
+                'content': text,
+                'tags': body.get('tags', '#GlobalTrotter')
+            })
+
             return self._json_response({
                 'status': 'success',
-                'message': 'Community post published successfully in Odoo ERP backend!',
-                'post': { 'id': 101, 'author': author, 'text': text, 'likes': 1 }
+                'message': 'Community post published and stored successfully in Odoo ERP backend ORM database!',
+                'post': { 'id': post_rec.id, 'author': post_rec.author_name, 'text': post_rec.content, 'likes': 1 }
             })
         except Exception as e:
             return self._json_response({'status': 'error', 'message': str(e)}, status=400)
+
 

@@ -1,0 +1,124 @@
+{
+  "project": "GlobalTrotter Odoo ERP Platform",
+  "version": "1.0",
+  "database_tables": {
+    "res_partner_users": [
+      {
+        "id": 1,
+        "name": "Devanshi Sharma",
+        "email": "devanshi007006@gmail.com",
+        "phone": "+91 9876543210",
+        "city": "Delhi",
+        "country": "India",
+        "role": "Team Leader & Backend Architect"
+      },
+      {
+        "id": 2,
+        "name": "Mishva Patel",
+        "email": "mishva@globetrotter.com",
+        "phone": "+91 9876543211",
+        "city": "Ahmedabad",
+        "country": "India",
+        "role": "Frontend UI/UX Lead"
+      },
+      {
+        "id": 3,
+        "name": "Prachi Kanwar",
+        "email": "prachi.kanwar@globetrotter.com",
+        "phone": "+91 9876543212",
+        "city": "Jaipur",
+        "country": "India",
+        "role": "AI & Recommendation Lead"
+      },
+      {
+        "id": 4,
+        "name": "Prachi Das",
+        "email": "prachi.das@globetrotter.com",
+        "phone": "+91 9876543213",
+        "city": "Mumbai",
+        "country": "India",
+        "role": "Integration & Pitch Lead"
+      }
+    ],
+    "gt_trips": [
+      {
+        "id": 101,
+        "name": "Jaipur Royal Heritage Circuit",
+        "destination": "Jaipur, Rajasthan",
+        "start_date": "2026-10-10",
+        "end_date": "2026-10-15",
+        "budget_allocated": 50000.0,
+        "budget_spent": 20400.0,
+        "num_travelers": 3,
+        "status": "Ongoing"
+      },
+      {
+        "id": 102,
+        "name": "Kerala Backwaters & Houseboat Cruise",
+        "destination": "Kochi - Alleppey - Munnar",
+        "start_date": "2026-11-15",
+        "end_date": "2026-11-20",
+        "budget_allocated": 45000.0,
+        "budget_spent": 0.0,
+        "num_travelers": 2,
+        "status": "Upcoming"
+      },
+      {
+        "id": 103,
+        "name": "Goa Beach Vacation",
+        "destination": "North & South Goa",
+        "start_date": "2025-12-05",
+        "end_date": "2025-12-08",
+        "budget_allocated": 35000.0,
+        "budget_spent": 35000.0,
+        "num_travelers": 4,
+        "status": "Completed"
+      }
+    ],
+    "gt_itinerary_sections": [
+      {
+        "id": 1,
+        "section_number": 1,
+        "category": "travel",
+        "info": "Vande Bharat Express Train from Delhi to Jaipur Fort Station + Hotel Check-in.",
+        "start_date": "2026-10-10",
+        "end_date": "2026-10-12",
+        "budget": 15000.0
+      },
+      {
+        "id": 2,
+        "section_number": 2,
+        "category": "hotel",
+        "info": "Royal Heritage Palace Stay with Complimentary Rajasthani Breakfast & Pool.",
+        "start_date": "2026-10-12",
+        "end_date": "2026-10-14",
+        "budget": 30000.0
+      },
+      {
+        "id": 3,
+        "section_number": 3,
+        "category": "activity",
+        "info": "Amber Fort Guided Tour, Jal Mahal Sunset Photography & Elephant Safari.",
+        "start_date": "2026-10-14",
+        "end_date": "2026-10-15",
+        "budget": 20000.0
+      }
+    ],
+    "gt_community_posts": [
+      {
+        "id": 201,
+        "author_name": "Devanshi Sharma",
+        "content": "Pro-tip for Amer Fort, Jaipur! Make sure to arrive before 09:30 AM to beat the crowd and get clear morning sunlight for Jal Mahal sunset photography.",
+        "tags": "#JaipurForts",
+        "likes_count": 142
+      },
+      {
+        "id": 202,
+        "author_name": "Mishva Patel",
+        "content": "Just completed a 3-day houseboat itinerary in Alleppey! Total budget per person came out to ₹12,500 including fresh seafood dinners.",
+        "tags": "#KeralaBackwaters",
+        "likes_count": 98
+      }
+    ]
+  }
+}
