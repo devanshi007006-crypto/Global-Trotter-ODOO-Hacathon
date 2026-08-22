@@ -34,3 +34,13 @@ nav a{
  nav a:hover{
     color: #1677ff;
  }
+.hero{
+    min-height:420px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px 20px;
+    background: #eaf4ff;
+
+ }
