@@ -43,8 +43,8 @@ html {
 }
 
 body {
-    background: var(--bg-dark);
-    color: var(--text-primary);
+    background: #f8f5ee;
+    color: #263331;
     line-height: 1.6;
 }
 
