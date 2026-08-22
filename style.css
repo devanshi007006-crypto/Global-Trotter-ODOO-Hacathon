@@ -31,3 +31,6 @@ nav a{
     color:#333;
     margin-left:25px;
 }
+ nav a:hover{
+    color: #1677ff;
+ }
