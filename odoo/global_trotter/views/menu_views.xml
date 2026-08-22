@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top-level Root Menu -->
+    <menuitem id="menu_gt_root"
+              name="GlobalTrotter"
+              web_icon="global_trotter,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- Trips Menu -->
+    <menuitem id="menu_gt_trip"
+              name="🗺️ My Trips"
+              parent="menu_gt_root"
+              action="action_gt_trip"
+              sequence="10"/>
+
+    <!-- Itinerary Management Submenu -->
+    <menuitem id="menu_gt_itinerary_root"
+              name="🗓️ Itineraries"
+              parent="menu_gt_root"
+              sequence="20"/>
+
+    <menuitem id="menu_gt_itinerary_day"
+              name="Day Breakdown"
+              parent="menu_gt_itinerary_root"
+              action="action_gt_itinerary_day"
+              sequence="10"/>
+
+    <menuitem id="menu_gt_activity"
+              name="Activities Catalog"
+              parent="menu_gt_itinerary_root"
+              action="action_gt_activity"
+              sequence="20"/>
+
+    <!-- Budget & Expenses Submenu -->
+    <menuitem id="menu_gt_expense"
+              name="💰 Budget &amp; Expenses"
+              parent="menu_gt_root"
+              action="action_gt_expense"
+              sequence="30"/>
+</odoo>
