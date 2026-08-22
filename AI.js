@@ -132,6 +132,98 @@ const activities = [
     }
 ];
 
+// AI Reccomendation Score
+ if (
+        activity.category.toLowerCase() ===
+        interest.toLowerCase()
+    ) {
+        score += 50;
+    }
+
+score += activity.rating * 5;
+
+ if (activity.cost <= dailyBudget) {
+
+        score += 30;
+
+    } else if (activity.cost <= dailyBudget + 1000) {
+
+        score += 10;
+    }
+
+    return score;
+}
+
+
+function getRecommendations(destination, interest, dailyBudget) {
+
+    let destinationActivities = activities.filter(
+        activity =>
+            activity.destination === destination.toLowerCase()
+    );
+
+    destinationActivities.forEach(activity => {
+
+        activity.score = calculateRecommendationScore(
+            activity,
+            interest,
+            dailyBudget
+        );
+
+    });
+
+   destinationActivities.sort(
+        (a, b) => b.score - a.score
+    );
+
+    return destinationActivities;
+}
+
+
+function generateTrip() {
+
+    const destination =
+        document.getElementById("destination").value.trim();
+
+    const days =
+        parseInt(document.getElementById("days").value);
+
+    const budget =
+        parseInt(document.getElementById("budget").value);
+
+    const travelers =
+        parseInt(document.getElementById("travelers").value);
+
+    const interest =
+        document.getElementById("interest").value;
+
+
+    if (!destination) {
+
+        alert("Please enter your destination.");
+        return;
+    }
+
+    if (!days || days < 1) {
+
+        alert("Please enter valid number of days.");
+        return;
+    }
+
+    if (!budget || budget < 1) {
+
+        alert("Please enter valid budget.");
+        return;
+    }
+
+    if (!travelers || travelers < 1) {
+
+        alert("Please enter number of travelers.");
+        return;
+    }
+
+
+
 
 
   
