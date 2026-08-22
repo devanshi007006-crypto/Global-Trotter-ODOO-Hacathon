@@ -37,4 +37,4 @@ function generateTrip() {
     }
     
 }
-}
+
