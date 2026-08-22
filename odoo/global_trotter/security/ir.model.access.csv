@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gt_trip_user,gt.trip.user,model_gt_trip,base.group_user,1,1,1,1
+access_gt_itinerary_day_user,gt.itinerary.day.user,model_gt_itinerary_day,base.group_user,1,1,1,1
+access_gt_activity_user,gt.activity.user,model_gt_activity,base.group_user,1,1,1,1
+access_gt_expense_user,gt.expense.user,model_gt_expense,base.group_user,1,1,1,1
+access_gt_expense_split_user,gt.expense.split.user,model_gt_expense_split,base.group_user,1,1,1,1
+access_gt_activity_vote_user,gt.activity.vote.user,model_gt_activity_vote,base.group_user,1,1,1,1
